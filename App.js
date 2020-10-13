@@ -4,6 +4,7 @@ import { StyleSheet, View, Dimensions, Text } from 'react-native';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { TextInput, Button } from 'react-native-paper'
 import MapboxGL from '@react-native-mapbox-gl/maps';
+import ImagePicker from 'react-native-image-picker';
 
 
 const App = () => {
