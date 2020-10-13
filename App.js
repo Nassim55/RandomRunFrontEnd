@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, View, Dimensions, Text } from 'react-native';
 
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-
+import { TextInput, Button } from 'react-native-paper'
+import MapboxGL from '@react-native-mapbox-gl/maps';
 
 
 const App = () => {
 	return (
     	<View style={styles.container}>
-			<Text>Hello</Text>
+			<Text>Hello Nassim</Text>
     	</View>
   	);
 };
