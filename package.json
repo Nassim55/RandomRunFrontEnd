@@ -17,7 +17,11 @@
     "react-native-image-picker": "^2.3.4",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-paper": "^4.2.0",
-    "react-native-vector-icons": "^7.1.0"
+    "react-native-reanimated": "^1.13.1",
+    "react-native-redash": "^15.7.3",
+    "react-native-sensitive-info": "^6.0.0-alpha.6",
+    "react-native-vector-icons": "^7.1.0",
+    "react-native-view-shot": "^3.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
