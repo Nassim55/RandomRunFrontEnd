@@ -1,32 +1,51 @@
-import React from 'react';
-import { StyleSheet, View, Dimensions, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, View, Dimensions  } from 'react-native';
+import { NativeRouter, Route, Switch, useHistory } from "react-router-native";
+import { useDispatch } from 'react-redux';
 
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import { TextInput, Button } from 'react-native-paper'
-import MapboxGL from '@react-native-mapbox-gl/maps';
-import ImagePicker from 'react-native-image-picker';
-import Animated from 'react-native-reanimated';
-import { usePanGestureHandler } from  "react-native-redash/lib/module/v1";
-import ViewShot from "react-native-view-shot";
+// Custom components:
+import LoginPageView from './app/components/LoginPageView';
+import AuthorisedUserView from './app/components/AuthorisedUserView';
+import PrivateRoute from './app/routes/PrivateRoute';
+
+// Custom functions:
+import getData from './app/authentication/getData';
 
 
 const App = () => {
-	return (
-    	<View style={styles.container}>
-			<Text>Hello Nassim</Text>
-    	</View>
-  	);
+  console.log('App render');
+
+  // Creating dispatch to all updates to redux store:
+  const dispatch = useDispatch();
+
+  // Creating history in order to allow react router re-directs:
+  const history = useHistory();
+
+  useEffect(() => {
+    getData(dispatch, history);
+  }, [])
+  
+  return (
+    <NativeRouter>
+      <View style = {styles.page} >
+        <Switch>
+          <Route exact path='/' component={LoginPageView} />
+          <PrivateRoute path='/usermap' exact={true} component={AuthorisedUserView} />
+        </Switch>
+      </View>
+    </NativeRouter>
+  );
 };
 
 const styles = StyleSheet.create({
-	container: {
-    	height: Dimensions.get('window').height,
-		width: Dimensions.get('window').width,
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center',
-  	}
+  page: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  }
 });
 
 export default App;
