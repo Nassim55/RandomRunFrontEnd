@@ -51,16 +51,19 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>For choosing a profile photo.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>For taking a profile photo.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>For saving a photo.</string>
-
 	<key>UIAppFonts</key>
 	<array>
+		<string>Raleway-Bold.ttf</string>
+		<string>Raleway-Light.ttf</string>
+		<string>Raleway-Medium.ttf</string>
+		<string>Raleway-Regular.ttf</string>
+		<string>Raleway-Thin.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
@@ -78,11 +81,9 @@
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
 	</array>
-
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App generates a route from the users location</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>App generates a route from the users location</string>
-
 </dict>
 </plist>
