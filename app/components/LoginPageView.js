@@ -6,7 +6,7 @@ import { TextInput, Button } from 'react-native-paper'
 
 import Animated, { interpolate } from 'react-native-reanimated';
 import { useTransition } from  "react-native-redash/lib/module/v1";
-//import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
 
 // Custom functions:
 import registerAccount from '../authentication/registerAccount';
@@ -160,6 +160,32 @@ const LoginPageView = () => {
                         <Button
                         style={styles.loginButton}
                         uppercase={false}
+                        icon='facebook'
+                        mode="outlined"
+                        onPress={() => {
+                            LoginManager.logInWithPermissions(['public_profile', 'email']).then(
+                                (result) => {
+                                    if (result.isCancelled) {
+                                        console.log('Login cancelled');
+                                    } else {
+                                        AccessToken.getCurrentAccessToken().then(
+                                            (accessToken) => {
+                                                convertSocialAuthToken(accessToken.accessToken, dispatch, history);
+                                            }
+                                        )
+                                    }
+                                },
+                                (error) => {
+                                    console.log('Login fail with error: ' + error);
+                                }
+                            );
+                        }}
+                        >
+                            Log in with Facebook
+                        </Button>
+                        <Button
+                        style={styles.loginButton}
+                        uppercase={false}
                         icon='sign-direction'
                         mode="outlined"
                         onPress={() => setIsSignUp(!isSignUp)}
@@ -167,39 +193,13 @@ const LoginPageView = () => {
                             Sign Up
                         </Button>
                         <Button
-                            style={styles.loginButton}
-                            uppercase={false}
-                            icon='facebook'
-                            mode="outlined"
-                            // onPress={() => {
-                            //     LoginManager.logInWithPermissions(['public_profile', 'email']).then(
-                            //         (result) => {
-                            //             if (result.isCancelled) {
-                            //                 console.log('Login cancelled');
-                            //             } else {
-                            //                 AccessToken.getCurrentAccessToken().then(
-                            //                     (accessToken) => {
-                            //                         convertSocialAuthToken(accessToken.accessToken, dispatch, history);
-                            //                     }
-                            //                 )
-                            //             }
-                            //         },
-                            //         (error) => {
-                            //             console.log('Login fail with error: ' + error);
-                            //         }
-                            //     );
-                            // }}
-                            >
-                                Log in with Facebook
-                            </Button>
-                            <Button
-                            style={styles.loginButton}
-                            uppercase={false}
-                            icon='google'
-                            mode="outlined"
-                            >
-                                Log in with Google
-                            </Button>
+                        style={styles.loginButton}
+                        uppercase={false}
+                        icon='google'
+                        mode="outlined"
+                        >
+                            Log in with Google
+                        </Button>
                     </View>
                 </Animated.View>
                 <Animated.View style={[styles.card, styles.cardSignUpDetails, {
