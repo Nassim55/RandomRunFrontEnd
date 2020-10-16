@@ -160,6 +160,32 @@ const LoginPageView = () => {
                         <Button
                         style={styles.loginButton}
                         uppercase={false}
+                        icon='google'
+                        mode="outlined"
+                        onPress={async () => {
+                            try {
+                                console.log('Awaiting Google sign in...');
+                                await GoogleSignin.hasPlayServices();
+                                const userInfo = await GoogleSignin.signIn();
+                                console.log(userInfo);
+                            } catch (error) {
+                                if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                                    // user cancelled the login flow
+                                } else if (error.code === statusCodes.IN_PROGRESS) {
+                                    // operation (e.g. sign in) is in progress already
+                                } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                                    // play services not available or outdated
+                                } else {
+                                    // some other error happened
+                                }
+                            }
+                        }}
+                        >
+                            Log in with Google
+                        </Button>
+                        <Button
+                        style={styles.loginButton}
+                        uppercase={false}
                         icon='facebook'
                         mode="outlined"
                         onPress={() => {
@@ -191,32 +217,6 @@ const LoginPageView = () => {
                         onPress={() => setIsSignUp(!isSignUp)}
                         >
                             Sign Up
-                        </Button>
-                        <Button
-                        style={styles.loginButton}
-                        uppercase={false}
-                        icon='google'
-                        mode="outlined"
-                        onPress={async () => {
-                            try {
-                                console.log('Awaiting Google sign in...');
-                                await GoogleSignin.hasPlayServices();
-                                const userInfo = await GoogleSignin.signIn();
-                                console.log(userInfo);
-                            } catch (error) {
-                                if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-                                    // user cancelled the login flow
-                                } else if (error.code === statusCodes.IN_PROGRESS) {
-                                    // operation (e.g. sign in) is in progress already
-                                } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-                                    // play services not available or outdated
-                                } else {
-                                    // some other error happened
-                                }
-                            }
-                        }}
-                        >
-                            Log in with Google
                         </Button>
                     </View>
                 </Animated.View>

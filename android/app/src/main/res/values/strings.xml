@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RandomRunFrontEnd</string>
     <string name="facebook_app_id">363738605007781</string>
+    <string name="server_client_id">420584478657-g029r0i9qbd2e297i5jt6clilbsf2gba.apps.googleusercontent.com</string>
 </resources>
