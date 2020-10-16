@@ -14,6 +14,8 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
+#import <RNGoogleSignin/RNGoogleSignin.h>
+
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
   SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
@@ -56,15 +58,21 @@ static void InitializeFlipper(UIApplication *application) {
   return YES;
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-  return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                         openURL:url
-                                               sourceApplication:sourceApplication
-                                                      annotation:annotation];
+//- (BOOL)application:(UIApplication *)application
+//            openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication
+//         annotation:(id)annotation {
+//  return [[FBSDKApplicationDelegate sharedInstance] application:application
+//                                                         openURL:url
+//                                               sourceApplication:sourceApplication
+//                                                      annotation:annotation];
+//}
+
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
+  return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options] || [RNGoogleSignin application:application openURL:url options:options];
 }
+
+
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {

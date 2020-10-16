@@ -7,6 +7,7 @@ import { TextInput, Button } from 'react-native-paper'
 import Animated, { interpolate } from 'react-native-reanimated';
 import { useTransition } from  "react-native-redash/lib/module/v1";
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-community/google-signin';
 
 // Custom functions:
 import registerAccount from '../authentication/registerAccount';
@@ -19,6 +20,9 @@ import landingPageBackground from '../../images/landingPageBackground.jpg';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
+
+// It is manditory to call this method before trying attempting to call signIn()
+GoogleSignin.configure();
 
 
 const LoginPageView = () => {
@@ -71,10 +75,6 @@ const LoginPageView = () => {
 
     // Messages that will be shown to user if incorrect data is posted:
     const loginButtonHttpResponse = useSelector(state => state.loginButtonHttpResponse);
-
-
-
-
 
 
     return (
@@ -197,6 +197,24 @@ const LoginPageView = () => {
                         uppercase={false}
                         icon='google'
                         mode="outlined"
+                        onPress={async () => {
+                            try {
+                                console.log('Awaiting Google sign in...');
+                                await GoogleSignin.hasPlayServices();
+                                const userInfo = await GoogleSignin.signIn();
+                                console.log(userInfo);
+                            } catch (error) {
+                                if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                                    // user cancelled the login flow
+                                } else if (error.code === statusCodes.IN_PROGRESS) {
+                                    // operation (e.g. sign in) is in progress already
+                                } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                                    // play services not available or outdated
+                                } else {
+                                    // some other error happened
+                                }
+                            }
+                        }}
                         >
                             Log in with Google
                         </Button>
