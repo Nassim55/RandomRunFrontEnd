@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     cardSegmentTextContainerBottom: {
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
-        backgroundColor: '#F24E4E',
+        backgroundColor: '#252934',
     },
     cardSegmentTextTop: {
         fontFamily: 'Raleway-Regular',
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
         flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F24E4E',
+        backgroundColor: '#252934',
         elevation: 8,
         padding: '4%',
     },

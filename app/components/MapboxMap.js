@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 
 const layerStyles = {
     routeLine: {
-      lineColor: '#F24E4E',
+      lineColor: '#252934',
       lineCap: MapboxGL.LineJoin.Round,
       lineWidth: 5,
       lineOpacity: 0.5,

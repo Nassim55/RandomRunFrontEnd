@@ -7,7 +7,7 @@ import { TextInput, Button } from 'react-native-paper'
 import Animated, { interpolate } from 'react-native-reanimated';
 import { useTransition } from  "react-native-redash/lib/module/v1";
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
-import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-community/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 
 // Custom functions:
 import registerAccount from '../authentication/registerAccount';

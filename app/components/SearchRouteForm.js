@@ -42,7 +42,7 @@ const SearchRouteForm = (props) => {
         opacity: isUserInfoMenuOpen ? 1 : 0
     })
     const hamburgerColour = useSpring({
-        backgroundColor: isUserInfoMenuOpen ? '#F24E4E' : 'white'
+        backgroundColor: isUserInfoMenuOpen ? '#252934' : 'white'
     })
 
     const AnimatedView = animated(View);
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
         flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F24E4E',
+        backgroundColor: '#252934',
         elevation: 8,
         padding: '4%',
         borderTopRightRadius: 10,

@@ -40,7 +40,7 @@ const theme = {
     roundness: 10,
     colors: {
       ...DefaultTheme.colors,
-      primary: '#F24E4E',
+      primary: '#252934',
       background: 'white',
     },
     fonts: configureFonts(fontConfig),
