@@ -137,6 +137,58 @@ const LoginPageView = () => {
                             <Button
                             style={styles.loginButton}
                             uppercase={false}
+                            icon='google'
+                            mode="outlined"
+                            onPress={async () => {
+                                try {
+                                    console.log('Awaiting Google sign in...');
+                                    await GoogleSignin.hasPlayServices();
+                                    const userInfo = await GoogleSignin.signIn();
+                                    console.log(userInfo);
+                                } catch (error) {
+                                    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                                        // user cancelled the login flow
+                                    } else if (error.code === statusCodes.IN_PROGRESS) {
+                                        // operation (e.g. sign in) is in progress already
+                                    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                                        // play services not available or outdated
+                                    } else {
+                                        // some other error happened
+                                    }
+                                }
+                            }}
+                            >
+                                Log in with Google
+                            </Button>
+                            <Button
+                            style={styles.loginButton}
+                            uppercase={false}
+                            icon='facebook'
+                            mode="outlined"
+                            onPress={() => {
+                                LoginManager.logInWithPermissions(['public_profile', 'email']).then(
+                                    (result) => {
+                                        if (result.isCancelled) {
+                                            console.log('Login cancelled');
+                                        } else {
+                                            AccessToken.getCurrentAccessToken().then(
+                                                (accessToken) => {
+                                                    convertSocialAuthToken(accessToken.accessToken, dispatch, history);
+                                                }
+                                            )
+                                        }
+                                    },
+                                    (error) => {
+                                        console.log('Login fail with error: ' + error);
+                                    }
+                                );
+                            }}
+                            >
+                                Log in with Facebook
+                            </Button>
+                            <Button
+                            style={styles.loginButton}
+                            uppercase={false}
                             color='grey'
                             onPress={() => setIsForgotPassword(!isForgotPassword)}
                             >
@@ -153,62 +205,10 @@ const LoginPageView = () => {
                     ]
                 }]}>
                     <View style={styles.cardTopText}>
-                        <Text style={styles.welcomeTextTop}>New to Random Run?</Text>
-                        <Text style={styles.welcomeTextBottom}>Sign up or log in with a social account</Text>
+                        <Text style={styles.welcomeTextTop}>Create an account?</Text>
+                        <Text style={styles.welcomeTextBottom}>Sign up for a Random Run account</Text>
                     </View>
                     <View style={styles.forms}>
-                        <Button
-                        style={styles.loginButton}
-                        uppercase={false}
-                        icon='google'
-                        mode="outlined"
-                        onPress={async () => {
-                            try {
-                                console.log('Awaiting Google sign in...');
-                                await GoogleSignin.hasPlayServices();
-                                const userInfo = await GoogleSignin.signIn();
-                                console.log(userInfo);
-                            } catch (error) {
-                                if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-                                    // user cancelled the login flow
-                                } else if (error.code === statusCodes.IN_PROGRESS) {
-                                    // operation (e.g. sign in) is in progress already
-                                } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-                                    // play services not available or outdated
-                                } else {
-                                    // some other error happened
-                                }
-                            }
-                        }}
-                        >
-                            Log in with Google
-                        </Button>
-                        <Button
-                        style={styles.loginButton}
-                        uppercase={false}
-                        icon='facebook'
-                        mode="outlined"
-                        onPress={() => {
-                            LoginManager.logInWithPermissions(['public_profile', 'email']).then(
-                                (result) => {
-                                    if (result.isCancelled) {
-                                        console.log('Login cancelled');
-                                    } else {
-                                        AccessToken.getCurrentAccessToken().then(
-                                            (accessToken) => {
-                                                convertSocialAuthToken(accessToken.accessToken, dispatch, history);
-                                            }
-                                        )
-                                    }
-                                },
-                                (error) => {
-                                    console.log('Login fail with error: ' + error);
-                                }
-                            );
-                        }}
-                        >
-                            Log in with Facebook
-                        </Button>
                         <Button
                         style={styles.loginButton}
                         uppercase={false}
