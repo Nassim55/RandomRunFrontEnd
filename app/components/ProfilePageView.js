@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Pressable, Image, Dimensions } from 'react-native';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setIsProfileShown, setIsMapShown } from '../../store/actions';
 
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -9,8 +9,10 @@ import ImagePicker from 'react-native-image-picker';
 import Animated, { Extrapolate, interpolate } from 'react-native-reanimated';
 import { useTransition } from  "react-native-redash/lib/module/v1";
 
+import { TextInput, Button } from 'react-native-paper'
+
 const height = Dimensions.get('window').height
-console.log(height)
+
 
 const ProfilePageView = (props) => {
     const dispatch = useDispatch();
@@ -36,6 +38,9 @@ const ProfilePageView = (props) => {
         extrapolate: Extrapolate.CLAMP,
     });
 
+
+    const userAccountDetails = useSelector(state => state.userAccountDetails);
+    console.log(userAccountDetails)
 
 
 
@@ -87,7 +92,7 @@ const ProfilePageView = (props) => {
                             />
                         </Pressable>
                         <View style={styles.usernameView}>
-                            <Text style={styles.username}>nassim</Text>
+                            <Text style={styles.largeText}>nassim</Text>
                             <Text style={styles.dateJoined}>Joined September 2020</Text>
                         </View>
                     </Animated.View>
@@ -95,34 +100,62 @@ const ProfilePageView = (props) => {
                         transform: [{translateY: translateYBottom}]
                     }]}>
                         <View style={styles.profileImageAndNameView}>
-                            <Pressable
-                            style={styles.profileImage}
-                            onPress={() => {
-                                ImagePicker.showImagePicker(options, (response) => {                              
-                                    if (response.didCancel) {
-                                        console.log('User cancelled image picker');
-                                    } else if (response.error) {
-                                        console.log('ImagePicker Error: ', response.error);
-                                    } else {
-                                        const source = { uri: response.uri };
-                                        setProfileImageSource(source)
-                                        console.log(source);
-                                        // Would then send the image to the database, do a GET request
-                                        // for account information, update state, then UI would re-render
-                                        // to reflect this update in state...
-                                    }
-                                });
-                            }}
-                            >
-                                <Image
-                                source={profileImageSource}
-                                style={styles.profileImage}
-                                />
-                            </Pressable>
-                            <View style={styles.usernameView}>
-                                <Text style={styles.username}>nassim</Text>
-                                <Text style={styles.dateJoined}>Joined September 2020</Text>
+                            <View style={styles.editProfileContainer}>
+                                <Text style={styles.largeText}>Edit Profile</Text>
                             </View>
+                            <View style={styles.formContainer}>
+                                <TextInput
+                                label="Username"
+                                value={userAccountDetails.username}
+                                mode={'outlined'}
+                                />
+                            </View>
+                            <View style={styles.namesContainer}>
+                                <View style={styles.formContainerNames}>
+                                    <TextInput
+                                    label="First Name"
+                                    value={userAccountDetails.first_name}
+                                    mode={'outlined'}
+                                    />
+                                </View>
+                                <View style={styles.formContainerNames}>
+                                    <TextInput
+                                    label="Last Name"
+                                    value={userAccountDetails.last_name}
+                                    mode={'outlined'}
+                                    />
+                                </View>
+                            </View>
+                            <View style={styles.formContainer}>
+                                <TextInput
+                                label="Email"
+                                value={userAccountDetails.email}
+                                mode={'outlined'}
+                                />
+                            </View>
+                            <View style={styles.formContainer}>
+                                <TextInput
+                                label="Password"
+                                secureTextEntry={true}
+                                value='Change Password?'
+                                mode={'outlined'}
+                                />
+                            </View>
+                            <Button
+                            style={styles.button}
+                            uppercase={false}
+                            mode="contained"
+                            >
+                                Save Changes
+                            </Button>
+
+                            <Button
+                            style={styles.button}
+                            uppercase={false}
+                            mode="contained"
+                            >
+                                Delete Account
+                            </Button>
                         </View>
                     </Animated.View>
                 </View>
@@ -224,7 +257,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
-    username: {
+    largeText: {
         fontFamily: 'Raleway-Regular',
         fontSize: 24
     },
@@ -239,6 +272,33 @@ const styles = StyleSheet.create({
         borderRadius: 110,
     },
 
+    formContainer: {
+        position: 'relative',
+        width: '100%',
+        marginBottom: 10,
+    },
+    formContainerNames: {
+        position: 'relative',
+        width: '48%',
+        marginBottom: 10,
+    },
+
+    namesContainer: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    button: {
+        position: 'relative',
+        width: '100%',
+        marginBottom: 10
+    },
+
+    editProfileContainer: {
+        marginBottom: 20
+    },
 })
 
 
