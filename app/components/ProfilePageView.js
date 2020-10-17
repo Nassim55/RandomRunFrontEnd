@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Pressable, Image, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Pressable, Image, Dimensions, Alert } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsProfileShown, setIsMapShown } from '../../store/actions';
@@ -10,6 +10,9 @@ import Animated, { Extrapolate, interpolate } from 'react-native-reanimated';
 import { useTransition } from  "react-native-redash/lib/module/v1";
 
 import { TextInput, Button } from 'react-native-paper'
+
+import deleteUserAccount from '../functions/deleteUserAccount';
+import deleteData from '../authentication/deleteData';
 
 const height = Dimensions.get('window').height
 
@@ -153,6 +156,30 @@ const ProfilePageView = (props) => {
                             style={styles.button}
                             uppercase={false}
                             mode="contained"
+                            onPress={() => {
+                                Alert.alert(
+                                    'Delete your account?',
+                                    'Are you sure you want to permanently delete your account?',
+                                    [
+                                        { 
+                                            text: 'Keep',
+                                            style: 'cancel',
+                                        },
+                                        { 
+                                            text: 'Delete',
+                                            style: 'destructive',
+                                            onPress: async () => {
+                                                // Deletes account:
+                                                const deleteAccount = await deleteUserAccount();
+
+                                                // After deleting acocunt deletes the auth token from secure storage:
+                                                deleteData(dispatch);
+                                            },
+                                        }
+                                    ],
+                                    { cancelable: false }
+                                );
+                            }}
                             >
                                 Delete Account
                             </Button>

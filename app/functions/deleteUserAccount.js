@@ -1,17 +1,16 @@
 import RNSInfo from 'react-native-sensitive-info';
 
-const deleteSavedRoute = async (savedRouteDatabaseID) => {
-    // Try deleting a route from the database: 
+const deleteUserAccount = async () => {
     try {
         // Checking to see if token exists in sensitive info storage:
         const token = await RNSInfo.getItem('token', {});
 
-        // Deleting saved route from the database and defining the response: 
-        const response = await fetch(`http://127.0.0.1:8000/route/routes/${savedRouteDatabaseID}/`, {
+        // Deleting the account from the database and defining the response: 
+        const response = await fetch(`http://127.0.0.1:8000/account/deleteaccount`, {
             method: 'DELETE',
             headers: { 'Authorization': `Token ${token}` }
         });
-  
+    
         // Converting response to JSON data:
         const data = await response.json();
         console.log(data);
@@ -19,6 +18,6 @@ const deleteSavedRoute = async (savedRouteDatabaseID) => {
     } catch (err) {
         if (console) console.error(err)
     };
-}
+};
 
-export default deleteSavedRoute;
+export default deleteUserAccount;
