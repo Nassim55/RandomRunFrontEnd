@@ -7,13 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setRouteDistanceMeters } from '../../store/actions';
 
 // Custom functions:
-
+import saveRoute from '../functions/saveRoute';
 
 
 
 const RouteInfoCard = (props) => {
     // Defining variables from Redux state:
-    const finalLineString = useSelector(state => state.finalRouteLineString);
+    const finalRouteLineString = useSelector(state => state.finalRouteLineString);
     const userID = useSelector(state => state.userAccountDetails.id);
     const mostNorthEasternCoordinates = useSelector(state => state.mostNorthEasternCoordinates);
     const mostSouthWesternCoordinates = useSelector(state => state.mostSouthWesternCoordinates);
@@ -29,7 +29,7 @@ const RouteInfoCard = (props) => {
     return (
         <View style={styles.routeDetails}>
             {
-                finalLineString.coordinates.length > 0 ?
+                finalRouteLineString.coordinates.length > 0 ?
                     <View style={styles.routeCetailsCardAndSaveContainer}>
                         <View style={styles.routeDetailsCard}>
                             <View style={[styles.cardSegments, styles.cardSegmentLeft]}>
@@ -48,6 +48,25 @@ const RouteInfoCard = (props) => {
                                     <Text style={styles.cardSegmentTextBottom}>{timeString}</Text>
                                 </View>
                             </View>
+                        </View>
+                        <View style={styles.saveContainer}>
+                            <Pressable
+                            style={styles.saveButton}
+                            onPress={async () => {
+                                const mapImageURI = await props.viewShotRef.current.capture();
+                                saveRoute(
+                                    props.displayRouteDistance,
+                                    finalRouteLineString.coordinates,
+                                    mapImageURI,
+                                    userID,
+                                    timeString,
+                                    mostNorthEasternCoordinates,
+                                    mostSouthWesternCoordinates
+                                );
+                            }}
+                            >
+                                <Text style={styles.cardSegmentTextBottom}>Save this route</Text>
+                            </Pressable>
                         </View>
                     </View>
                 : 
@@ -189,7 +208,32 @@ const styles = StyleSheet.create({
     generateButtonText: {
         color: 'white',
         marginRight: 10
-    }
+    },
+
+    saveContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 10
+    },
+    saveButton: {
+        width: '100%',
+        padding: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#252934',
+        opacity: 0.9,
+        borderRadius: 15,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
 });
 
 export default RouteInfoCard;

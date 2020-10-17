@@ -59,12 +59,10 @@ const AuthorisedUserView = (props) => {
                 displayRouteDistance={calculatedRouteDistance}
                 />
               </View>
-              <UserInfoMenu
-              viewShotRef={viewShotRef}
-              displayRouteDistance={calculatedRouteDistance}
-              />
+              <UserInfoMenu/>
             </View>
-            <RouteInfoCard 
+            <RouteInfoCard
+            viewShotRef={viewShotRef}
             displayRouteDistance={calculatedRouteDistance}
             />
           </View>

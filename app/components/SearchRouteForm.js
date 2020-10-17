@@ -84,7 +84,7 @@ const SearchRouteForm = (props) => {
                 }}
                 >   
                     
-                    <Text style= {styles.generateButtonText}>Calculate Route</Text>
+                    <Text style= {styles.generateButtonText}>Calculate</Text>
                     <SimpleLineIcons name='rocket' size={24} color='white'/>
                 </TouchableOpacity>
             </View>

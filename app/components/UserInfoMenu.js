@@ -18,9 +18,7 @@ const UserInfoMenu = (props) => {
 
 
     const isUserInfoMenuOpen = useSelector(state => state.isUserInfoMenuOpen);
-    const userID = useSelector(state => state.userAccountDetails.id);
-    const mostNorthEasternCoordinates = useSelector(state => state.mostNorthEasternCoordinates);
-    const mostSouthWesternCoordinates = useSelector(state => state.mostSouthWesternCoordinates);
+
 
     
     const fade = useSpring({
@@ -30,46 +28,11 @@ const UserInfoMenu = (props) => {
 
     const AnimatedView = animated(View);
 
-    const finalRouteLineString = useSelector(state => state.finalRouteLineString);
-
-
-    // Creating the route duration for an average running speed of 5 meters per second:
-    const date = new Date(0);
-    date.setSeconds(props.displayRouteDistance.toFixed(0) / 5);
-    const timeString = date.toISOString().substr(11, 8);
-
-
-
-
-    
 
     return (
         <View style={styles.userInfoMenu}>
             { isUserInfoMenuOpen ? 
                 <AnimatedView style={fade}>
-                    {
-                        finalRouteLineString.coordinates.length > 0 ?
-                            <Pressable
-                            style={styles.userInfoMenuButton}
-                            onPress={async () => {
-                                const mapImageURI = await props.viewShotRef.current.capture();
-                                saveRoute(
-                                    props.displayRouteDistance,
-                                    finalRouteLineString.coordinates,
-                                    mapImageURI,
-                                    userID,
-                                    timeString,
-                                    mostNorthEasternCoordinates,
-                                    mostSouthWesternCoordinates
-                                );
-                            }}
-                            >
-                                <SimpleLineIcons name='map' size={24} />
-                                <Text style={styles.userInfoMenuButtonText}>Save</Text>
-                            </Pressable>
-                            :
-                            null
-                    }
                     <Pressable 
                     style={styles.userInfoMenuButton}
                     onPress={() => {

@@ -22,7 +22,7 @@ const ProfilePageView = (props) => {
 
 
     const [isProfileEditShown, setIsProfileEditShown] = useState(false);
-    const [profileImageSource, setProfileImageSource] = useState({ uri: '/Users/nassim/Documents/RandomRunIOS/images/profilePic.jpeg' })
+    const [profileImageSource, setProfileImageSource] = useState({ uri: '/Users/nassim/Documents/RandomRunFrontEnd/images/profilePic.jpeg' })
 
     const transition = useTransition(isProfileEditShown, { duration: 400 })
     const translateYTop = interpolate(transition, {
@@ -186,6 +186,8 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         paddingLeft: 20,
         paddingRight: 20,
     },
@@ -195,8 +197,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 24,
         alignItems: 'flex-end',
         padding: 10,
-
-        zIndex: 999
+        zIndex: 999,
     },
     profileInfoView: {
         position: 'absolute',
