@@ -145,7 +145,7 @@ const ProfilePageView = (props) => {
                             style={styles.button}
                             uppercase={false}
                             mode="contained"
-                            onPress={updateUserAccount}
+                            onPress={() => updateUserAccount({}, dispatch)}
                             >
                                 Save Changes
                             </Button>
