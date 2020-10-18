@@ -12,6 +12,7 @@ import { useTransition } from  "react-native-redash/lib/module/v1";
 import { TextInput, Button } from 'react-native-paper'
 
 import deleteUserAccount from '../functions/deleteUserAccount';
+import updateUserAccount from '../functions/updateUserAccount';
 import deleteData from '../authentication/deleteData';
 
 const height = Dimensions.get('window').height
@@ -148,6 +149,7 @@ const ProfilePageView = (props) => {
                             style={styles.button}
                             uppercase={false}
                             mode="contained"
+                            onPress={updateUserAccount}
                             >
                                 Save Changes
                             </Button>
@@ -159,25 +161,26 @@ const ProfilePageView = (props) => {
                             onPress={() => {
                                 Alert.alert(
                                     'Delete your account?',
-                                    'Are you sure you want to permanently delete your account?',
+                                    'You are about to delete your account, are you sure you want to continue?',
                                     [
-                                        { 
-                                            text: 'Keep',
-                                            style: 'cancel',
-                                        },
-                                        { 
-                                            text: 'Delete',
-                                            style: 'destructive',
-                                            onPress: async () => {
-                                                // Deletes account:
-                                                const deleteAccount = await deleteUserAccount();
-
-                                                // After deleting acocunt deletes the auth token from secure storage:
-                                                deleteData(dispatch);
-                                            },
-                                        }
-                                    ],
-                                    { cancelable: false }
+                                        { text: 'Keep', style: 'cancel'},
+                                        { text: 'Continue', style: 'destructive', onPress: async () => {
+                                            Alert.alert(
+                                                'Delete your account?',
+                                                'Are you sure you want to permanently delete your account?',
+                                                [
+                                                    { text: 'No Keep', style: 'cancel'},
+                                                    { text: 'Yes Delete', style: 'destructive', onPress: async () => {
+                                                        // Deletes account:
+                                                        const deleteAccount = await deleteUserAccount();
+        
+                                                        // After deleting acocunt deletes the auth token from secure storage:
+                                                        deleteData(dispatch);
+                                                    }}
+                                                ], { cancelable: false }
+                                            );
+                                        }}
+                                    ], { cancelable: false }
                                 );
                             }}
                             >

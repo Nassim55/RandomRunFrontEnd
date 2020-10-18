@@ -34,8 +34,9 @@ const SavedRouteCards = () => {
 
     const savedRoutesResponse = useSelector(state => state.savedRoutesResponse);
     const cards = savedRoutesResponse.map((element, index) => ({...element, index})).reverse();
-    const step = 1 / (cards.length - 1);
 
+    // Defining the step based on the number of saved route cards:
+    const step = (cards.length === 1) ? 1 : 1 / (cards.length - 1);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const aIndex = useTransition(currentIndex);
@@ -109,7 +110,7 @@ const SavedRouteCards = () => {
                             );
                         }}
                         />
-                )
+                    )
             )}
 
         </View>
