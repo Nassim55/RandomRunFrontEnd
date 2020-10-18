@@ -11,6 +11,7 @@ import { useTransition } from  "react-native-redash/lib/module/v1";
 
 import { TextInput, Button } from 'react-native-paper'
 
+import getAccountDetails from '../functions/getAccountDetails';
 import deleteUserAccount from '../functions/deleteUserAccount';
 import updateUserAccount from '../functions/updateUserAccount';
 import deleteData from '../authentication/deleteData';
@@ -28,7 +29,7 @@ const ProfilePageView = (props) => {
 
 
     const [isProfileEditShown, setIsProfileEditShown] = useState(false);
-    const [profileImageSource, setProfileImageSource] = useState({ uri: '/Users/nassim/Documents/RandomRunFrontEnd/images/profilePic.jpeg' })
+    //const [profileImageSource, setProfileImageSource] = useState({ uri: '/Users/nassim/Documents/RandomRunFrontEnd/images/profilePic.jpeg' })
 
     const transition = useTransition(isProfileEditShown, { duration: 400 })
     const translateYTop = interpolate(transition, {
@@ -44,7 +45,7 @@ const ProfilePageView = (props) => {
 
 
     const userAccountDetails = useSelector(state => state.userAccountDetails);
-    console.log(userAccountDetails)
+
 
 
 
@@ -80,18 +81,13 @@ const ProfilePageView = (props) => {
                                 } else if (response.error) {
                                     console.log('ImagePicker Error: ', response.error);
                                 } else {
-                                    const source = { uri: response.uri };
-                                    setProfileImageSource(source)
-                                    console.log(source);
-                                    // Would then send the image to the database, do a GET request
-                                    // for account information, update state, then UI would re-render
-                                    // to reflect this update in state...
+                                    updateUserAccount({image: { uri: response.uri, name: 'ProfilePicture.jpeg', type: 'image/jpg' }}, dispatch);
                                 }
                             });
                         }}
                         >
                             <Image
-                            source={profileImageSource}
+                            source={{uri: `http://127.0.0.1:8000${userAccountDetails.image}`}}
                             style={styles.profileImage}
                             />
                         </Pressable>
