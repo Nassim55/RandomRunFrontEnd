@@ -1,4 +1,5 @@
 import RNSInfo from 'react-native-sensitive-info';
+import { Alert } from 'react-native';
 
 const saveRoute = async (routeDistance, routeCoordinates, mapImageURI, userID, timeString, mostNorthEasternCoordinates, mostSouthWesternCoordinates) => {
   // Try posting a route to the database: 
@@ -33,6 +34,22 @@ const saveRoute = async (routeDistance, routeCoordinates, mapImageURI, userID, t
 
     const data = await response.json();
     console.log(data)
+
+    if (data.response === 'Route not saved. You have exceeded your limit of five routes') {
+      Alert.alert(
+        'Route Not Saved',
+        'You have exceeded your limit of five routes. Delete one of your saved routes and try again.',
+        [{ text: 'Okay' }],
+        { cancelable: false }
+      );
+    } else if (data.response === 'You have successfully saved your route!') {
+      Alert.alert(
+        'Route Saved',
+        'You have successfully saved this route!',
+        [{ text: 'Okay' }],
+        { cancelable: false }
+      );
+    }
 
 
   } catch (err) {
