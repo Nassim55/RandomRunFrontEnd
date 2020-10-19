@@ -37,14 +37,14 @@ const saveRoute = async (routeDistance, routeCoordinates, mapImageURI, userID, t
 
     if (data.response === 'Route not saved. You have exceeded your limit of five routes') {
       Alert.alert(
-        'Route Not Saved',
-        'You have exceeded your limit of five routes. Delete one of your saved routes and try again.',
+        'Not Saved',
+        'You are at your limit of five saved routes. Delete one of your saved routes and try again.',
         [{ text: 'Okay' }],
         { cancelable: false }
       );
     } else if (data.response === 'You have successfully saved your route!') {
       Alert.alert(
-        'Route Saved',
+        'Saved',
         'You have successfully saved this route!',
         [{ text: 'Okay' }],
         { cancelable: false }

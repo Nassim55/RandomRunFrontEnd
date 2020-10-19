@@ -60,15 +60,9 @@ const ProfilePageView = (props) => {
             />
                 <View style={styles.savedRoutesTitleContainer}>
                     <Text style={styles.savedRoutesText}>Profile</Text>
-                    <Text style={styles.savedRoutesTextInfo}>View your profile information</Text>
-                    <Text style={styles.savedRoutesTextInfo}>Tap on the cog to edit your profile</Text>
+                    <Text style={styles.savedRoutesTextInfo}>View and edit your profile information</Text>
                 </View>
                 <View style={styles.card}>
-                    <View style={[styles.cardInnerViews, styles.settingsIconView]}>
-                        <Pressable onPress={() => setIsProfileEditShown(!isProfileEditShown)}>
-                            <SimpleLineIcons name='settings' size={24} />
-                        </Pressable>
-                    </View>
                     <Animated.View style={[styles.cardInnerViews, styles.profileInfoView, {
                         transform: [{translateY: translateYTop}]
                     }]}>
@@ -93,96 +87,109 @@ const ProfilePageView = (props) => {
                         </Pressable>
                         <View style={styles.usernameView}>
                             <Text style={styles.largeText}>nassim</Text>
-                            <Text style={styles.dateJoined}>Joined September 2020</Text>
+                            <Text style={styles.mediumText}>Joined September 2020</Text>
+                        </View>
+                        <View style={[styles.cardInnerViews, styles.arrowIconView, styles.arrowIconViewDown]}>
+                            <Pressable
+                            style={styles.editProfileButton}
+                            onPress={() => setIsProfileEditShown(true)}
+                            >
+                                <Text style={styles.mediumText}>Edit Profile</Text>
+                                <SimpleLineIcons name='arrow-down' size={24} />
+                            </Pressable>
                         </View>
                     </Animated.View>
                     <Animated.View style={[styles.cardInnerViews, styles.profileInfoView, {
                         transform: [{translateY: translateYBottom}]
                     }]}>
-                        <View style={styles.profileImageAndNameView}>
-                            <View style={styles.editProfileContainer}>
-                                <Text style={styles.largeText}>Edit Profile</Text>
-                            </View>
-                            <View style={styles.formContainer}>
-                                <TextInput
-                                label="Username"
-                                value={userAccountDetails.username}
-                                mode={'outlined'}
-                                />
-                            </View>
-                            <View style={styles.namesContainer}>
-                                <View style={styles.formContainerNames}>
-                                    <TextInput
-                                    label="First Name"
-                                    value={userAccountDetails.first_name}
-                                    mode={'outlined'}
-                                    />
-                                </View>
-                                <View style={styles.formContainerNames}>
-                                    <TextInput
-                                    label="Last Name"
-                                    value={userAccountDetails.last_name}
-                                    mode={'outlined'}
-                                    />
-                                </View>
-                            </View>
-                            <View style={styles.formContainer}>
-                                <TextInput
-                                label="Email"
-                                value={userAccountDetails.email}
-                                mode={'outlined'}
-                                />
-                            </View>
-                            <View style={styles.formContainer}>
-                                <TextInput
-                                label="Password"
-                                secureTextEntry={true}
-                                value='Change Password?'
-                                mode={'outlined'}
-                                />
-                            </View>
-                            <Button
-                            style={styles.button}
-                            uppercase={false}
-                            mode="contained"
-                            onPress={() => updateUserAccount({}, dispatch)}
+                        <View style={[styles.cardInnerViews, styles.arrowIconView, styles.arrowIconViewUp]}>
+                            <Pressable
+                            style={styles.editProfileButton}
+                            onPress={() => setIsProfileEditShown(false)}
                             >
-                                Save Changes
-                            </Button>
-
-                            <Button
-                            style={styles.button}
-                            uppercase={false}
-                            mode="contained"
-                            onPress={() => {
-                                Alert.alert(
-                                    'Delete your account?',
-                                    'You are about to delete your account, are you sure you want to continue?',
-                                    [
-                                        { text: 'Keep', style: 'cancel'},
-                                        { text: 'Continue', style: 'destructive', onPress: async () => {
-                                            Alert.alert(
-                                                'Delete your account?',
-                                                'Are you sure you want to permanently delete your account?',
-                                                [
-                                                    { text: 'No Keep', style: 'cancel'},
-                                                    { text: 'Yes Delete', style: 'destructive', onPress: async () => {
-                                                        // Deletes account:
-                                                        const deleteAccount = await deleteUserAccount();
-        
-                                                        // After deleting acocunt deletes the auth token from secure storage:
-                                                        deleteData(dispatch);
-                                                    }}
-                                                ], { cancelable: false }
-                                            );
-                                        }}
-                                    ], { cancelable: false }
-                                );
-                            }}
-                            >
-                                Delete Account
-                            </Button>
+                                <SimpleLineIcons name='arrow-up' size={24} />
+                                <Text style={styles.mediumText}>Back</Text>
+                            </Pressable>
                         </View>
+                        <View style={styles.formContainer}>
+                            <TextInput
+                            label="Username"
+                            value={userAccountDetails.username}
+                            mode={'outlined'}
+                            />
+                        </View>
+                        <View style={styles.namesContainer}>
+                            <View style={styles.formContainerNames}>
+                                <TextInput
+                                label="First Name"
+                                value={userAccountDetails.first_name}
+                                mode={'outlined'}
+                                />
+                            </View>
+                            <View style={styles.formContainerNames}>
+                                <TextInput
+                                label="Last Name"
+                                value={userAccountDetails.last_name}
+                                mode={'outlined'}
+                                />
+                            </View>
+                        </View>
+                        <View style={styles.formContainer}>
+                            <TextInput
+                            label="Email"
+                            value={userAccountDetails.email}
+                            mode={'outlined'}
+                            />
+                        </View>
+                        <View style={styles.formContainer}>
+                            <TextInput
+                            label="Password"
+                            secureTextEntry={true}
+                            value='Change Password?'
+                            mode={'outlined'}
+                            />
+                        </View>
+                        <Button
+                        style={styles.button}
+                        uppercase={false}
+                        mode="contained"
+                        onPress={() => updateUserAccount({}, dispatch)}
+                        >
+                            Save Changes
+                        </Button>
+
+                        <Button
+                        style={styles.button}
+                        uppercase={false}
+                        mode="contained"
+                        onPress={() => {
+                            Alert.alert(
+                                'Delete your account?',
+                                'You are about to delete your account, are you sure you want to continue?',
+                                [
+                                    { text: 'Keep', style: 'cancel'},
+                                    { text: 'Continue', style: 'destructive', onPress: async () => {
+                                        Alert.alert(
+                                            'Delete your account?',
+                                            'Are you sure you want to permanently delete your account?',
+                                            [
+                                                { text: 'No Keep', style: 'cancel'},
+                                                { text: 'Yes Delete', style: 'destructive', onPress: async () => {
+                                                    // Deletes account:
+                                                    const deleteAccount = await deleteUserAccount();
+    
+                                                    // After deleting acocunt deletes the auth token from secure storage:
+                                                    deleteData(dispatch);
+                                                }}
+                                            ], { cancelable: false }
+                                        );
+                                    }}
+                                ], { cancelable: false }
+                            );
+                        }}
+                        >
+                            Delete Account
+                        </Button>
                     </Animated.View>
                 </View>
         </View>
@@ -250,35 +257,46 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
     },
-    settingsIconView: {
-        position: 'relative',
-        borderTopRightRadius: 24,
-        borderTopLeftRadius: 24,
-        alignItems: 'flex-end',
-        padding: 10,
-        zIndex: 999,
-    },
     profileInfoView: {
         position: 'absolute',
         height: '100%',
         borderRadius: 24,
         alignItems: 'center',
+
     },
 
 
-
-    profileImageAndNameView: {
-        flex: 1,
+    profileImageView: {
         width: '100%',
         display: 'flex',
-        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+
     },
     usernameView: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    arrowIconView: {
+        position: 'absolute',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+    },
+    arrowIconViewDown: {
+        bottom: 0,
+    },
+    arrowIconViewUp: {
+        top: 0,
+    },
+
+    editProfileButton: {
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -287,7 +305,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway-Regular',
         fontSize: 24
     },
-    dateJoined: {
+    mediumText: {
         fontFamily: 'Raleway-Regular',
         fontSize: 16
     },

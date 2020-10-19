@@ -41,9 +41,9 @@ const SearchRouteForm = (props) => {
     const fade = useSpring({
         opacity: isUserInfoMenuOpen ? 1 : 0
     })
-    const hamburgerColour = useSpring({
-        backgroundColor: isUserInfoMenuOpen ? '#252934' : 'white'
-    })
+    // const hamburgerColour = useSpring({
+    //     backgroundColor: isUserInfoMenuOpen ? '#252934' : 'white'
+    // })
 
     const AnimatedView = animated(View);
     const AnimatedPressable = animated(Pressable);
@@ -55,12 +55,12 @@ const SearchRouteForm = (props) => {
         <View style={styles.SearchRouteForm}>
             <View style={styles.inputAndButtonContainer}>
                 <AnimatedPressable 
-                style={[styles.hamburger, {...hamburgerColour}]}
+                style={[styles.hamburger]}
                 onPress={() => dispatch(setIsUserInfoMenuOpen(!isUserInfoMenuOpen))}
                 >
                     {
                         isUserInfoMenuOpen ?
-                        <SimpleLineIcons name='arrow-up' size={24} color='white'/>
+                        <SimpleLineIcons name='arrow-up' size={24} color='#252934'/>
                         :
                         <SimpleLineIcons name='menu' size={24} />
                     }

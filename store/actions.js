@@ -16,6 +16,7 @@ import {
     SET_IS_PROFILE_SHOWN,
     SET_IS_MAP_SHOWN,
     SET_LOGIN_BUTTON_HTTP_RESPONSE,
+    SET_STATE_TO_INITIAL_STATE,
 } from './actionTypes';
 
 // We now need to build 'action creators', theses are basically just
@@ -110,3 +111,6 @@ export const setLoginButtonHttpResponse = loginButtonHttpResponse => ({
     loginButtonHttpResponse: loginButtonHttpResponse
 })
 
+export const setStateToInitialState = () => ({
+    type: SET_STATE_TO_INITIAL_STATE,
+})

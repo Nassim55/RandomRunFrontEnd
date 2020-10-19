@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import deleteData from '../authentication/deleteData';
 
-import { setIsRouteCardsShown, setIsUserInfoMenuOpen, setIsProfileShown, setIsMapShown } from '../../store/actions';
+import { setIsRouteCardsShown, setIsUserInfoMenuOpen, setIsProfileShown, setIsMapShown, setStateToInitialState } from '../../store/actions';
 
 import fetchSavedRoutes from '../functions/fetchSavedRoutes';
 import saveRoute from '../functions/saveRoute';
@@ -62,7 +62,10 @@ const UserInfoMenu = (props) => {
                     to='/'
                     component={Pressable}
                     style={styles.userInfoMenuButton}
-                    onPress={() => deleteData(dispatch)}
+                    onPress={() => {
+                        deleteData(dispatch);
+                        dispatch(setStateToInitialState());
+                    }}
                     >                
                         <SimpleLineIcons name='logout' size={24} />
                         <Text style={styles.userInfoMenuButtonText}>Logout</Text>

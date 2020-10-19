@@ -17,6 +17,7 @@ import {
     SET_IS_PROFILE_SHOWN,
     SET_IS_MAP_SHOWN,
     SET_LOGIN_BUTTON_HTTP_RESPONSE,
+    SET_STATE_TO_INITIAL_STATE,
 } from './actionTypes';
 
 const initialState = {
@@ -131,6 +132,10 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 loginButtonHttpResponse: action.loginButtonHttpResponse
             }
+
+            
+        case SET_STATE_TO_INITIAL_STATE:
+            return initialState
         default:
             return state;
     }
