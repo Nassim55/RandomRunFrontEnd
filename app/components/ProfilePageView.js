@@ -46,7 +46,14 @@ const ProfilePageView = (props) => {
 
     const userAccountDetails = useSelector(state => state.userAccountDetails);
 
+    console.log('The image is...')
+    console.log(userAccountDetails.image)
 
+    if (userAccountDetails.image) {
+        console.log('yes')
+    } else {
+        console.log('no')
+    }
 
 
     return (
@@ -80,10 +87,18 @@ const ProfilePageView = (props) => {
                             });
                         }}
                         >
-                            <Image
-                            source={{uri: `http://127.0.0.1:8000${userAccountDetails.image}`}}
-                            style={styles.profileImage}
-                            />
+                            { userAccountDetails.image ?
+                                <Image
+                                source={{uri: `http://127.0.0.1:8000${userAccountDetails.image}`}}
+                                style={styles.profileImage}
+                                />
+                                :
+                                <View style={styles.profileImage}>
+                                    <SimpleLineIcons name='picture' size={24} />
+                                    <Text style={styles.mediumText}>Add profile image</Text>
+                                </View>
+                            }
+
                         </Pressable>
                         <View style={styles.usernameView}>
                             <Text style={styles.largeText}>nassim</Text>
@@ -271,7 +286,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
     usernameView: {
         width: '100%',
@@ -314,6 +328,15 @@ const styles = StyleSheet.create({
         height: 220,
         width: 220,
         borderRadius: 110,
+        borderWidth: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 110,
+        borderWidth: 2.5,
+        borderStyle: 'dashed',
+        borderColor: '#ccc',
     },
 
     formContainer: {
