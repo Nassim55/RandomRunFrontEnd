@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, Text, Image, Alert, Pressable,  } from 'react-native';
-import { mix, mixColor, step, usePanGestureHandler } from 'react-native-redash/lib/module/v1';
+import { View, StyleSheet, Dimensions, Text, Pressable,  } from 'react-native';
+import { mix, mixColor, usePanGestureHandler } from 'react-native-redash/lib/module/v1';
 import Animated, { add, Extrapolate, interpolate } from 'react-native-reanimated';
-import { PanGestureHandler, State } from 'react-native-gesture-handler';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 import { useSpring } from './Animations';
 import LinearGradient from 'react-native-linear-gradient';
 
-import deleteSavedRoute from '../functions/deleteSavedRoute';
 
 
 

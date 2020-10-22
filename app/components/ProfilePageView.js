@@ -56,6 +56,8 @@ const ProfilePageView = (props) => {
     }
 
 
+    const httpAuthType = useSelector(state => state.httpAuthType)
+
     return (
         <View style={styles.viewContainer}>
             <Pressable
@@ -82,7 +84,7 @@ const ProfilePageView = (props) => {
                                 } else if (response.error) {
                                     console.log('ImagePicker Error: ', response.error);
                                 } else {
-                                    updateUserAccount({image: { uri: response.uri, name: 'ProfilePicture.jpeg', type: 'image/jpg' }}, dispatch);
+                                    updateUserAccount({image: { uri: response.uri, name: 'ProfilePicture.jpeg', type: 'image/jpg' }}, dispatch, httpAuthType);
                                 }
                             });
                         }}
@@ -168,7 +170,7 @@ const ProfilePageView = (props) => {
                         style={styles.button}
                         uppercase={false}
                         mode="contained"
-                        onPress={() => updateUserAccount({}, dispatch)}
+                        onPress={() => updateUserAccount({}, dispatch, httpAuthType)}
                         >
                             Save Changes
                         </Button>
@@ -191,7 +193,7 @@ const ProfilePageView = (props) => {
                                                 { text: 'No Keep', style: 'cancel'},
                                                 { text: 'Yes Delete', style: 'destructive', onPress: async () => {
                                                     // Deletes account:
-                                                    const deleteAccount = await deleteUserAccount();
+                                                    const deleteAccount = await deleteUserAccount(httpAuthType);
     
                                                     // After deleting acocunt deletes the auth token from secure storage:
                                                     deleteData(dispatch);

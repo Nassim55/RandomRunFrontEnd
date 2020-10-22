@@ -42,6 +42,8 @@ const SavedRouteCards = () => {
     const aIndex = useTransition(currentIndex);
 
 
+    const httpAuthType = useSelector(state => state.httpAuthType);
+
     return (
         <View style={styles.viewContainer}>
             <Pressable
@@ -103,7 +105,7 @@ const SavedRouteCards = () => {
                                     { 
                                         text: 'Delete',
                                         style: 'destructive',
-                                        onPress: () => deleteSavedRoute(id),
+                                        onPress: () => deleteSavedRoute(id, httpAuthType),
                                     }
                                 ],
                                 { cancelable: false }

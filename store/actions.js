@@ -16,6 +16,7 @@ import {
     SET_IS_PROFILE_SHOWN,
     SET_IS_MAP_SHOWN,
     SET_LOGIN_BUTTON_HTTP_RESPONSE,
+    SET_HTTP_AUTH_TYPE,
     SET_STATE_TO_INITIAL_STATE,
 } from './actionTypes';
 
@@ -109,6 +110,11 @@ export const setIsMapShown = isMapShown => ({
 export const setLoginButtonHttpResponse = loginButtonHttpResponse => ({
     type: SET_LOGIN_BUTTON_HTTP_RESPONSE,
     loginButtonHttpResponse: loginButtonHttpResponse
+})
+
+export const setHttpAuthType = httpAuthType => ({
+    type: SET_HTTP_AUTH_TYPE,
+    httpAuthType: httpAuthType
 })
 
 export const setStateToInitialState = () => ({

@@ -11,7 +11,7 @@ import deleteData from '../authentication/deleteData';
 import { setIsRouteCardsShown, setIsUserInfoMenuOpen, setIsProfileShown, setIsMapShown, setStateToInitialState } from '../../store/actions';
 
 import fetchSavedRoutes from '../functions/fetchSavedRoutes';
-import saveRoute from '../functions/saveRoute';
+
 
 const UserInfoMenu = (props) => {
     const dispatch = useDispatch();
@@ -29,6 +29,10 @@ const UserInfoMenu = (props) => {
     const AnimatedView = animated(View);
 
 
+
+    const httpAuthType = useSelector(state => state.httpAuthType);
+
+
     return (
         <View style={styles.userInfoMenu}>
             { isUserInfoMenuOpen ? 
@@ -40,7 +44,7 @@ const UserInfoMenu = (props) => {
                         dispatch(setIsUserInfoMenuOpen(false));
                         dispatch(setIsProfileShown(false));
                         dispatch(setIsRouteCardsShown(true));
-                        fetchSavedRoutes(dispatch);
+                        fetchSavedRoutes(dispatch, httpAuthType);
                     }}
                     >
                         <SimpleLineIcons name='directions' size={24} />

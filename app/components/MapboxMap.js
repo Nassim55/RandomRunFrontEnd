@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 // Custom function imports:
 import setUserLongitudeAndLatitude from '../functions/setUserLongitudeAndLatitude';
 
-
-
 // API key:
 const MAPBOX_PUBLIC_TOKEN = 'pk.eyJ1IjoibmFzc2ltY2hlbm91ZiIsImEiOiJja2R1NjE2amMzYnl4MzByb3c5YmxlMGY5In0.cBj3YeAh0UMxinxOfhDLIw';
 

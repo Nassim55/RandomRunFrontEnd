@@ -11,10 +11,6 @@ import { setRouteDistanceMeters, setIsUserInfoMenuOpen } from '../../store/actio
 
 // Custom functions:
 import fetchRouteCoords from '../functions/fetchRouteCoords';
-import saveRoute from '../functions/saveRoute';
-
-// Custom components:
-import UserInfoMenu from './UserInfoMenu';
 
 
 const SearchRouteForm = (props) => {
@@ -49,7 +45,7 @@ const SearchRouteForm = (props) => {
     const AnimatedPressable = animated(Pressable);
 
 
-    
+    const httpAuthType = useSelector(state => state.httpAuthType);
 
     return (
         <View style={styles.SearchRouteForm}>
@@ -80,6 +76,7 @@ const SearchRouteForm = (props) => {
                         props.originLongitude,
                         props.originLatitude,
                         props.routeDistanceMeters,
+                        httpAuthType
                     );
                 }}
                 >   

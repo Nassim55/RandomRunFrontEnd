@@ -60,10 +60,6 @@ const LoginPageView = () => {
         outputRange: [width, 0],
     })
 
-
-
-
-
     // State values for registration:
     const [regFirstName, setRegFirstName] = useState('')
     const [regLastName, setRegLastName] = useState('')
@@ -76,6 +72,9 @@ const LoginPageView = () => {
     // Messages that will be shown to user if incorrect data is posted:
     const loginButtonHttpResponse = useSelector(state => state.loginButtonHttpResponse);
 
+
+    
+    const httpAuthType = useSelector(state => state.httpAuthType);
 
     return (
         <ImageBackground 
@@ -130,7 +129,7 @@ const LoginPageView = () => {
                             uppercase={false}
                             icon='login'
                             mode="contained"
-                            onPress={() => userAuthentication(username, password, dispatch, history)}
+                            onPress={() => userAuthentication(username, password, dispatch, history, httpAuthType)}
                             >
                                 Log in
                             </Button>
@@ -147,7 +146,14 @@ const LoginPageView = () => {
                                         } else {
                                             AccessToken.getCurrentAccessToken().then(
                                                 (accessToken) => {
-                                                    convertSocialAuthToken(accessToken.accessToken, dispatch, history);
+                                                    convertSocialAuthToken(
+                                                        accessToken.accessToken,
+                                                        dispatch,
+                                                        history,
+                                                        backend='facebook',
+                                                        client_id='',
+                                                        client_secret=''
+                                                    );
                                                 }
                                             )
                                         }
@@ -170,7 +176,15 @@ const LoginPageView = () => {
                                     console.log('Awaiting Google sign in...');
                                     await GoogleSignin.hasPlayServices();
                                     const userInfo = await GoogleSignin.signIn();
-                                    console.log(userInfo);
+                                    console.log(userInfo)
+                                    convertSocialAuthToken(
+                                        '',
+                                        dispatch,
+                                        history,
+                                        backend='google-oauth2',
+                                        client_id='',
+                                        client_secret=''
+                                    );
                                 } catch (error) {
                                     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                                         // user cancelled the login flow

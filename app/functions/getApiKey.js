@@ -1,13 +1,13 @@
 import { AsyncStorage } from 'react-native';
 
-const getApiKey = async () => {
+const getApiKey = async (httpAuthType) => {
     try {
         const token = await AsyncStorage.getItem('token');
         if (token) {
             const response = await fetch(`http://127.0.0.1:8000/api/mapkey`, {
                 method: 'GET',
                 headers: {
-                  'Authorization': `Token ${token}`
+                  'Authorization': `${httpAuthType} ${token}`
                 }
             })
             const data = await response.json();

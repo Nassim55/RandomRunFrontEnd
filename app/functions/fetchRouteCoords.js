@@ -7,7 +7,7 @@ import {
 import setUserLongitudeAndLatitude from './setUserLongitudeAndLatitude';
 import RNSInfo from 'react-native-sensitive-info';
 
-const fetchRouteCoords = async ( isLocationPermissionGranted, dispatch, originLongitude, originLatitude, routeDistanceMeters) => {
+const fetchRouteCoords = async ( isLocationPermissionGranted, dispatch, originLongitude, originLatitude, routeDistanceMeters, httpAuthType) => {
   // Chencking that form input is valid:
   if (Number.isNaN(routeDistanceMeters) != true && routeDistanceMeters > 0) {
 
@@ -23,7 +23,7 @@ const fetchRouteCoords = async ( isLocationPermissionGranted, dispatch, originLo
             const response = await fetch(`http://127.0.0.1:8000/route/getroute?longitude=${originLongitude}&latitude=${originLatitude}&routeDistance=${routeDistanceMeters}`, {
               method: 'GET',
               headers: {
-                'Authorization': `Token ${token}`
+                'Authorization': `${httpAuthType} ${token}`
               }
             });
             const data = await response.json();

@@ -3,7 +3,7 @@ import { setUserAuthenticated, setLoginButtonHttpResponse } from '../../store/ac
 
 import pushUserToMapView from '../functions/pushUserToMapView';
 
-const userAuthentication = async (username, password, dispatch, history) => {
+const userAuthentication = async (username, password, dispatch, history, httpAuthType) => {
     // Checking that the user is authorised on the database and defining the server response:
     try {
         const response = await fetch('http://127.0.0.1:8000/auth/', {
@@ -20,7 +20,7 @@ const userAuthentication = async (username, password, dispatch, history) => {
             dispatch(setUserAuthenticated(true));
 
             // Pushing to the map view on successfull login:
-            pushUserToMapView(dispatch, history);
+            pushUserToMapView(dispatch, history, httpAuthType);
         } else {
             // Updating state with the response from the server:
             if (data.username && data.password) {

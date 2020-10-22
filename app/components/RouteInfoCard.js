@@ -1,10 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Pressable } from 'react-native';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 
 // Redux state store imports: 
-import { useDispatch, useSelector } from 'react-redux';
-import { setRouteDistanceMeters } from '../../store/actions';
+import { useSelector } from 'react-redux';
 
 // Custom functions:
 import saveRoute from '../functions/saveRoute';
@@ -24,7 +22,7 @@ const RouteInfoCard = (props) => {
     date.setSeconds(props.displayRouteDistance.toFixed(0) / 5);
     const timeString = date.toISOString().substr(11, 8);
   
-
+    const httpAuthType = useSelector(state => state.httpAuthType);
 
     return (
         <View style={styles.routeDetails}>
@@ -61,7 +59,8 @@ const RouteInfoCard = (props) => {
                                     userID,
                                     timeString,
                                     mostNorthEasternCoordinates,
-                                    mostSouthWesternCoordinates
+                                    mostSouthWesternCoordinates,
+                                    httpAuthType
                                 );
                             }}
                             >

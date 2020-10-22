@@ -1,16 +1,16 @@
 import RNSInfo from 'react-native-sensitive-info';
 import saveData from '../authentication/saveData';
 import pushUserToMapView from '../functions/pushUserToMapView';
-import { setUserAuthenticated } from '../../store/actions';
+import { setUserAuthenticated, setHttpAuthType } from '../../store/actions';
 
-const convertSocialAuthToken = async (accessToken, dispatch, history) => {
+const convertSocialAuthToken = async (accessToken, dispatch, history, backend, client_id, client_secret) => {
     try {
         // Form data that will be posted to the conver-token endpoint:
         const uploadData = new FormData();
         uploadData.append('grant_type', 'convert_token');
-        uploadData.append('client_id', '363738605007781')
-        uploadData.append('client_secret', 'cc3f3807d85815995383fbe55917fd59')
-        uploadData.append('backend', 'facebook')
+        uploadData.append('client_id', client_id)
+        uploadData.append('client_secret', client_secret)
+        uploadData.append('backend', backend)
         uploadData.append('token', accessToken)
 
         // Defining the POST response and converting data to json:
@@ -22,6 +22,7 @@ const convertSocialAuthToken = async (accessToken, dispatch, history) => {
             body: uploadData
         });
         const data = await response.json();
+        console.log(data)
 
         // If there is a token in the response then allow the user to see the map:
         if (data.access_token) {
@@ -32,10 +33,12 @@ const convertSocialAuthToken = async (accessToken, dispatch, history) => {
             // Updating the authentication in state:
             dispatch(setUserAuthenticated(true));
 
-            // Need to do a get request to get user account details...
+            // Updating the authentication type to Bearer for social auth:
+            dispatch(setHttpAuthType('Bearer'))
+            const httpAuthType = 'Bearer'
 
             // Pushing to the map view on successfull login:
-            //ushUserToMapView(dispatch, history);
+            pushUserToMapView(dispatch, history, httpAuthType);
         } else {
             // Keeping the user at the home page:
             history.push('/');

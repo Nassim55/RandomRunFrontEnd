@@ -17,6 +17,7 @@ import {
     SET_IS_PROFILE_SHOWN,
     SET_IS_MAP_SHOWN,
     SET_LOGIN_BUTTON_HTTP_RESPONSE,
+    SET_HTTP_AUTH_TYPE,
     SET_STATE_TO_INITIAL_STATE,
 } from './actionTypes';
 
@@ -39,6 +40,7 @@ const initialState = {
     isUserInfoMenuOpen: false,
     isProfileShown: false,
     isMapShown: true,
+    httpAuthType: 'Token',
     loginButtonHttpResponse: {'password': [''], 'username': [''], 'non_field_errors': ['']},
 };
 
@@ -132,8 +134,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 loginButtonHttpResponse: action.loginButtonHttpResponse
             }
-
-            
+        case SET_HTTP_AUTH_TYPE:
+            return {
+                ...state,
+                httpAuthType: action.httpAuthType
+            }
         case SET_STATE_TO_INITIAL_STATE:
             return initialState
         default:

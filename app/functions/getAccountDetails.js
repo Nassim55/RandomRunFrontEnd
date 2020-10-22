@@ -1,7 +1,7 @@
 import RNSInfo from 'react-native-sensitive-info';
 import { setUserAccountDetails } from '../../store/actions';
 
-const getAccountDetails = async (dispatch) => {
+const getAccountDetails = async (dispatch, httpAuthType) => {
     try {
         // Retreiving the auth token from storage:
         const token = await RNSInfo.getItem('token', {});
@@ -9,7 +9,7 @@ const getAccountDetails = async (dispatch) => {
         // Defining response from the server:
         const response = await fetch(`http://127.0.0.1:8000/account/accountdetails`,  {
             method: 'GET',
-            headers: { 'Authorization': `Token ${token}` }
+            headers: { 'Authorization': `${httpAuthType} ${token}` }
         });
         const data = await response.json();
 

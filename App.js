@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, Dimensions  } from 'react-native';
 import { NativeRouter, Route, Switch, useHistory } from "react-router-native";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Custom components:
 import LoginPageView from './app/components/LoginPageView';
@@ -24,6 +24,9 @@ const App = () => {
   useEffect(() => {
     getData(dispatch, history);
   }, [])
+
+  const httpAuthType = useSelector(state => state.httpAuthType);
+  console.log(httpAuthType)
   
   return (
     <NativeRouter>

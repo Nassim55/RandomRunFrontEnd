@@ -1,7 +1,7 @@
 import RNSInfo from 'react-native-sensitive-info';
 import { setUserAccountDetails } from '../../store/actions';
 
-const updateUserAccount = async (props, dispatch) => {
+const updateUserAccount = async (props, dispatch, httpAuthType) => {
     try {
         // Checking to see if token exists in sensitive info storage:
         const token = await RNSInfo.getItem('token', {});
@@ -32,7 +32,7 @@ const updateUserAccount = async (props, dispatch) => {
             method: 'PATCH',
             headers: {
             'Content-Type': 'multipart/form-data',
-            'Authorization': `Token ${token}`,
+            'Authorization': `${httpAuthType} ${token}`,
             },
             body: uploadData
         });

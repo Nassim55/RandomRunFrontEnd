@@ -1,7 +1,7 @@
 import { setSavedRoutesResponse } from '../../store/actions';
 import RNSInfo from 'react-native-sensitive-info';
 
-const fetchSavedRoutes = async (dispatch) => {
+const fetchSavedRoutes = async (dispatch, httpAuthType) => {
   try {
     // Retreiving the auth token from storage:
     const token = await RNSInfo.getItem('token', {});
@@ -11,7 +11,7 @@ const fetchSavedRoutes = async (dispatch) => {
       const response = await fetch(`http://127.0.0.1:8000/route/routes/`, {
         method: 'GET',
         headers: {
-          'Authorization': `Token ${token}`
+          'Authorization': `${httpAuthType} ${token}`
         }
       });
       const data = await response.json();
