@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 import Button from './Button';
 
@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 24,
+        padding: 32,
     },
     subtitle: {
         fontFamily: 'Raleway-Bold',
         fontSize: 24,
         lineHeight: 30,
-        marginBottom: 12,
+
         color: '#0C0D34',
         textAlign: 'center',
     },
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         lineHeight: 24,
         color: '#0C0D34',
         textAlign: 'center',
-        marginBottom: 40,
+        padding: 24,
     },
 });
 

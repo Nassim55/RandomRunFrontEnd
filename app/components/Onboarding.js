@@ -4,11 +4,12 @@ import { StyleSheet, View, Text, Dimensions } from 'react-native';
 // External library imports:
 import { ScrollView } from 'react-native-gesture-handler';
 import { onScrollEvent, useValue, interpolateColor } from 'react-native-redash/lib/module/v1';
-import Animated, { multiply } from 'react-native-reanimated';
+import Animated, { divide, multiply } from 'react-native-reanimated';
 
 // Custom component imports:
 import Slide, { SLIDE_HEIGHT } from './Slide';
 import Subslide from './Subslide';
+import Dot from './Dot';
 
 // Defining the users window dimensions:
 const width = Dimensions.get('window').width;
@@ -25,13 +26,13 @@ const slides = [
     { 
         title: 'Different',
         subtitle: 'Find a Different Route',
-        description: 'Want to run a different route every day whilst still keeping track of you distance?',
+        description: 'Want to run different routes whilst still keeping track of distance?',
         color: '#BEECC4',
     },
     { 
         title: 'Random',
         subtitle: 'Randomise Your Routes',
-        description: 'Choose your running distance and generate up to fifty random routes per day.',
+        description: 'Generate up to fifty unique random routes per day.',
         color: '#FFE4D9',
      },
     { 
@@ -44,8 +45,7 @@ const slides = [
 
 const BORDER_RADIUS = 75
 
-console.log(width)
-console.log(width * slides.length)
+
 
 const Onboarding = () => {
     const scroll = useRef(null);
@@ -80,29 +80,40 @@ const Onboarding = () => {
             </Animated.View>
             <View style={styles.footer}>
                 <Animated.View style={{ ...StyleSheet.absoluteFillObject, backgroundColor }} />
-                <Animated.View style={[styles.footerContent, {
-                    width: width * slides.length,
-                    flex: 1,
-                    transform: [
-                        { translateX: multiply(x, -1) }
-                    ]
-                }]}>
-                    {slides.map((slide, index) => (
-                        <Subslide 
-                        key={index}
-                        last={index === slides.length - 1}
-                        subtitle={slide.subtitle}
-                        description={slide.description}
-                        onPress={() => {
-                            if (scroll.current) {
-                                scroll.current
-                                    .getNode()
-                                    .scrollTo({ x: width * (index + 1), animated: true })
-                            }
-                        }}
-                        />
-                    ))}
-                </Animated.View>
+                <View style={styles.footerContent}>
+                    <View style={styles.pagination}>
+                        {slides.map((_, index) => (
+                            <Dot 
+                            key={index}
+                            currentIndex={divide(x, width)}
+                            index={index}
+                            x={x}
+                            />
+                        ))}
+                    </View>
+                    <Animated.View style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        width: width * slides.length,
+                        transform: [{ translateX: multiply(x, -1) }],
+                    }}>
+                        {slides.map((slide, index) => (
+                            <Subslide 
+                            key={index}
+                            last={index === slides.length - 1}
+                            subtitle={slide.subtitle}
+                            description={slide.description}
+                            onPress={() => {
+                                if (scroll.current) {
+                                    scroll.current
+                                        .getNode()
+                                        .scrollTo({ x: width * (index + 1), animated: true })
+                                }
+                            }}
+                            />
+                        ))}
+                    </Animated.View>
+                </View>
             </View>
         </View>
     );
@@ -123,10 +134,17 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     footerContent: {
-        flexDirection: 'row',
+        flex: 1,
         backgroundColor: 'white',
         borderTopLeftRadius: BORDER_RADIUS,
-
+    },
+    pagination: {
+        ...StyleSheet.absoluteFillObject,
+        height: BORDER_RADIUS,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        flex: 1
     },
 });
 

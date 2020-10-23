@@ -151,8 +151,8 @@ const LoginPageView = () => {
                                                         dispatch,
                                                         history,
                                                         backend='facebook',
-                                                        client_id='363738605007781',
-                                                        client_secret='b37063d4887bc0c457cf0f9825860092'
+                                                        client_id='',
+                                                        client_secret=''
                                                     );
                                                 }
                                             )
@@ -178,12 +178,12 @@ const LoginPageView = () => {
                                     const userInfo = await GoogleSignin.signIn();
                                     console.log(userInfo)
                                     convertSocialAuthToken(
-                                        'ya29.a0AfH6SMCUcn-4QrAir6FoL15naosR6ZF45hwwV0VQazn0FC7NZqXsgXROZfMFM7ZeCcASGAlQkmvHiB-X7PN99oMlmx48ogUKFqTn0UhfifBSjgWArr64sV33l2HivyZTd-Tt6oiIBGVVtPN6Xs2d_A3Hrlmqi0XpKRc',
+                                        '',
                                         dispatch,
                                         history,
                                         backend='google-oauth2',
-                                        client_id='420584478657-c4eaeg5bbguhj668mj3ee5gr85vih9vp.apps.googleusercontent.com',
-                                        client_secret='V7gNtaORpJ2-dHFKyD3S9Lm-'
+                                        client_id= '',
+                                        client_secret=''
                                     );
                                 } catch (error) {
                                     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
