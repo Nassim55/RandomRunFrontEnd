@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Image } from 'react-native';
 
 // Defining the users window dimensions:
 const width = Dimensions.get('window').width;
@@ -13,8 +13,16 @@ const Slide = props => {
         { rotate: props.right ? '-90deg' : '90deg' }
     ]
 
+    console.log(props.picture)
+    console.log(props)
+
     return (
         <View style={styles.container}>
+            <View style={styles.underlay}>
+                <View style={styles.pictureContainer}>
+                    <Image source={props.picture} style={styles.picture}></Image>
+                </View>
+            </View>
             <View style={[styles.titleContainer, { transform }]}>
                 <Text style={styles.title}>{props.label}</Text>
             </View>
@@ -25,6 +33,28 @@ const Slide = props => {
 const styles = StyleSheet.create({
     container: {
         width: width,
+    },
+    underlay: {
+        ...StyleSheet.absoluteFillObject,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    pictureContainer: {
+        width: 320,
+        height: 320,
+        borderRadius: 160,
+        borderWidth: 3,
+        borderStyle: 'dashed',
+        borderColor: '#ccc',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    picture: {
+        width: 300,
+        height: 300,
+        borderRadius: 150,
     },
     titleContainer: {
         height: 100,

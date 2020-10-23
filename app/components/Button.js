@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
 const Button = props => {
-    const backgroundColor = props.variant === 'primary' ? '#2CB9B0' : 'rgba(12, 13, 52, 0.4)';
+    const backgroundColor = props.variant === 'primary' ? '#F24E4E' : 'rgba(12, 13, 52, 0.4)';
     const color = props.variant === 'primary' ? 'white' : '#0C0D34';
 
     return (

@@ -5,6 +5,7 @@ import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { onScrollEvent, useValue, interpolateColor } from 'react-native-redash/lib/module/v1';
 import Animated, { divide, multiply } from 'react-native-reanimated';
+import { useHistory } from "react-router-native";
 
 // Custom component imports:
 import Slide, { SLIDE_HEIGHT } from './Slide';
@@ -15,31 +16,37 @@ import Dot from './Dot';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
+
+
 // Slide information:
 const slides = [
     { 
-        title: 'Fitness',
-        subtitle: 'Running',
-        description: 'Tired of following the same route on your daily run?',
-        color: '#BFEAF5',
+        title: '',
+        subtitle: 'Shake Up Your Workout',
+        description: 'Are you tired of following the same route on your daily run?',
+        color: '#F24E4E',
+        picture: require('/Users/nassim/Documents/RandomRunFrontEnd/images/running1.jpg'),
     },
     { 
-        title: 'Different',
+        title: '',
         subtitle: 'Find a Different Route',
-        description: 'Want to run different routes whilst still keeping track of distance?',
-        color: '#BEECC4',
+        description: 'Want to run different routes whilst still being able to track distance?',
+        color: '#252934',
+        picture: require('/Users/nassim/Documents/RandomRunFrontEnd/images/running2.jpg'),
     },
     { 
-        title: 'Random',
+        title: '',
         subtitle: 'Randomise Your Routes',
         description: 'Generate up to fifty unique random routes per day.',
         color: '#FFE4D9',
+        picture: require('/Users/nassim/Documents/RandomRunFrontEnd/images/running3.jpg'),
      },
     { 
-        title: 'Persist',
+        title: '',
         subtitle: 'Save Your Routes',
         description: 'Save and share the routes that you enjoy most.',
-        color: '#FFDDDD',
+        color: '#40798C',
+        picture: require('/Users/nassim/Documents/RandomRunFrontEnd/images/running4.jpg'),
     },
 ]
 
@@ -47,7 +54,11 @@ const BORDER_RADIUS = 75
 
 
 
+
 const Onboarding = () => {
+    // Creating history in order to allow react router re-directs:
+    const history = useHistory();
+
     const scroll = useRef(null);
     const x = useValue(0);
     const onScroll = onScrollEvent({ x });
@@ -74,6 +85,7 @@ const Onboarding = () => {
                         key={index}
                         label={slide.title}
                         right={!!(index % 2)}
+                        picture={slide.picture}
                         />
                     ))}
                 </Animated.ScrollView>
@@ -97,21 +109,27 @@ const Onboarding = () => {
                         width: width * slides.length,
                         transform: [{ translateX: multiply(x, -1) }],
                     }}>
-                        {slides.map((slide, index) => (
-                            <Subslide 
-                            key={index}
-                            last={index === slides.length - 1}
-                            subtitle={slide.subtitle}
-                            description={slide.description}
-                            onPress={() => {
-                                if (scroll.current) {
-                                    scroll.current
-                                        .getNode()
-                                        .scrollTo({ x: width * (index + 1), animated: true })
-                                }
-                            }}
-                            />
-                        ))}
+                        {slides.map((slide, index) => {
+                            const last = index === slides.length - 1
+
+                            return (
+                                <Subslide 
+                                key={index}
+                                last={last}
+                                subtitle={slide.subtitle}
+                                description={slide.description}
+                                onPress={() => {
+                                    if (last) {
+                                        history.push('/login');
+                                    } else {
+                                        scroll.current
+                                            ?.getNode()
+                                            .scrollTo({ x: width * (index + 1), animated: true })
+                                    };
+                                }}
+                                />
+                            )
+                        })}
                     </Animated.View>
                 </View>
             </View>
@@ -137,6 +155,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         borderTopLeftRadius: BORDER_RADIUS,
+
     },
     pagination: {
         ...StyleSheet.absoluteFillObject,

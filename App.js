@@ -35,6 +35,7 @@ const App = () => {
       <View style = {styles.page} >
         <Switch>
           <Route exact path='/' component={Onboarding} />
+          <Route exact path='/login' component={LoginPageView} />
           <PrivateRoute path='/usermap' exact={true} component={AuthorisedUserView} />
         </Switch>
       </View>

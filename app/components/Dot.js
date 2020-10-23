@@ -16,7 +16,7 @@ const Dot = props => {
 
     return (
         <Animated.View style={{
-            backgroundColor: '#2CB9B0',
+            backgroundColor: '#F24E4E',
             height: 8,
             width: 8,
             borderRadius: 4,
