@@ -4,9 +4,11 @@ import { NativeRouter, Route, Switch, useHistory } from "react-router-native";
 import { useDispatch, useSelector } from 'react-redux';
 
 // Custom components:
+import Onboarding from './app/components/Onboarding';
 import LoginPageView from './app/components/LoginPageView';
 import AuthorisedUserView from './app/components/AuthorisedUserView';
 import PrivateRoute from './app/routes/PrivateRoute';
+
 
 // Custom functions:
 import getData from './app/authentication/getData';
@@ -32,7 +34,7 @@ const App = () => {
     <NativeRouter>
       <View style = {styles.page} >
         <Switch>
-          <Route exact path='/' component={LoginPageView} />
+          <Route exact path='/' component={Onboarding} />
           <PrivateRoute path='/usermap' exact={true} component={AuthorisedUserView} />
         </Switch>
       </View>
