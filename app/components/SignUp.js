@@ -3,19 +3,26 @@ import { StyleSheet, View, Text, Dimensions } from 'react-native';
 
 import Container from './Container';
 import SocialLogin from './SocialLogin';
+import SignUpForms from './SignUpForms';
+
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const SignUp = () => {
     return (
-        <Container footer={
+        <Container
+        children={
+            <SignUpForms />
+        }
+        footer={
             <SocialLogin 
             text="Already have an account? "
             linkText='Login here'
             pushLocation='/login'
             />
-        } />
+        }
+        />
     );
 };
 

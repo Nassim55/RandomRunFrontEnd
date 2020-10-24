@@ -52,6 +52,10 @@ const Container = props => {
                     borderTopRightRadius: 75,
                     borderBottomLeftRadius: 75,
                     borderBottomRightRadius: 75,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                 }}>
                     {props.children}
                 </View>
