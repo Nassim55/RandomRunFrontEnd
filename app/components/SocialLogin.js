@@ -55,7 +55,7 @@ const SocialLogin = props => {
                     {props.text}
                 </Text>
                 <Text 
-                style={styles.text}
+                style={styles.linkText}
                 onPress={() => history.push(props.pushLocation)}
                 >
                     {props.linkText}
@@ -102,6 +102,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway-Regular',
         fontSize: 16,
         color: 'white',
+        textAlign: 'center',
+    },
+    linkText: {
+        fontFamily: 'Raleway-Regular',
+        fontSize: 16,
+        color: '#F24E4E',
         textAlign: 'center',
     }
 });

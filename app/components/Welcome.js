@@ -22,15 +22,16 @@ const Welcome = () => {
                 <View style={styles.underlay}></View>
                 <View style={styles.overlay}>
                     <Text style={styles.subtitle}>Let's get started!</Text>
-                    <Text style={styles.description}>Welcome to Random Run. Login to your account or if your new here, create an account today.</Text>
+                    <Text style={styles.description}>Welcome to Random Run. Login or create an account today.</Text>
                     <Button 
                     label='Have an account? Login'
                     variant='primary'
                     onPress={() => history.push('/login')}
                     />
                     <Button 
-                    label='Create an account'
+                    label='New here? Create an account'
                     variant='default'
+                    onPress={() => history.push('/signup')}
                     />
                     <Button 
                     label='Forgot password?'
