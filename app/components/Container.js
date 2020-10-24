@@ -53,14 +53,14 @@ const Container = props => {
                     borderBottomLeftRadius: 75,
                     borderBottomRightRadius: 75,
                 }}>
-
+                    {props.children}
                 </View>
             </View>
             <View style={{
                 height: 200,
                 backgroundColor: '#252934',
             }}>
-
+                {props.footer}
             </View>
         </View>
     );
