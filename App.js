@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Onboarding from './app/components/Onboarding';
 import Welcome from './app/components/Welcome';
 import Login from './app/components/Login';
+import SignUp from './app/components/SignUp';
 import LoginPageView from './app/components/LoginPageView';
 import AuthorisedUserView from './app/components/AuthorisedUserView';
 import PrivateRoute from './app/routes/PrivateRoute';
@@ -39,6 +40,7 @@ const App = () => {
           <Route exact path='/' component={Onboarding} />
           <Route exact path='/welcome' component={Welcome} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={SignUp} />
           <PrivateRoute path='/usermap' exact={true} component={AuthorisedUserView} />
         </Switch>
       </View>
