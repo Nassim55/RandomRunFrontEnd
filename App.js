@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Custom components:
 import Onboarding from './app/components/Onboarding';
+import Welcome from './app/components/Welcome';
+import Login from './app/components/Login';
 import LoginPageView from './app/components/LoginPageView';
 import AuthorisedUserView from './app/components/AuthorisedUserView';
 import PrivateRoute from './app/routes/PrivateRoute';
@@ -35,7 +37,8 @@ const App = () => {
       <View style = {styles.page} >
         <Switch>
           <Route exact path='/' component={Onboarding} />
-          <Route exact path='/login' component={LoginPageView} />
+          <Route exact path='/welcome' component={Welcome} />
+          <Route exact path='/login' component={Login} />
           <PrivateRoute path='/usermap' exact={true} component={AuthorisedUserView} />
         </Switch>
       </View>

@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway-Bold',
         fontSize: 24,
         lineHeight: 30,
-
         color: '#0C0D34',
         textAlign: 'center',
+        marginTop: 16,
     },
     description: {
         fontFamily: 'Raleway-Regular',

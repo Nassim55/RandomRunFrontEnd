@@ -31,7 +31,7 @@ const slides = [
         title: '',
         subtitle: 'Find a Different Route',
         description: 'Want to run different routes whilst still being able to track distance?',
-        color: '#252934',
+        color: '#495867',
         picture: require('/Users/nassim/Documents/RandomRunFrontEnd/images/running2.jpg'),
     },
     { 
@@ -120,7 +120,7 @@ const Onboarding = () => {
                                 description={slide.description}
                                 onPress={() => {
                                     if (last) {
-                                        history.push('/login');
+                                        history.push('/welcome');
                                     } else {
                                         scroll.current
                                             ?.getNode()

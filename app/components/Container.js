@@ -1,0 +1,78 @@
+import React from 'react';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
+
+
+const width = Dimensions.get('window').width;
+const aspectRatio = 750 / 1125;
+const height = width * aspectRatio;
+
+
+const Container = props => {
+    return (
+        <View style={styles.container}>
+            <View style={{
+                borderBottomLeftRadius: 75,
+                overflow: 'hidden',
+                height: height * 0.61,
+                backgroundColor: '#252934'
+            }}
+            >
+                <View style={{
+                    height: height,
+                    width: width,
+                    backgroundColor: '#FFE4D9',
+                    borderBottomLeftRadius: 75,
+                }}
+                />
+            </View>
+            <View style={{
+                flex: 1,
+                backgroundColor: '#252934',
+            }}
+            >
+                <View style={{
+                    ...StyleSheet.absoluteFillObject,
+                    height: height,
+                    width: width,
+                    backgroundColor: '#252934',
+                }}
+                />
+                <View style={{
+                    ...StyleSheet.absoluteFillObject,
+                    height: height,
+                    width: width,
+                    backgroundColor: '#FFE4D9',
+
+                }}
+                />
+
+                <View style={{
+                    flex: 1,
+                    backgroundColor: 'white',
+                    borderTopRightRadius: 75,
+                    borderBottomLeftRadius: 75,
+                    borderBottomRightRadius: 75,
+                }}>
+
+                </View>
+            </View>
+            <View style={{
+                height: 200,
+                backgroundColor: '#252934',
+            }}>
+
+            </View>
+        </View>
+    );
+};
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
+    }
+});
+
+
+export default Container;
