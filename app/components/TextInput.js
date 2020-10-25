@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Dimensions, TextInput as RNTextInput } from 'react-native';
+import { 
+    View,
+    StyleSheet,
+    Text,
+    Dimensions,
+    TextInput as RNTextInput,
+    TextInputProps as RNTextInputProps,
+} from 'react-native';
 
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -13,8 +20,16 @@ const Pristine = null
 
 
 const TextInput = props => {
-    const [state, setState] = useState(Pristine)
-    const color = state === Pristine ? '#8A8D90' : (state === valid ? '#252934' : '#F24E4E');
+    const [input, setInput] = useState('');
+    const [state, setState] = useState(Pristine);
+
+    const color = state === Pristine ? '#8A8D90' : (state === Valid ? 'green' : '#F24E4E');
+
+    const validate = () => {
+        // If the validator function returns true, set the state to valid:
+        const valid = props.validator(input);
+        setState(valid);
+    };
 
     return (
         <View style={[styles.container, { 
@@ -28,18 +43,25 @@ const TextInput = props => {
                 color={color}
                 />
             </View>
-            <RNTextInput
-            style={styles.reactNativeTextInput}
-            underlineColorAndroid='transparent'
-            placeholder={props.placeholder}
-            placeholderTextColor='#151624'
-            />
+            <View style={{flex: 1}}>
+                <RNTextInput
+                style={styles.reactNativeTextInput}
+                underlineColorAndroid='transparent'
+                placeholder={props.placeholder}
+                onBlur={validate}
+                onChangeText={text => {
+                    setInput(text)
+                    if (state !== Pristine) validate();
+                }}
+                {...props}
+                />
+            </View>
             {
                 (state === Valid || state == Invalid) && (
                     <View style={styles.validityIconContainer}>
                         <Feather
                         name={ state === Valid ? 'check' : 'x' }
-                        color='white'
+                        color={color}
                         size={24}
                         />
                     </View>
@@ -56,21 +78,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         height: 48,
-        width: width - 48,
+        width: width - 88,
         borderWidth: 1,
         borderRadius: 5,
-        margin: 5
+        margin: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     inputIconContainer: {
-        padding: 10
+        paddingRight: 10,
     },
     reactNativeTextInput: {
         
     },
     validityIconContainer: {
-        height: 24,
-        width: 24,
-        borderRadius: 12,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
 

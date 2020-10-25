@@ -1,8 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+import TextInput from './TextInput';
 
-
+const emailValidator = email => {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+};
 
 const SignUpForms = () => {
     return (
@@ -12,6 +16,21 @@ const SignUpForms = () => {
                 Enter your email and password to create an account. Alternatively, you can
                 choose to log in with either your Facebook or Google accounts.
             </Text>
+            <TextInput 
+            icon='mail'
+            placeholder='Enter your email'
+            validator={emailValidator}
+            />
+            <TextInput 
+            icon='lock'
+            placeholder='Choose a password'
+            validator={emailValidator}
+            />
+            <TextInput 
+            icon='lock'
+            placeholder='Confirm your password'
+            validator={emailValidator}
+            />
         </View>
     );
 };

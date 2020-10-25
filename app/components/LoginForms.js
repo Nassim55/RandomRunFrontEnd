@@ -1,30 +1,37 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+// Custom component imports:
 import TextInput from './TextInput';
 
-const emailValidator = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-};
+// Custom function imports:
+import emailValidator from '../functions/emailValidator';
+import passwordValidator from '../functions/passwordValidator';
+
 
 const LoginForms = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Welcome back</Text>
             <Text style={styles.description}>
-                Enter you credentials to log in, alternatively log in using your Facebook or Google account.
+                Enter you credentials to log in, alternatively log in with Google or Facebook.
             </Text>
             <TextInput 
             icon='mail'
-            placeholder='enter your email'
+            placeholder='Enter your email'
             validator={emailValidator}
             />
             <TextInput 
-            icon='mail'
-            placeholder='enter your email'
-            validator={emailValidator}
+            icon='lock'
+            placeholder='Enter your password'
+            validator={passwordValidator}
             />
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+            }}>
+
+            </View>
         </View>
     );
 };
@@ -50,7 +57,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway-Regular',
         fontSize: 16,
         lineHeight: 24,
-        padding: 24,
+        padding: 44,
         color: '#0C0D34',
         textAlign: 'center',
     },
