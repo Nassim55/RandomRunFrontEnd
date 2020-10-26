@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 
+// External library imports:
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const width = Dimensions.get('window').width;
 const aspectRatio = 750 / 1125;
@@ -9,7 +11,10 @@ const height = width * aspectRatio;
 
 const Container = props => {
     return (
-        <View style={styles.container}>
+        <KeyboardAwareScrollView 
+        contentContainerStyle={styles.container}
+        extraHeight={250}
+        >
             <View style={{
                 borderBottomLeftRadius: 75,
                 overflow: 'hidden',
@@ -25,7 +30,8 @@ const Container = props => {
                 }}
                 />
             </View>
-            <View style={{
+            <View
+            style={{
                 flex: 1,
                 backgroundColor: '#252934',
             }}
@@ -45,28 +51,28 @@ const Container = props => {
 
                 }}
                 />
-
-                <View style={{
-                    flex: 1,
-                    backgroundColor: 'white',
-                    borderTopRightRadius: 75,
-                    borderBottomLeftRadius: 75,
-                    borderBottomRightRadius: 75,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}>
-                    {props.children}
-                </View>
+                    <View style={{
+                        flex: 1,
+                        backgroundColor: 'white',
+                        borderTopRightRadius: 75,
+                        borderBottomLeftRadius: 75,
+                        borderBottomRightRadius: 75,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
+                        {props.children}
+                    </View>
             </View>
+        
             <View style={{
                 height: 150,
                 backgroundColor: '#252934',
             }}>
                 {props.footer}
             </View>
-        </View>
+        </KeyboardAwareScrollView>
     );
 };
 

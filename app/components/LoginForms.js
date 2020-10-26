@@ -31,35 +31,41 @@ const LoginForms = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Welcome back</Text>
-            <Text style={styles.description}>
-                Enter you credentials to log in, alternatively log in with Google or Facebook.
-            </Text>
-            <TextInput 
-            icon='mail'
-            placeholder='Enter your email'
-            secureTextEntry={false}
-            validator={emailValidator}
-            setCredentials={setEmail}
-            />
-            <TextInput 
-            icon='lock'
-            placeholder='Enter your password'
-            secureTextEntry={true}
-            validator={passwordValidator}
-            setCredentials={setPassword}
-            />
-            <Button 
-            label='Log into your account'
-            variant='primary'
-            onPress={() => userAuthentication(email, password, dispatch, history, httpAuthType)}
-            />
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-                <Text>Forgot password?</Text>
+            <View style={styles.titleGrouping}>
+                <Text style={styles.title}>Welcome back</Text>
+                <Text style={styles.description}>
+                    Enter you credentials to log in, alternatively log in with Google or Facebook.
+                </Text>
+            </View>
+            <View style={styles.formGrouping}>
+                <TextInput 
+                icon='mail'
+                placeholder='Enter your email'
+                secureTextEntry={false}
+                validator={emailValidator}
+                setCredentials={setEmail}
+                />
+                <TextInput 
+                icon='lock'
+                placeholder='Enter your password'
+                secureTextEntry={true}
+                validator={passwordValidator}
+                setCredentials={setPassword}
+                />
+            </View>
+            <View style={styles.buttonGrouping}>
+                <Button 
+                label='Log into your account'
+                variant='primary'
+                onPress={() => userAuthentication(email, password, dispatch, history, httpAuthType)}
+                />
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <Text>Forgot password?</Text>
+                </View>
             </View>
         </View>
     );
@@ -74,19 +80,31 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    titleGrouping: {
+        marginTop: 25,
+        marginBottom: 25,
+    },
+    formGrouping: {
+        marginBottom: 25,
+    },
+    buttonGrouping: {
+        marginBottom: 25,
+    },
     title: {
         fontFamily: 'Raleway-Bold',
         fontSize: 24,
         lineHeight: 30,
         color: '#0C0D34',
         textAlign: 'center',
-        marginTop: 16,
+        marginBottom: 10,
+
     },
     description: {
         fontFamily: 'Raleway-Regular',
         fontSize: 16,
         lineHeight: 24,
-        padding: 44,
+        paddingLeft: 44,
+        paddingRight: 44,
         color: '#0C0D34',
         textAlign: 'center',
     },

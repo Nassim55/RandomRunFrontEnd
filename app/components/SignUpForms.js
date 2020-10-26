@@ -20,33 +20,39 @@ const SignUpForms = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Create account</Text>
-            <Text style={styles.description}>
-                Create an account, alternatively sign up with either Facebook or Google.
-            </Text>
-            <TextInput 
-            icon='mail'
-            placeholder='Enter your email'
-            secureTextEntry={false}
-            validator={emailValidator}
-            />
-            <TextInput 
-            icon='lock'
-            placeholder='Choose a password'
-            secureTextEntry={true}
-            validator={passwordValidator}
-            />
-            <TextInput 
-            icon='lock'
-            placeholder='Confirm your password'
-            secureTextEntry={true}
-            validator={passwordValidator}
-            />
-            <Button 
-            label='Create your account'
-            variant='primary'
-            onPress={() => history.push('/')}
-            />
+            <View style={styles.titleGrouping}>
+                <Text style={styles.title}>Create account</Text>
+                <Text style={styles.description}>
+                    Create an account, alternatively sign up with either Facebook or Google.
+                </Text>
+            </View>
+            <View style={styles.formGrouping}>
+                <TextInput 
+                icon='mail'
+                placeholder='Enter your email'
+                secureTextEntry={false}
+                validator={emailValidator}
+                />
+                <TextInput 
+                icon='lock'
+                placeholder='Choose a password'
+                secureTextEntry={true}
+                validator={passwordValidator}
+                />
+                <TextInput 
+                icon='lock'
+                placeholder='Confirm your password'
+                secureTextEntry={true}
+                validator={passwordValidator}
+                />
+            </View>
+            <View style={styles.buttonGrouping}>
+                <Button 
+                label='Create your account'
+                variant='primary'
+                onPress={() => history.push('/')}
+                />
+            </View>
         </View>
     );
 };
@@ -59,13 +65,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    titleGrouping: {
+        marginTop: 25,
+        marginBottom: 25,
+    },
+    formGrouping: {
+        marginBottom: 25,
+    },
+    buttonGrouping: {
+        marginBottom: 25,
+    },
     title: {
         fontFamily: 'Raleway-Bold',
         fontSize: 24,
         lineHeight: 30,
         color: '#0C0D34',
         textAlign: 'center',
-        marginTop: 16,
+        marginBottom: 10,
     },
     description: {
         fontFamily: 'Raleway-Regular',
@@ -73,7 +89,8 @@ const styles = StyleSheet.create({
         lineHeight: 24,
         color: '#0C0D34',
         textAlign: 'center',
-        padding: 24,
+        paddingLeft: 44,
+        paddingRight: 44,
     },
 })
 
