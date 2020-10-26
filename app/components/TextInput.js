@@ -47,9 +47,14 @@ const TextInput = props => {
                 <RNTextInput
                 style={styles.reactNativeTextInput}
                 underlineColorAndroid='transparent'
+                autoCompleteType='off'
+                autoCorrect={false}
+                autoCapitalize={'none'}
+                secureTextEntry={props.secureTextEntry}
                 placeholder={props.placeholder}
                 onBlur={validate}
                 onChangeText={text => {
+                    props.setCredentials(text)
                     setInput(text)
                     if (state !== Pristine) validate();
                 }}

@@ -61,7 +61,7 @@ const Container = props => {
                 </View>
             </View>
             <View style={{
-                height: 200,
+                height: 150,
                 backgroundColor: '#252934',
             }}>
                 {props.footer}

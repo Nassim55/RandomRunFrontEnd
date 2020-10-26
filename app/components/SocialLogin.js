@@ -1,8 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 
+// External library imports:
 import Svg, { Path } from 'react-native-svg';
 import { useHistory } from "react-router-native";
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+
+// Custom functions:
+import convertSocialAuthToken from '../functions/convertSocialAuthToken';
+
 
 const SocialLogin = props => {
      // Creating history in order to allow react router re-directs:
@@ -11,7 +18,33 @@ const SocialLogin = props => {
     return (
         <View style={styles.container}>
             <View style={styles.socialIconsContainer}>
-                <View style={styles.socialIconButton}>
+                <Pressable 
+                style={({ pressed }) => [styles.socialIconButton, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "grey" : "white" }]}
+                onPress={async () => {
+                    try {
+                        await GoogleSignin.hasPlayServices();
+                        const userInfo = await GoogleSignin.signIn();
+                        convertSocialAuthToken(
+                            '',
+                            dispatch,
+                            history,
+                            backend='google-oauth2',
+                            client_id= '',
+                            client_secret=''
+                        );
+                    } catch (error) {
+                        if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                            // user cancelled the login flow
+                        } else if (error.code === statusCodes.IN_PROGRESS) {
+                            // operation (e.g. sign in) is in progress already
+                        } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                            // play services not available or outdated
+                        } else {
+                            // some other error happened
+                        }
+                    }
+                }}
+                >
                     <Svg
                     width={26.873}
                     height={27.5}
@@ -35,20 +68,47 @@ const SocialLogin = props => {
                             fill="#EB4335"
                         />
                     </Svg>
-                </View>
-                <View style={styles.socialIconButton}>
-                <Svg
-                width={14.278}
-                height={27.5}
-                viewBox="88.428 12.828 107.543 207.085"
-                {...props}
+                </Pressable>
+                <Pressable 
+                style={({ pressed }) => [styles.socialIconButton, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "grey" : "white" }]}
+                onPress={() => {
+                    LoginManager.logInWithPermissions(['public_profile', 'email']).then(
+                        (result) => {
+                            if (result.isCancelled) {
+                                console.log('Login cancelled');
+                            } else {
+                                AccessToken.getCurrentAccessToken().then(
+                                    (accessToken) => {
+                                        convertSocialAuthToken(
+                                            accessToken.accessToken,
+                                            dispatch,
+                                            history,
+                                            backend='facebook',
+                                            client_id='',
+                                            client_secret=''
+                                        );
+                                    }
+                                )
+                            }
+                        },
+                        (error) => {
+                            console.log('Login fail with error: ' + error);
+                        }
+                    );
+                }}
                 >
-                    <Path
-                        d="M158.232 219.912v-94.461h31.707l4.747-36.813h-36.454V65.134c0-10.658 2.96-17.922 18.245-17.922l19.494-.009V14.278c-3.373-.447-14.944-1.449-28.406-1.449-28.106 0-47.348 17.155-47.348 48.661v27.149H88.428v36.813h31.788v94.461l38.016-.001z"
-                        fill="#3c5a9a"
-                    />
-                </Svg>
-                </View>
+                    <Svg
+                    width={14.278}
+                    height={27.5}
+                    viewBox="88.428 12.828 107.543 207.085"
+                    {...props}
+                    >
+                        <Path
+                            d="M158.232 219.912v-94.461h31.707l4.747-36.813h-36.454V65.134c0-10.658 2.96-17.922 18.245-17.922l19.494-.009V14.278c-3.373-.447-14.944-1.449-28.406-1.449-28.106 0-47.348 17.155-47.348 48.661v27.149H88.428v36.813h31.788v94.461l38.016-.001z"
+                            fill="#3c5a9a"
+                        />
+                    </Svg>
+                </Pressable>
             </View>
             <View style={styles.textContainer}>
                 <Text style={styles.text}>
@@ -73,30 +133,32 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 30,
     },
     socialIconsContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 10,
     },
     socialIconButton: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 60,
-        width: 60,
-        borderRadius: 30,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
         margin: 10,
-        backgroundColor: 'white',
+
     },
     textContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 10,
+        
     },
     text: {
         fontFamily: 'Raleway-Regular',

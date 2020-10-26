@@ -1,35 +1,51 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-import TextInput from './TextInput';
+// External library imports:
+import { useHistory } from "react-router-native";
 
-const emailValidator = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-};
+// Custom component imports:
+import TextInput from './TextInput';
+import Button from './Button';
+
+// Custom function imports:
+import emailValidator from '../functions/emailValidator';
+import passwordValidator from '../functions/passwordValidator';
+
+
 
 const SignUpForms = () => {
+    // Creating history in order to allow react router re-directs:
+    const history = useHistory();
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Create account</Text>
             <Text style={styles.description}>
-                Enter your email and password to create an account. Alternatively, you can
-                choose to log in with either your Facebook or Google accounts.
+                Create an account, alternatively sign up with either Facebook or Google.
             </Text>
             <TextInput 
             icon='mail'
             placeholder='Enter your email'
+            secureTextEntry={false}
             validator={emailValidator}
             />
             <TextInput 
             icon='lock'
             placeholder='Choose a password'
-            validator={emailValidator}
+            secureTextEntry={true}
+            validator={passwordValidator}
             />
             <TextInput 
             icon='lock'
             placeholder='Confirm your password'
-            validator={emailValidator}
+            secureTextEntry={true}
+            validator={passwordValidator}
+            />
+            <Button 
+            label='Create your account'
+            variant='primary'
+            onPress={() => history.push('/')}
             />
         </View>
     );
