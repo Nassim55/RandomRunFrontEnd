@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, Dimensions  } from 'react-native';
+
+// External library imports:
 import { NativeRouter, Route, Switch, useHistory } from "react-router-native";
 import { useDispatch, useSelector } from 'react-redux';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-// Custom components:
+// Custom component imports:
 import Onboarding from './app/components/Onboarding';
 import Welcome from './app/components/Welcome';
 import Login from './app/components/Login';
 import SignUp from './app/components/SignUp';
-import LoginPageView from './app/components/LoginPageView';
 import AuthorisedUserView from './app/components/AuthorisedUserView';
 import PrivateRoute from './app/routes/PrivateRoute';
 
-
-// Custom functions:
+// Custom function imports:
 import getData from './app/authentication/getData';
 
 
