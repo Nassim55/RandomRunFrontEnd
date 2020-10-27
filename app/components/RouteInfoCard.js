@@ -4,6 +4,9 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 // Redux state store imports: 
 import { useSelector } from 'react-redux';
 
+// Custom components:
+import Button from './Button';
+
 // Custom functions:
 import saveRoute from '../functions/saveRoute';
 
@@ -47,26 +50,24 @@ const RouteInfoCard = (props) => {
                                 </View>
                             </View>
                         </View>
-                        <View style={styles.saveContainer}>
-                            <Pressable
-                            style={styles.saveButton}
-                            onPress={async () => {
-                                const mapImageURI = await props.viewShotRef.current.capture();
-                                saveRoute(
-                                    props.displayRouteDistance,
-                                    finalRouteLineString.coordinates,
-                                    mapImageURI,
-                                    userID,
-                                    timeString,
-                                    mostNorthEasternCoordinates,
-                                    mostSouthWesternCoordinates,
-                                    httpAuthType
-                                );
-                            }}
-                            >
-                                <Text style={styles.cardSegmentTextBottom}>Save this route</Text>
-                            </Pressable>
-                        </View>
+                        <Pressable
+                        style={({ pressed }) => [styles.saveContainer, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "grey" : "white" }]}
+                        onPress={async () => {
+                            const mapImageURI = await props.viewShotRef.current.capture();
+                            saveRoute(
+                                props.displayRouteDistance,
+                                finalRouteLineString.coordinates,
+                                mapImageURI,
+                                userID,
+                                timeString,
+                                mostNorthEasternCoordinates,
+                                mostSouthWesternCoordinates,
+                                httpAuthType
+                            );
+                        }}
+                        >
+                            <Text style={styles.cardSegmentTextTop}>Save this route?</Text>
+                        </Pressable>
                     </View>
                 : 
                     null
@@ -78,7 +79,7 @@ const RouteInfoCard = (props) => {
 const styles = StyleSheet.create({
     routeDetails: {
         position: 'absolute',
-        bottom: '8.5%',
+        bottom: '5%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
         width: '95%',
     },
     routeCetailsCardAndSaveContainer: {
-        width: '100%',
+        width: '90%',
     },
     routeDetailsCard: {
         display: 'flex',
@@ -210,29 +211,17 @@ const styles = StyleSheet.create({
     },
 
     saveContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: 10
+        alignSelf: 'center',
+        paddingTop: 6,
+        paddingBottom: 6,
+        paddingLeft: 15,
+        paddingRight: 15,
+        marginTop: 15,
+        backgroundColor: 'white',
+        opacity: 0.85,
+        borderRadius: 10,
     },
-    saveButton: {
-        width: '100%',
-        padding: 10,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#252934',
-        opacity: 0.9,
-        borderRadius: 15,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
+
 });
 
 export default RouteInfoCard;

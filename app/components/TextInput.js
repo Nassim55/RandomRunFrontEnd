@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
         margin: 5,
         paddingLeft: 10,
         paddingRight: 10,
+        borderColor: 'grey',
     },
     inputIconContainer: {
         paddingRight: 10,

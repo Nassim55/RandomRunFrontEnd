@@ -34,7 +34,7 @@ const LoginForms = () => {
             <View style={styles.titleGrouping}>
                 <Text style={styles.title}>Welcome back</Text>
                 <Text style={styles.description}>
-                    Enter you credentials to log in, alternatively log in with Google or Facebook.
+                    Enter your credentials, alternatively log in with Google or Facebook.
                 </Text>
             </View>
             <View style={styles.formGrouping}>

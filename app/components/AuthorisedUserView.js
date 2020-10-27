@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     width: '95%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   formContainer: {
     flex: 8

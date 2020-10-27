@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, View } from 'react-native';
 
 // Library imports:
 import MapboxGL from '@react-native-mapbox-gl/maps';
@@ -32,7 +32,7 @@ const MapboxMap = (props) => {
         sw: mostSouthWesternCoordinates,
         paddingRight: 50,
         paddingLeft: 50,
-        paddingBottom: 350,
+        paddingBottom: 400,
         paddingTop: 50
     };
 
@@ -67,7 +67,9 @@ const MapboxMap = (props) => {
             <MapboxGL.PointAnnotation 
             id="origin-point"
             coordinate={[props.originLongitude, props.originLatitude]}
-            />
+            >
+                <View style={styles.locationPoint} />
+            </MapboxGL.PointAnnotation>
         </MapboxGL.MapView>
     );
 };
@@ -77,14 +79,21 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%'
     },
-
+    locationPoint: {
+        height: 28, 
+        width: 28, 
+        backgroundColor: '#40798C', 
+        borderRadius: 14, 
+        borderColor: '#fff', 
+        borderWidth: 3
+    },
 })
 
 const layerStyles = {
     routeLine: {
-      lineColor: '#252934',
+      lineColor: '#F24E4E',
       lineCap: MapboxGL.LineJoin.Round,
-      lineWidth: 5,
+      lineWidth: 4,
       lineOpacity: 0.5,
     },
   };
