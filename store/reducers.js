@@ -9,13 +9,9 @@ import {
     SET_CALCULATED_ROUTE_DISTANCE_METERS,
     SET_MOST_NORTH_EASTERN_COORDINATES,
     SET_MOST_SOUTH_WESTERN_COORDINATES,
-    SET_IS_ROUTE_CARDS_SHOWN,
     SET_SAVED_ROUTES_RESPONSE,
     SET_MAP_IMAGE_URI,
     SET_USER_ACCOUNT_DETAILS,
-    SET_IS_USER_INFO_MENU_OPEN,
-    SET_IS_PROFILE_SHOWN,
-    SET_IS_MAP_SHOWN,
     SET_LOGIN_BUTTON_HTTP_RESPONSE,
     SET_HTTP_AUTH_TYPE,
     SET_STATE_TO_INITIAL_STATE,
@@ -33,13 +29,9 @@ const initialState = {
     calculatedRouteDistance: 0,
     mostNorthEasternCoordinates: null,
     mostSouthWesternCoordinates: null,
-    isRouteCardsShown: false,
     savedRoutesResponse: [],
     mapImageUri: '',
     userAccountDetails: {},
-    isUserInfoMenuOpen: false,
-    isProfileShown: false,
-    isMapShown: true,
     httpAuthType: 'Token',
     loginButtonHttpResponse: {'password': [''], 'username': [''], 'non_field_errors': ['']},
 };
@@ -94,11 +86,6 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 mostSouthWesternCoordinates: action.mostSouthWesternCoordinates
             };
-        case SET_IS_ROUTE_CARDS_SHOWN:
-            return {
-                ...state,
-                isRouteCardsShown: action.isRouteCardsShown
-            };
         case SET_SAVED_ROUTES_RESPONSE:
             return {
                 ...state,
@@ -113,21 +100,6 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 userAccountDetails: action.userAccountDetails
-            }
-        case SET_IS_USER_INFO_MENU_OPEN:
-            return {
-                ...state,
-                isUserInfoMenuOpen: action.isUserInfoMenuOpen
-            }
-        case SET_IS_PROFILE_SHOWN:
-            return {
-                ...state,
-                isProfileShown: action.isProfileShown
-            }
-        case SET_IS_MAP_SHOWN:
-            return {
-                ...state,
-                isMapShown: action.isMapShown
             }
         case SET_LOGIN_BUTTON_HTTP_RESPONSE:
             return {

@@ -1,18 +1,17 @@
 import React, { useRef } from 'react';
 import { StyleSheet, View  } from 'react-native';
+
+// External library imports:
 import { useSelector } from 'react-redux';
 import ViewShot from "react-native-view-shot";
 
-// Custom components:
+// Custom component imports:
 import MapboxMap from './MapboxMap';
 import SearchRouteForm from './SearchRouteForm';
 import RouteInfoCard from './RouteInfoCard';
-import UserInfoMenu from './UserInfoMenu';
-import SavedRouteCards from './SavedRouteCards';
-import ProfilePageView from './ProfilePageView';
 
 
-const AuthorisedUserView = (props) => {
+const AuthorisedUserView = props => {
   // Reference to the view shot:
   const viewShotRef = useRef(null);
 
@@ -44,9 +43,6 @@ const AuthorisedUserView = (props) => {
           originLatitude={originLatitude}
           />
         </ViewShot>
-        { isProfileShown ? <ProfilePageView /> : null }
-        {/* isRouteCardsShown ? <SavedRouteCards /> : null */}
-
           <View style={styles.uiElementsContainer}>
             <View style={styles.formAndMenuContainer}>
               <View style={styles.formContainer}>
@@ -56,9 +52,9 @@ const AuthorisedUserView = (props) => {
                 originLatitude={originLatitude}
                 routeDistanceMeters={routeDistanceMeters}
                 displayRouteDistance={calculatedRouteDistance}
+                navigation={props.navigation}
                 />
               </View>
-              <UserInfoMenu/>
             </View>
             <RouteInfoCard
             viewShotRef={viewShotRef}

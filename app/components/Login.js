@@ -11,6 +11,7 @@ const width = Dimensions.get('window').width;
 const Login = props => {
     return (
         <Container
+        topColour='#FFE4D9'
         children={
             <LoginForms 
             navigation={props.navigation}

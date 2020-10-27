@@ -12,8 +12,11 @@ const width = Dimensions.get('window').width;
 const SignUp = props => {
     return (
         <Container
+        topColour='#FFE4D9'
         children={
-            <SignUpForms />
+            <SignUpForms
+            navigation={props.navigation}
+            />
         }
         footer={
             <SocialLogin 

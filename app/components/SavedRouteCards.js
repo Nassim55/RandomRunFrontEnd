@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Pressable, Alert } from 'react-native';
 
 // Packages:
@@ -6,35 +6,26 @@ import { sub } from 'react-native-reanimated';
 import { useTransition } from  "react-native-redash/lib/module/v1";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-native";
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 // Custom components:
 import Card from './Card';
 
 // Custom function imports:
-import { 
-    setIsRouteCardsShown,
-    setFinalRouteLineString,
-    setMostNorthEasternCoordinates,
-    setMostSouthWesternCoordinates,
-    setCalculateRouteDistance,
-    setIsMapShown
-} from '../../store/actions';
+import { setFinalRouteLineString, setMostNorthEasternCoordinates, setMostSouthWesternCoordinates, setCalculateRouteDistance } from '../../store/actions';
 import deleteSavedRoute from '../functions/deleteSavedRoute';
 import fetchSavedRoutes from '../functions/fetchSavedRoutes';
 
 
 
 
-const SavedRouteCards = () => {
+const SavedRouteCards = props => {
     const dispatch = useDispatch();
-
-    // Creating history in order to allow react router re-directs:
-    const history = useHistory();
 
     const httpAuthType = useSelector(state => state.httpAuthType);
 
-    fetchSavedRoutes(dispatch, httpAuthType);
+    useEffect(() => {
+        fetchSavedRoutes(dispatch, httpAuthType);
+	}, [])
 
     const savedRoutesResponse = useSelector(state => state.savedRoutesResponse);
     const cards = savedRoutesResponse.map((element, index) => ({...element, index})).reverse();
@@ -46,26 +37,11 @@ const SavedRouteCards = () => {
     const aIndex = useTransition(currentIndex);
 
 
-    
+
+    console.log('refreshing')
 
     return (
         <View style={styles.viewContainer}>
-            <Pressable
-            style={styles.darkenMap}
-            onPress={() => {
-                dispatch(setIsRouteCardsShown(false));
-                dispatch(setIsMapShown(true));
-            }}
-            />
-            <View style={styles.savedRoutesTitleContainer}>
-                <Text style={styles.savedRoutesText}>Saved Routes</Text>
-                <Text style={styles.savedRoutesTextInfo}>Swipe the cards to view your routes</Text>
-                <Text style={styles.savedRoutesTextInfo}>Tap on a card to load a route</Text>
-            </View>
-            <View style={styles.deleteMessageView}>
-                <Text style={styles.savedRoutesTextInfoDelete}>Swipe down to delete a route</Text>
-                <SimpleLineIcons name='trash' size={24} color='white' />
-            </View>
             {cards.map(
                 ({ index, distance, image, id, coordinates, duration, mostNorthEasternCoordinates, mostSouthWesternCoordinates }) =>
                     currentIndex < index * step + step && (
@@ -91,9 +67,9 @@ const SavedRouteCards = () => {
                             dispatch(setFinalRouteLineString({ 'type': 'LineString', 'coordinates': coordinatesDecimal }))
                             dispatch(setMostNorthEasternCoordinates(mostNorthEasternCoordinatesDecimal));
                             dispatch(setMostSouthWesternCoordinates(mostSouthWesternCoordinatesDecimal));
-                            dispatch(setIsRouteCardsShown(false));
                             dispatch(setCalculateRouteDistance(parseFloat(distance)))
-                            dispatch(setIsMapShown(true));
+                            props.navigation.navigate('Home')
+
                         }}
                         onSwipeDown={() => {
                             setCurrentIndex(prev => prev + step);
@@ -118,7 +94,6 @@ const SavedRouteCards = () => {
                         />
                     )
             )}
-
         </View>
     );
 };

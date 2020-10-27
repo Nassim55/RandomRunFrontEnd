@@ -13,7 +13,7 @@ import fetchRouteCoords from '../functions/fetchRouteCoords';
 
 
 
-const SearchRouteForm = (props) => {
+const SearchRouteForm = props => {
     // Creating a dispatch to allow the Redux state to be updated:
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const SearchRouteForm = (props) => {
         <View style={styles.SearchRouteForm}>
             <Pressable 
             style={({ pressed }) => [styles.hamburger, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "grey" : "white" }]}
-            onPress={() => dispatch(setIsUserInfoMenuOpen(!isUserInfoMenuOpen))}
+            onPress={() => props.navigation.openDrawer()}
             >
                 <Feather name='menu' size={28} />
             </Pressable>

@@ -8,13 +8,9 @@ import {
     SET_CALCULATED_ROUTE_DISTANCE_METERS,
     SET_MOST_NORTH_EASTERN_COORDINATES,
     SET_MOST_SOUTH_WESTERN_COORDINATES,
-    SET_IS_ROUTE_CARDS_SHOWN,
     SET_SAVED_ROUTES_RESPONSE,
     SET_MAP_IMAGE_URI,
     SET_USER_ACCOUNT_DETAILS,
-    SET_IS_USER_INFO_MENU_OPEN,
-    SET_IS_PROFILE_SHOWN,
-    SET_IS_MAP_SHOWN,
     SET_LOGIN_BUTTON_HTTP_RESPONSE,
     SET_HTTP_AUTH_TYPE,
     SET_STATE_TO_INITIAL_STATE,
@@ -72,11 +68,6 @@ export const setMostSouthWesternCoordinates = mostSouthWesternCoordinates => ({
     mostSouthWesternCoordinates: mostSouthWesternCoordinates
 });
 
-export const setIsRouteCardsShown = isRouteCardsShown => ({
-    type: SET_IS_ROUTE_CARDS_SHOWN,
-    isRouteCardsShown: isRouteCardsShown
-});
-
 export const setSavedRoutesResponse = savedRoutesResponse => ({
     type: SET_SAVED_ROUTES_RESPONSE,
     savedRoutesResponse: savedRoutesResponse
@@ -90,21 +81,6 @@ export const setMapImageUri = mapImageUri => ({
 export const setUserAccountDetails = userAccountDetails => ({
     type: SET_USER_ACCOUNT_DETAILS,
     userAccountDetails: userAccountDetails
-})
-
-export const setIsUserInfoMenuOpen = isUserInfoMenuOpen => ({
-    type: SET_IS_USER_INFO_MENU_OPEN,
-    isUserInfoMenuOpen: isUserInfoMenuOpen
-})
-
-export const setIsProfileShown = isProfileShown => ({
-    type: SET_IS_PROFILE_SHOWN,
-    isProfileShown: isProfileShown  
-})
-
-export const setIsMapShown = isMapShown => ({
-    type: SET_IS_MAP_SHOWN,
-    isMapShown: isMapShown
 })
 
 export const setLoginButtonHttpResponse = loginButtonHttpResponse => ({

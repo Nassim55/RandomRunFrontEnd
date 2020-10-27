@@ -20,12 +20,13 @@ const Container = props => {
                 overflow: 'hidden',
                 height: height * 0.61,
                 backgroundColor: '#252934'
+
             }}
             >
                 <View style={{
                     height: height,
                     width: width,
-                    backgroundColor: '#FFE4D9',
+                    backgroundColor: props.topColour,
                     borderBottomLeftRadius: 75,
                 }}
                 />
@@ -47,8 +48,7 @@ const Container = props => {
                     ...StyleSheet.absoluteFillObject,
                     height: height,
                     width: width,
-                    backgroundColor: '#FFE4D9',
-
+                    backgroundColor: props.topColour,
                 }}
                 />
                     <View style={{
