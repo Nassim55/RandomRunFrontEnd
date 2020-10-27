@@ -9,7 +9,7 @@ import SignUpForms from './SignUpForms';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
-const SignUp = () => {
+const SignUp = props => {
     return (
         <Container
         children={
@@ -19,7 +19,8 @@ const SignUp = () => {
             <SocialLogin 
             text="Already have an account? "
             linkText='Login here'
-            pushLocation='/login'
+            pushLocation='Login'
+            navigation={props.navigation}
             />
         }
         />

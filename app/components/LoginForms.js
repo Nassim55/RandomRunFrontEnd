@@ -15,7 +15,7 @@ import passwordValidator from '../functions/passwordValidator';
 import userAuthentication from '../authentication/userAuthentication';
 
 
-const LoginForms = () => {
+const LoginForms = props => {
     // Creating dispatch to all updates to redux store:
     const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ const LoginForms = () => {
                 <Button 
                 label='Log into your account'
                 variant='primary'
-                onPress={() => userAuthentication(email, password, dispatch, history, httpAuthType)}
+                onPress={() => userAuthentication(email, password, dispatch, props.navigation, httpAuthType)}
                 />
                 <View style={{
                     flexDirection: 'row',

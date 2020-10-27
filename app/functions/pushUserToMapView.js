@@ -1,7 +1,7 @@
 import RNSInfo from 'react-native-sensitive-info';
 import { setUserAccountDetails } from '../../store/actions';
 
-const pushUserToMapView = async (dispatch, history, httpAuthType) => {
+const pushUserToMapView = async (dispatch, navigation, httpAuthType) => {
     try {
         // Retreiving the auth token from storage:
         const token = await RNSInfo.getItem('token', {});
@@ -21,7 +21,7 @@ const pushUserToMapView = async (dispatch, history, httpAuthType) => {
         dispatch(setUserAccountDetails(data[0]));
 
         // Pushing the user to the map view:
-        history.push('/usermap');
+        navigation.navigate('Map')
         
     } catch (err) { if (console) console.error(err) }
 };

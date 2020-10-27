@@ -9,12 +9,12 @@ import Button from './Button';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-const Welcome = () => {
+const Welcome = props => {
     // Creating history in order to allow react router re-directs:
     const history = useHistory();
 
     return (
-        <View styles={styles.container}>
+        <View style={styles.container}>
             <View style={styles.innerContainerTop}>
 
             </View>
@@ -26,12 +26,12 @@ const Welcome = () => {
                     <Button 
                     label='Have an account? Login'
                     variant='primary'
-                    onPress={() => history.push('/login')}
+                    onPress={() => props.navigation.navigate('Login')}
                     />
                     <Button 
                     label='New here? Create an account'
                     variant='default'
-                    onPress={() => history.push('/signup')}
+                    onPress={() => props.navigation.navigate('Signup')}
                     />
                     <Button 
                     label='Forgot password?'

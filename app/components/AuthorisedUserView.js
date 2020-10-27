@@ -45,9 +45,8 @@ const AuthorisedUserView = (props) => {
           />
         </ViewShot>
         { isProfileShown ? <ProfilePageView /> : null }
-        { isRouteCardsShown ? <SavedRouteCards /> : null }
-        {
-          isMapShown ?
+        {/* isRouteCardsShown ? <SavedRouteCards /> : null */}
+
           <View style={styles.uiElementsContainer}>
             <View style={styles.formAndMenuContainer}>
               <View style={styles.formContainer}>
@@ -66,9 +65,7 @@ const AuthorisedUserView = (props) => {
             displayRouteDistance={calculatedRouteDistance}
             />
           </View>
-          :
-          null
-        }    
+        
     </View>
   );
 };

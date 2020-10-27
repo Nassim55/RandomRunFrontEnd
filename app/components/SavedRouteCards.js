@@ -21,6 +21,7 @@ import {
     setIsMapShown
 } from '../../store/actions';
 import deleteSavedRoute from '../functions/deleteSavedRoute';
+import fetchSavedRoutes from '../functions/fetchSavedRoutes';
 
 
 
@@ -31,6 +32,9 @@ const SavedRouteCards = () => {
     // Creating history in order to allow react router re-directs:
     const history = useHistory();
 
+    const httpAuthType = useSelector(state => state.httpAuthType);
+
+    fetchSavedRoutes(dispatch, httpAuthType);
 
     const savedRoutesResponse = useSelector(state => state.savedRoutesResponse);
     const cards = savedRoutesResponse.map((element, index) => ({...element, index})).reverse();
@@ -42,7 +46,7 @@ const SavedRouteCards = () => {
     const aIndex = useTransition(currentIndex);
 
 
-    const httpAuthType = useSelector(state => state.httpAuthType);
+    
 
     return (
         <View style={styles.viewContainer}>

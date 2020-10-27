@@ -116,7 +116,7 @@ const SocialLogin = props => {
                 </Text>
                 <Text 
                 style={styles.linkText}
-                onPress={() => history.push(props.pushLocation)}
+                onPress={() => props.navigation.navigate(props.pushLocation)}
                 >
                     {props.linkText}
                 </Text>

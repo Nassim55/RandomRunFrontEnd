@@ -55,7 +55,7 @@ const BORDER_RADIUS = 75
 
 
 
-const Onboarding = () => {
+const Onboarding = props => {
     // Creating history in order to allow react router re-directs:
     const history = useHistory();
 
@@ -66,6 +66,8 @@ const Onboarding = () => {
         inputRange: slides.map((_, i) => i * width),
         outputRange: slides.map(slide => slide.color),
     })
+
+    console.log(props.navigation)
 
     return (
         <View style={styles.container}>
@@ -120,7 +122,8 @@ const Onboarding = () => {
                                 description={slide.description}
                                 onPress={() => {
                                     if (last) {
-                                        history.push('/welcome');
+                                        //history.push('/welcome');
+                                        props.navigation.navigate('Welcome');
                                     } else {
                                         scroll.current
                                             ?.getNode()

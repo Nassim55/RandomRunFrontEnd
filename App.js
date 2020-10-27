@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Dimensions  } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 // External library imports:
-import { NativeRouter, Route, Switch, useHistory } from "react-router-native";
+import { useHistory } from "react-router-native";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,53 +12,67 @@ import Onboarding from './app/components/Onboarding';
 import Welcome from './app/components/Welcome';
 import Login from './app/components/Login';
 import SignUp from './app/components/SignUp';
-import AuthorisedUserView from './app/components/AuthorisedUserView';
-import PrivateRoute from './app/routes/PrivateRoute';
+import Home from './app/components/Home';
 
 // Custom function imports:
 import getData from './app/authentication/getData';
 
 
+
+
+const Stack = createStackNavigator();
+
+
 const App = () => {
-  console.log('App render');
+	// Creating dispatch to all updates to redux store:
+	const dispatch = useDispatch();
 
-  // Creating dispatch to all updates to redux store:
-  const dispatch = useDispatch();
+	// Creating history in order to allow react router re-directs:
+	const history = useHistory();
 
-  // Creating history in order to allow react router re-directs:
-  const history = useHistory();
+	// Pulling variables from state:
+	const isUserAuthenticated = useSelector(state => state.isUserAuthenticated);
 
-  useEffect(() => {
-    getData(dispatch, history);
-  }, [])
 
-  const httpAuthType = useSelector(state => state.httpAuthType);
-  console.log(httpAuthType)
-  
-  return (
-    <NativeRouter>
-      <View style = {styles.page} >
-        <Switch>
-          <Route exact path='/' component={Onboarding} />
-          <Route exact path='/welcome' component={Welcome} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/signup' component={SignUp} />
-          <PrivateRoute path='/usermap' exact={true} component={AuthorisedUserView} />
-        </Switch>
-      </View>
-    </NativeRouter>
-  );
+	useEffect(() => {
+		getData(dispatch, history);
+	}, [])
+	
+	
+	return (
+		isUserAuthenticated ? (
+		<NavigationContainer style={styles.page}>
+			<Stack.Navigator
+			headerMode='none'
+			>
+				<Stack.Screen name="Onboarding" component={Onboarding} />
+				<Stack.Screen name="Welcome" component={Welcome} />
+				<Stack.Screen name="Login" component={Login} />
+				<Stack.Screen name="SignUp" component={SignUp} />
+				<Stack.Screen name="Map" component={Home} />
+			</Stack.Navigator>
+		</NavigationContainer>
+		) : (
+			<NavigationContainer style={styles.page}>
+				<Home />
+			</NavigationContainer>
+		)
+	);
 };
 
 const styles = StyleSheet.create({
-  page: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  }
+	page: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: Dimensions.get('window').width,
+		height: Dimensions.get('window').height,
+
+	}
 });
 
 export default App;
+
+
+

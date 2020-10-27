@@ -8,17 +8,20 @@ import LoginForms from './LoginForms';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
-const Login = () => {
+const Login = props => {
     return (
         <Container
         children={
-            <LoginForms />
+            <LoginForms 
+            navigation={props.navigation}
+            />
         }
         footer={
             <SocialLogin 
             text="Don't have an account? "
             linkText='Sign up here'
-            pushLocation='/signup'
+            pushLocation='SignUp'
+            navigation={props.navigation}
             />
         }
         />
