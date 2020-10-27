@@ -1,30 +1,29 @@
 import React from 'react';
-import { StyleSheet, Dimensions, View } from 'react-native';
+import { StyleSheet, Dimensions, View, Text } from 'react-native';
 
-import Container from './Container';
+// External library imports:
+import { useIsFocused } from '@react-navigation/native';
+
+// Custom component imports:
 import SavedRouteCards from './SavedRouteCards';
 
 
-const height = Dimensions.get('window').height;
-const width = Dimensions.get('window').width;
-
 const SavedRoutes = props => {
+    const isFocused = useIsFocused();
+
     return (
         <View style={styles.container}>
-            <SavedRouteCards
-            navigation={props.navigation}
-            />
-        </View>        
+            { isFocused ? <SavedRouteCards navigation={props.navigation} /> : null }
+        </View>
     );
 };
 
 
 const styles = StyleSheet.create({
     container: {
-        height: height,
-        width: width,
-        backgroundColor: '#252934',
-
+        backgroundColor: 'white',
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width
     }
 });
 

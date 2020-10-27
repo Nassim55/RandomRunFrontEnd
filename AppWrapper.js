@@ -1,8 +1,14 @@
 import React from 'react';
+import { LogBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from './store/store'
 import { configureFonts, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import App from './App';
+
+
+
+
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const AppWrapper = () => {
     return(

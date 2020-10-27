@@ -21,6 +21,7 @@ MapboxGL.setAccessToken(MAPBOX_PUBLIC_TOKEN);
 if (Platform.OS === 'android') MapboxGL.setConnected(true);
 
 const MapboxMap = (props) => {
+    console.log('map rendering')
     // Creating dispatch to allow for updating redux store state:
     const dispatch = useDispatch();
 
@@ -39,13 +40,11 @@ const MapboxMap = (props) => {
     // Route coordinates that will be rendered on screen:
     const finalRouteLineString = useSelector(state => state.finalRouteLineString);
 
+
     // Set user location on initial render:
     useEffect(() => {
         setUserLongitudeAndLatitude(dispatch);
     }, []);
-
-
-
 
     return (
         <MapboxGL.MapView style = {styles.map} styleURL={mapboxStyleURL}>

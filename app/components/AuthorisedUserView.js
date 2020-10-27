@@ -26,10 +26,6 @@ const AuthorisedUserView = props => {
   // Generated route characteristics that will be rendered to the user: 
   const calculatedRouteDistance = useSelector(state => state.calculatedRouteDistance);
 
-  // Getting state to determine if UI components should be rendered:
-  const isMapShown = useSelector(state => state.isMapShown)
-  const isRouteCardsShown = useSelector(state => state.isRouteCardsShown);
-  const isProfileShown = useSelector(state => state.isProfileShown)
 
   return (
     <View style = {styles.pageContent}>
