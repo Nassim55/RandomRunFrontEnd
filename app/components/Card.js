@@ -72,14 +72,9 @@ const Card = (props) => {
                     </View>
                 </Pressable>
                 <Animated.View style={[styles.routeInfo, { opacity: cardInfoOpacity }]}>
-                    <LinearGradient
-                    colors={['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)']}
-                    style={styles.linearGradient}
-                    >
-                        <View style={styles.textContainer}>
-                            <Text style={styles.routeInfoText}>{`${parseFloat(props.distanceMeters).toFixed(0)} meters`}</Text>
-                        </View>
-                    </LinearGradient>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.routeInfoText}>{`${parseFloat(props.distanceMeters).toFixed(0)} meters`}</Text>
+                    </View>
                 </Animated.View>
             </Animated.View>
         </PanGestureHandler>
@@ -149,7 +144,14 @@ const styles = StyleSheet.create({
     },
 
     textContainer: {
-        position: 'relative',
+        position: 'absolute',
+        bottom: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+
+        paddingBottom: 10
     }
 })
 

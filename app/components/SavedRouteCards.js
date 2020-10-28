@@ -9,6 +9,8 @@ import { useHistory } from "react-router-native";
 
 // Custom components:
 import Card from './Card';
+import Container from './Container';
+import SocialLogin from './SocialLogin';
 
 // Custom function imports:
 import { setFinalRouteLineString, setMostNorthEasternCoordinates, setMostSouthWesternCoordinates, setCalculateRouteDistance } from '../../store/actions';
@@ -36,12 +38,10 @@ const SavedRouteCards = props => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const aIndex = useTransition(currentIndex);
 
-
-
-    console.log('refreshing')
-
     return (
-        <View style={styles.container}>
+        <Container
+        topColour='#FFE4D9'
+        children={
             <View style={styles.cardsContainer}>
                 {cards.map(
                     ({ index, distance, image, id, coordinates, duration, mostNorthEasternCoordinates, mostSouthWesternCoordinates }) =>
@@ -96,11 +96,16 @@ const SavedRouteCards = props => {
                         )
                 )}
             </View>
-            <View style={styles.footer}>
-                <Text style={styles.title}>Saved Routes</Text>
-                <Text style={styles.description}>Swipe the cards to view your routes. Tap a card to load it into the map. Swipe down to delete a route.</Text>
-            </View>
-        </View>
+        }
+        footer={
+            <SocialLogin 
+            text="Don't have an account? "
+            linkText='Sign up here'
+            pushLocation='SignUp'
+            navigation={props.navigation}
+            />
+        }
+        />
     );
 };
 
@@ -115,40 +120,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardsContainer: {
-        flex: 7,
+        height: '100%',
+        width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: Dimensions.get('window').width,
-        borderBottomRightRadius: 75,
-        borderBottomLeftRadius: 75,
-        backgroundColor: '#252934'
-    },
-    footer: {
-        flex: 2,
-        width: Dimensions.get('window').width,
-        backgroundColor: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        fontFamily: 'Raleway-Bold',
-        fontSize: 24,
-        lineHeight: 30,
-        color: '#0C0D34',
-        textAlign: 'center',
-    },
-    description: {
-        fontFamily: 'Raleway-Regular',
-        fontSize: 16,
-        lineHeight: 24,
-        color: '#0C0D34',
-        textAlign: 'center',
-        paddingLeft: 44,
-        paddingRight: 44,
-        marginTop: 10,
     },
 })
 
