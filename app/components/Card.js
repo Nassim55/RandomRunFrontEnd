@@ -18,7 +18,7 @@ const height = width * (425 / 294);
 
 // SWIPRE RIGHT RO SAVE LOAD A ROUTE SWIPE LEFT TO 
 
-const Card = (props) => {
+const Card = props => {
     const backgroundColor = mixColor(props.position, '#FFFFFF', '#BFC0C0');
     const translateYCardOffset = mix(props.position, 40 , -40);
     const scale = mix(props.position, 1, 0.85);
@@ -84,6 +84,8 @@ const Card = (props) => {
 const styles = StyleSheet.create({
     card: {
         position: 'absolute',
+        alignSelf: 'center',
+        top: 40,
         height: '60%',
         width: '75%',
         backgroundColor: 'white',

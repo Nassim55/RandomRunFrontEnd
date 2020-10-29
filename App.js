@@ -34,13 +34,12 @@ const App = () => {
 	const isUserAuthenticated = useSelector(state => state.isUserAuthenticated);
 
 
-	useEffect(() => {
-		getData(dispatch, history);
-	}, [])
+	//useEffect(() => {
+	//	getData(dispatch, history);
+	//}, [])
 	
 	
 	return (
-		isUserAuthenticated ? (
 		<NavigationContainer style={styles.page}>
 			<Stack.Navigator
 			headerMode='none'
@@ -52,11 +51,6 @@ const App = () => {
 				<Stack.Screen name="Map" component={Home} />
 			</Stack.Navigator>
 		</NavigationContainer>
-		) : (
-			<NavigationContainer style={styles.page}>
-				<Home />
-			</NavigationContainer>
-		)
 	);
 };
 

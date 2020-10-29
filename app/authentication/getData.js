@@ -6,12 +6,8 @@ const getData = async (dispatch, history) => {
         const token = await RNSInfo.getItem('token', {});
         if (token) {
             dispatch(setUserAuthenticated(true));
-            console.log('token exists')
-            //history.push('/usermap');
         } else {
-            console.log('token doesnt exist')
             dispatch(setUserAuthenticated(false));
-            //history.push('/');
         };
     } catch (err) { if (console) console.error(err) };
 };

@@ -8,6 +8,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContent from './DrawerContent';
 import AuthorisedUserView from './AuthorisedUserView';
 import SavedRoutes from './SavedRoutes';
+import Profile from './Profile';
+import Support from './Support';
+
 import Login from './Login'
 
 
@@ -23,8 +26,8 @@ const Home = () => {
 		>
 			<Drawer.Screen name='Home' component={AuthorisedUserView} />
 			<Drawer.Screen name='Saved Routes' component={SavedRoutes} />
-			<Drawer.Screen name='Profile' component={Login} />
-			<Drawer.Screen name='Log Out' component={Login} />
+			<Drawer.Screen name='Profile' component={Profile} />
+			<Drawer.Screen name='Support' component={Support} />
 		</Drawer.Navigator>
 	);
 }
