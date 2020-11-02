@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 // External library imports:
-import { useHistory } from "react-router-native";
+import { useHistory } from 'react-router-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Custom component imports:
 import TextInput from './TextInput';
@@ -11,12 +12,24 @@ import Button from './Button';
 // Custom function imports:
 import emailValidator from '../functions/emailValidator';
 import passwordValidator from '../functions/passwordValidator';
+import registerAccount from '../authentication/registerAccount';
 
 
 
-const SignUpForms = () => {
+const SignUpForms = props => {
+    // Creating dispatch to all updates to redux store:
+    const dispatch = useDispatch();
+
     // Creating history in order to allow react router re-directs:
     const history = useHistory();
+
+    // Storing user credentials in local state:
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
+
+    // Default is token, social login is bearer:
+    const httpAuthType = useSelector(state => state.httpAuthType);
 
     return (
         <View style={styles.container}>
@@ -32,25 +45,28 @@ const SignUpForms = () => {
                 placeholder='Enter your email'
                 secureTextEntry={false}
                 validator={emailValidator}
+                setCredentials={setEmail}
                 />
                 <TextInput 
                 icon='lock'
                 placeholder='Choose a password'
                 secureTextEntry={true}
                 validator={passwordValidator}
+                setCredentials={setPassword}
                 />
                 <TextInput 
                 icon='lock'
                 placeholder='Confirm your password'
                 secureTextEntry={true}
                 validator={passwordValidator}
+                setCredentials={setPassword2}
                 />
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
                 label='Create your account'
                 variant='primary'
-                onPress={() => history.push('/')}
+                onPress={() => registerAccount(email, password, password2, dispatch, props.navigation, httpAuthType)}
                 />
             </View>
         </View>

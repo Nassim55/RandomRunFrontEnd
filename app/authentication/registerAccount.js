@@ -1,12 +1,8 @@
-// Redux action imports:
 import { setUserAuthenticated, setUserAccountDetails } from '../../store/actions';
-
-// Custom function imports:
 import saveData from '../authentication/saveData';
+import pushUserToMapView from '../functions/pushUserToMapView';
 
-
-
-const registerAccount = async (first_name, last_name, username, email, password, password2, dispatch, history) => {
+const registerAccount = async (email, password, password2, dispatch, navigation, httpAuthType) => {
     try {
         // Registering a new user and defining the server response:
         const response = await fetch('http://127.0.0.1:8000/account/register', {
@@ -14,9 +10,6 @@ const registerAccount = async (first_name, last_name, username, email, password,
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 email,
-                username,
-                first_name,
-                last_name,
                 password,
                 password2,
             }), 
@@ -34,11 +27,9 @@ const registerAccount = async (first_name, last_name, username, email, password,
             delete data.token
             dispatch(setUserAccountDetails(data))
 
-            // Pushing the user to the map view:
-            history.push('/usermap');
-        } else {
-            history.push('/');
-        }
+            // Pushing to the map view on successfull login:
+            pushUserToMapView(dispatch, navigation, httpAuthType);
+        };
     } catch (err) { if (console) console.error(err) }
 };
 
