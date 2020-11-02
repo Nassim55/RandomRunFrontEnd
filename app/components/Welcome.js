@@ -31,7 +31,7 @@ const Welcome = props => {
                     <Button 
                     label='New here? Create an account'
                     variant='default'
-                    onPress={() => props.navigation.navigate('Signup')}
+                    onPress={() => props.navigation.navigate('SignUp')}
                     />
                     <Button 
                     label='Forgot password?'
