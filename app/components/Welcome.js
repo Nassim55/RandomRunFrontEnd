@@ -36,6 +36,7 @@ const Welcome = props => {
                     <Button 
                     label='Forgot password?'
                     variant='transparent'
+                    onPress={() => props.navigation.navigate('ForgotPassword')}
                     />
                 </View>
             </View>

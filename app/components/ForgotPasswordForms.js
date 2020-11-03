@@ -1,9 +1,5 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-
-// External library imports:
-import { useHistory } from 'react-router-native';
-import { useDispatch, useSelector } from 'react-redux';
 
 // Custom component imports:
 import TextInput from './TextInput';
@@ -11,30 +7,17 @@ import Button from './Button';
 
 // Custom function imports:
 import emailValidator from '../functions/emailValidator';
-import passwordValidator from '../functions/passwordValidator';
-import userAuthentication from '../authentication/userAuthentication';
 
 
-const LoginForms = props => {
-    // Creating dispatch to all updates to redux store:
-    const dispatch = useDispatch();
-
-    // Creating history in order to allow react router re-directs:
-    const history = useHistory();
-
-    // Storing user credentials in local state:
+const ForgotPasswordForms = props => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    // Default is token, social login is bearer:
-    const httpAuthType = useSelector(state => state.httpAuthType);
 
     return (
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
-                <Text style={styles.title}>Welcome back</Text>
+                <Text style={styles.title}>Forgot Password</Text>
                 <Text style={styles.description}>
-                    Enter your credentials, alternatively log in with Google or Facebook.
+                    Enter your email address below. If your email is associated with an account we will send you a password reset email.
                 </Text>
             </View>
             <View style={styles.formGrouping}>
@@ -45,24 +28,11 @@ const LoginForms = props => {
                 validator={emailValidator}
                 setCredentials={setEmail}
                 />
-                <TextInput 
-                icon='lock'
-                placeholder='Enter your password'
-                secureTextEntry={true}
-                validator={passwordValidator}
-                setCredentials={setPassword}
-                />
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
-                label='Log into your account'
+                label='Send password reset email'
                 variant='primary'
-                onPress={() => userAuthentication(email, password, dispatch, props.navigation, httpAuthType)}
-                />
-                <Button 
-                label='Forgot password?'
-                variant='transparent'
-                onPress={() => props.navigation.navigate('ForgotPassword')}
                 />
             </View>
         </View>
@@ -108,4 +78,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default LoginForms;
+export default ForgotPasswordForms;

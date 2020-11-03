@@ -13,6 +13,7 @@ import Welcome from './app/components/Welcome';
 import Login from './app/components/Login';
 import SignUp from './app/components/SignUp';
 import Home from './app/components/Home';
+import ForgotPassword from './app/components/ForgotPassword';
 
 // Custom function imports:
 import getData from './app/authentication/getData';
@@ -48,6 +49,7 @@ const App = () => {
 				<Stack.Screen name="Welcome" component={Welcome} />
 				<Stack.Screen name="Login" component={Login} />
 				<Stack.Screen name="SignUp" component={SignUp} />
+				<Stack.Screen name="ForgotPassword" component={ForgotPassword} />
 				<Stack.Screen name="Map" component={Home} />
 			</Stack.Navigator>
 		</NavigationContainer>
