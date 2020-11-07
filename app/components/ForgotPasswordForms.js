@@ -7,6 +7,7 @@ import Button from './Button';
 
 // Custom function imports:
 import emailValidator from '../functions/emailValidator';
+import forgotPasswordRequest from '../functions/forgotPasswordReset';
 
 
 const ForgotPasswordForms = props => {
@@ -33,6 +34,7 @@ const ForgotPasswordForms = props => {
                 <Button 
                 label='Send password reset email'
                 variant='primary'
+                onPress={() => forgotPasswordRequest(email)}
                 />
             </View>
         </View>
