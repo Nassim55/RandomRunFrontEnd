@@ -13,15 +13,15 @@ const forgotPasswordRequest = async (email) => {
             uploadData.append('csrfmiddlewaretoken', csrftoken);
 
             // Posting to the endpoint:
-            const responsePOST = await fetch('http://127.0.0.1:8000/account/useraccount/password_reset', {
+            const responsePOST = await fetch('http://127.0.0.1:8000/account/useraccount/password_reset/', {
                 method: 'POST',
                 headers: {
-                    'Cookie': `csrftoken=${csrftoken}`,
+                    'X-CSRFToken': csrftoken,
                     'Content-Type': 'multipart/form-data'
                 },
                 body: uploadData,
             });
-            const data = await responsePOST.text()
+            //const data = await responsePOST.text()
             //console.log(data)
         } catch (err) { if (console) console.error(err) };
 
