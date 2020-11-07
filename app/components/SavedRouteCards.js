@@ -9,8 +9,6 @@ import { useHistory } from "react-router-native";
 
 // Custom components:
 import Card from './Card';
-import Container from './Container';
-import SocialLogin from './SocialLogin';
 
 // Custom function imports:
 import { setFinalRouteLineString, setMostNorthEasternCoordinates, setMostSouthWesternCoordinates, setCalculateRouteDistance } from '../../store/actions';
@@ -39,9 +37,7 @@ const SavedRouteCards = props => {
     const aIndex = useTransition(currentIndex);
 
     return (
-        <Container
-        topColour='#FFE4D9'
-        children={
+        <View style={styles.container}>
             <View style={styles.cardsContainer}>
                 {cards.map(
                     ({ index, distance, image, id, coordinates, duration, mostNorthEasternCoordinates, mostSouthWesternCoordinates }) =>
@@ -96,16 +92,10 @@ const SavedRouteCards = props => {
                         )
                 )}
             </View>
-        }
-        footer={
-            <SocialLogin 
-            text="Don't have an account? "
-            linkText='Sign up here'
-            pushLocation='SignUp'
-            navigation={props.navigation}
-            />
-        }
-        />
+            <View style={styles.buttonsContainer}>
+
+            </View>
+        </View>
     );
 };
 
@@ -116,16 +106,22 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+
+
     },
     cardsContainer: {
-        height: '100%',
+        height: '85%',
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1
     },
+    buttonsContainer: {
+
+    }
 })
 
 export default SavedRouteCards;

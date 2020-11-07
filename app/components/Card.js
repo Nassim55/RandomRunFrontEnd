@@ -11,7 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const { width: wWidth } = Dimensions.get('window');
 const { height: wHeight } = Dimensions.get('window');
-const width = wWidth * 0.75;
+const width = wWidth * 0.85;
 const height = width * (425 / 294);
 
 
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     card: {
         position: 'absolute',
         alignSelf: 'center',
-        top: 40,
         height: '60%',
         width: '75%',
         backgroundColor: 'white',
@@ -94,6 +93,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        shadowOffset:{ width: 5,  height: 5 },
+        shadowColor: 'black',
+        shadowOpacity: 0.25,
     },
 
     cardViews: {

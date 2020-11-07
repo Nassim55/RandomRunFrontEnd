@@ -21,9 +21,6 @@ const EditProfileContent = props => {
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
                 <Text style={styles.title}>Edit Profile</Text>
-                <Text style={styles.description}>
-                    Change either your email or password. If you no longer wish to use Random Route you are able to delete your account.
-                </Text>
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
