@@ -1,40 +1,22 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-
-// Custom component imports:
-import TextInput from './TextInput';
 import Button from './Button';
 
-// Custom function imports:
-import emailValidator from '../functions/emailValidator';
-import forgotPasswordRequest from '../functions/forgotPasswordReset';
 
-
-const ForgotPasswordForms = props => {
-    const [email, setEmail] = useState('');
-
+const ResetPasswordConfirmForms = props => {
     return (
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
-                <Text style={styles.title}>Forgot Password</Text>
+                <Text style={styles.title}>Email Sent</Text>
                 <Text style={styles.description}>
-                    Enter your email address below. If your email is associated with an account we will send you a password reset email.
+                    If the email address you entered is associated with a registered account you will have been sent an email containing steps to reset your password.
                 </Text>
-            </View>
-            <View style={styles.formGrouping}>
-                <TextInput 
-                icon='mail'
-                placeholder='Enter your email'
-                secureTextEntry={false}
-                validator={emailValidator}
-                setCredentials={setEmail}
-                />
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
-                label='Send password reset email'
+                label='Go to login page'
                 variant='primary'
-                onPress={() => forgotPasswordRequest(email, props.navigation)}
+                onPress={() => props.navigation.navigate('Login')}
                 />
             </View>
         </View>
@@ -52,9 +34,6 @@ const styles = StyleSheet.create({
     },
     titleGrouping: {
         marginTop: 25,
-        marginBottom: 25,
-    },
-    formGrouping: {
         marginBottom: 25,
     },
     buttonGrouping: {
@@ -80,4 +59,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default ForgotPasswordForms;
+export default ResetPasswordConfirmForms;

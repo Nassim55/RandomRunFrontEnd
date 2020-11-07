@@ -1,4 +1,4 @@
-const forgotPasswordRequest = async (email) => {
+const forgotPasswordRequest = async (email, navigation) => {
     try {
         // Fetching csrftoken from server:
         const response = await fetch(`http://127.0.0.1:8000/account/getcsrftoken`);
@@ -13,7 +13,7 @@ const forgotPasswordRequest = async (email) => {
             uploadData.append('csrfmiddlewaretoken', csrftoken);
 
             // Posting to the endpoint:
-            const responsePOST = await fetch('http://127.0.0.1:8000/account/useraccount/password_reset/', {
+            const response = await fetch('http://127.0.0.1:8000/account/useraccount/password_reset/', {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': csrftoken,
@@ -21,8 +21,13 @@ const forgotPasswordRequest = async (email) => {
                 },
                 body: uploadData,
             });
-            //const data = await responsePOST.text()
-            //console.log(data)
+            const status = await response.status;
+
+            // Alert the user if the request was successfull:
+            if (status == 200) {                
+                navigation.navigate('ResetPasswordConfirm')
+            }
+
         } catch (err) { if (console) console.error(err) };
 
     } catch (err) { if (console) console.error(err) };
