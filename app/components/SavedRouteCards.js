@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Alert, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Alert, Dimensions, Pressable } from 'react-native';
 
 // Packages:
 import { sub } from 'react-native-reanimated';
@@ -94,22 +94,31 @@ const SavedRouteCards = props => {
             </View>
             <View style={styles.footerContainer}>
                 <View style={styles.buttonContainer}>
-                    <View style={styles.buttonCircle}>
-                        <Feather name='arrow-left' size={56} color='#21E092' />
-                    </View>
+                    <Pressable 
+                    style={({ pressed }) => [styles.buttonCircle, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
+                    >
+                        <Feather name='arrow-left' size={56} color='#40798C' />
+                    </Pressable>
                 </View>
                 <View style={styles.buttonContainerSmall}>
-                    <View style={[styles.buttonCircle, styles.buttonCircleSmall]}>
+                    <Pressable 
+                    style={({ pressed }) => [styles.buttonCircle, styles.buttonCircleSmall, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
+                    onPress={() => props.navigation.openDrawer()}
+                    >
                         <Feather name='menu' size={32} color='grey'/>
-                    </View>
-                    <View style={[styles.buttonCircle, styles.buttonCircleSmall]}>
+                    </Pressable>
+                    <Pressable 
+                    style={({ pressed }) => [styles.buttonCircle, styles.buttonCircleSmall, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
+                    >
                         <Feather name='arrow-down' size={32} color='#F24E4E'/>
-                    </View>
+                    </Pressable>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <View style={styles.buttonCircle}>
+                    <Pressable 
+                    style={({ pressed }) => [styles.buttonCircle, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
+                    >
                         <Feather name='arrow-right' size={56} color='#21E092' />
-                    </View>
+                    </Pressable>
                 </View>
             </View>
         </View>
