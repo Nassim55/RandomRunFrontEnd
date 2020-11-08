@@ -73,11 +73,6 @@ const DrawerContent = props => {
                         icon={({color, size}) => <Feather name='user' color={color} size={size} /> }
                         onPress={() => props.navigation.navigate('Profile') }
                         />
-                        <DrawerItem
-                        label='Support'
-                        icon={({color, size}) => <Feather name='mail' color={color} size={size} /> }
-                        onPress={() => props.navigation.navigate('Support') }
-                        />
                     </Drawer.Section>
                 </View>
             </DrawerContentScrollView>

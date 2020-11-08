@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, Alert, Dimensions } from 'react-native';
 import { sub } from 'react-native-reanimated';
 import { useTransition } from  "react-native-redash/lib/module/v1";
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-native";
+import Feather from 'react-native-vector-icons/Feather';
 
 // Custom components:
 import Card from './Card';
@@ -92,8 +92,25 @@ const SavedRouteCards = props => {
                         )
                 )}
             </View>
-            <View style={styles.buttonsContainer}>
-
+            <View style={styles.footerContainer}>
+                <View style={styles.buttonContainer}>
+                    <View style={styles.buttonCircle}>
+                        <Feather name='arrow-left' size={56} color='#21E092' />
+                    </View>
+                </View>
+                <View style={styles.buttonContainerSmall}>
+                    <View style={[styles.buttonCircle, styles.buttonCircleSmall]}>
+                        <Feather name='menu' size={32} color='grey'/>
+                    </View>
+                    <View style={[styles.buttonCircle, styles.buttonCircleSmall]}>
+                        <Feather name='arrow-down' size={32} color='#F24E4E'/>
+                    </View>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <View style={styles.buttonCircle}>
+                        <Feather name='arrow-right' size={56} color='#21E092' />
+                    </View>
+                </View>
             </View>
         </View>
     );
@@ -108,20 +125,65 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-
-
     },
     cardsContainer: {
-        height: '85%',
+        height: '80%',
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1
-    },
-    buttonsContainer: {
 
-    }
+    },
+    footerContainer: {
+        flex: 1,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+
+        marginBottom: 25
+    },
+    buttonContainer: {
+        flex: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    buttonContainerSmall: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
+    buttonCircle: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    buttonCircleSmall: {
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+    },
+    buttonDescription: {
+        fontFamily: 'Raleway-Regular',
+        fontSize: 16,
+        lineHeight: 24,
+        paddingLeft: 44,
+        paddingRight: 44,
+        color: '#0C0D34',
+        textAlign: 'center',
+    },
 })
 
 export default SavedRouteCards;

@@ -27,7 +27,6 @@ const Home = () => {
 			<Drawer.Screen name='Home' component={AuthorisedUserView} />
 			<Drawer.Screen name='Saved Routes' component={SavedRoutes} />
 			<Drawer.Screen name='Profile' component={Profile} />
-			<Drawer.Screen name='Support' component={Support} />
 		</Drawer.Navigator>
 	);
 }
