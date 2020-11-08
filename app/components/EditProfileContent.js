@@ -11,11 +11,13 @@ import Button from './Button';
 // Custom function imports:
 import deleteUserAccount from '../functions/deleteUserAccount';
 import deleteData from '../authentication/deleteData';
+import forgotPasswordRequest from '../functions/forgotPasswordReset';
 
 
 const EditProfileContent = props => {
     const dispatch = useDispatch();
     const httpAuthType = useSelector(state => state.httpAuthType)
+    const email = useSelector(state => state.userAccountDetails.email)
 
     return (
         <View style={styles.container}>
@@ -29,9 +31,11 @@ const EditProfileContent = props => {
                 onPress={() => console.log('hello')}
                 />
                 <Button 
-                label='Edit Password'
+                label='Reset Password'
                 variant='default'
-                onPress={() => console.log('hello')}
+                onPress={() => {
+                    forgotPasswordRequest(email, props.navigation, 'ForgotPassword')
+                }}
                 />
                 <Button 
                 label='Delete Account'

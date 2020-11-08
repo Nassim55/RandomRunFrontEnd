@@ -1,4 +1,4 @@
-const forgotPasswordRequest = async (email, navigation) => {
+const forgotPasswordRequest = async (email, navigation, navigationLocation) => {
     try {
         // Fetching csrftoken from server:
         const response = await fetch(`http://127.0.0.1:8000/account/getcsrftoken`);
@@ -25,7 +25,7 @@ const forgotPasswordRequest = async (email, navigation) => {
 
             // Alert the user if the request was successfull:
             if (status == 200) {                
-                navigation.navigate('ResetPasswordConfirm')
+                navigation.navigate(navigationLocation)
             }
 
         } catch (err) { if (console) console.error(err) };
