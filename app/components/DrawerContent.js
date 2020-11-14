@@ -9,7 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 
 // Custom function imports:
+import { setStateToInitialState } from '../../store/actions';
 import updateUserAccount from '../functions/updateUserAccount';
+
 
 
 const DrawerContent = props => {
@@ -80,7 +82,10 @@ const DrawerContent = props => {
                 <DrawerItem
                 label='Sign Out'
                 icon={({color, size}) => <Feather name='log-out' color={color} size={size} /> }
-                onPress={() => console.log('logging out') }
+                onPress={() => {
+                    dispatch(setStateToInitialState())
+                    props.navigation.navigate('Welcome')
+                }}
                 />
             </Drawer.Section>
         </View>

@@ -52,7 +52,7 @@ const App = () => {
 				<Stack.Screen name="SignUp" component={SignUp} />
 				<Stack.Screen name="ForgotPassword" component={ForgotPassword} />
 				<Stack.Screen name="ResetPasswordConfirm" component={ResetPasswordConfirm} />
-				<Stack.Screen name="Map" component={Home} />
+				<Stack.Screen name="Map" component={Home} options={{ gestureEnabled: false }} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
