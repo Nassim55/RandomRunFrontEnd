@@ -5,6 +5,8 @@ const forgotPasswordRequest = async (email, navigation, navigationLocation) => {
         const data = await response.json();
         const csrftoken = data.csrftoken;
 
+        console.log(csrftoken)
+
         // Posting the users email and obtained csrf token in order to recieve a reset email:
         try {
             // Defining the form data:

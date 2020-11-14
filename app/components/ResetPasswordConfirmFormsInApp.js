@@ -1,22 +1,49 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { useSelector } from 'react-redux';
+import TextInput from './TextInput';
 import Button from './Button';
+import passwordValidator from '../functions/passwordValidator';
+import changePassword from '../functions/changePassword';
+
 
 
 const ResetPasswordConfirmFormsInApp = props => {
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+
+    const httpAuthType = useSelector(state => state.httpAuthType)
+
     return (
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
-                <Text style={styles.title}>Email Sent</Text>
+                <Text style={styles.title}>Change Password</Text>
                 <Text style={styles.description}>
-                    An email has been sent to your registed email address containing steps you need to follow in order to reset your password.
+                    Enter your current password and then choose a new password.
                 </Text>
+            </View>
+            <View style={styles.formGrouping}>
+                <TextInput 
+                icon='lock'
+                placeholder='Current password'
+                secureTextEntry={true}
+                validator={passwordValidator}
+                setCredentials={setCurrentPassword}
+                />
+
+                <TextInput 
+                icon='lock'
+                placeholder='New password'
+                secureTextEntry={true}
+                validator={passwordValidator}
+                setCredentials={setNewPassword}
+                />
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
-                label='Ok'
+                label='Change Password'
                 variant='primary'
-                onPress={() => props.navigation.navigate('Profile')}
+                onPress={() => changePassword(httpAuthType, props.navigation, 'Home', currentPassword, newPassword)}
                 />
             </View>
         </View>
@@ -34,6 +61,9 @@ const styles = StyleSheet.create({
     },
     titleGrouping: {
         marginTop: 25,
+        marginBottom: 25,
+    },
+    formGrouping: {
         marginBottom: 25,
     },
     buttonGrouping: {

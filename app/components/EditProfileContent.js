@@ -26,16 +26,14 @@ const EditProfileContent = props => {
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
-                label='Edit Email'
+                label='Change Email'
                 variant='default'
-                onPress={() => console.log('hello')}
+                onPress={() => props.navigation.navigate('Home')}
                 />
                 <Button 
-                label='Reset Password'
+                label='Change Password'
                 variant='default'
-                onPress={() => {
-                    forgotPasswordRequest(email, props.navigation, 'ForgotPassword')
-                }}
+                onPress={() => props.navigation.navigate('ForgotPassword')}
                 />
                 <Button 
                 label='Delete Account'

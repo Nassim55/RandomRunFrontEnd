@@ -105,12 +105,12 @@ const SavedRouteCards = props => {
                     style={({ pressed }) => [styles.buttonCircle, styles.buttonCircleSmall, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
                     onPress={() => props.navigation.openDrawer()}
                     >
-                        <Feather name='menu' size={32} color='grey'/>
+                        <Feather name='menu' size={24} color='grey'/>
                     </Pressable>
                     <Pressable 
                     style={({ pressed }) => [styles.buttonCircle, styles.buttonCircleSmall, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
                     >
-                        <Feather name='arrow-down' size={32} color='#F24E4E'/>
+                        <Feather name='trash' size={24} color='#F24E4E'/>
                     </Pressable>
                 </View>
                 <View style={styles.buttonContainer}>
