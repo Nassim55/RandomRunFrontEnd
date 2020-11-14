@@ -28,7 +28,7 @@ const EditProfileContent = props => {
                 <Button 
                 label='Change Email'
                 variant='default'
-                onPress={() => props.navigation.navigate('Home')}
+                onPress={() => props.navigation.navigate('ChangeEmail')}
                 />
                 <Button 
                 label='Change Password'
