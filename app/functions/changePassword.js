@@ -1,4 +1,5 @@
 import RNSInfo from 'react-native-sensitive-info';
+import { Alert } from 'react-native';
 
 const changePassword = async (httpAuthType, navigation, navigationLocation, currentPassword, newPassword) => {
     try {
@@ -23,7 +24,28 @@ const changePassword = async (httpAuthType, navigation, navigationLocation, curr
 
             // Alert the user if the request was successfull:
             if (status == 200) {                
-                navigation.navigate(navigationLocation)
+                Alert.alert(
+                    'Password Changed',
+                    'Your password has been updated.',
+                    [
+                        { 
+                            text: 'Ok',
+                            onPress: () => navigation.navigate(navigationLocation)
+                        },
+                    ],
+                    { cancelable: false }
+                );
+            } else {
+                Alert.alert(
+                    'Password Not Changed',
+                    'Your password has not been changed please try again.',
+                    [
+                        { 
+                            text: 'Ok',
+                        },
+                    ],
+                    { cancelable: false }
+                );
             }
         }
     } catch (err) { if (console) console.error(err) };

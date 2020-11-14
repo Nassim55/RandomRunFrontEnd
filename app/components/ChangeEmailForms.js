@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TextInput from './TextInput';
 import Button from './Button';
 import emailValidator from '../functions/emailValidator';
 import passwordValidator from '../functions/passwordValidator';
 import changePassword from '../functions/changePassword';
-
+import updateUserAccount from '../functions/updateUserAccount';
 
 
 const ChangeEmailForms = props => {
-    const [currentPassword, setCurrentPassword] = useState('');
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
-
     const httpAuthType = useSelector(state => state.httpAuthType)
-
+    
     return (
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
                 <Text style={styles.title}>Change Email</Text>
                 <Text style={styles.description}>
-                    Enter your new email address and password to authourise the change.
+                    Enter your new email address.
                 </Text>
             </View>
             <View style={styles.formGrouping}>
@@ -31,19 +30,12 @@ const ChangeEmailForms = props => {
                 validator={emailValidator}
                 setCredentials={setEmail}
                 />
-                <TextInput 
-                icon='lock'
-                placeholder='Enter your password'
-                secureTextEntry={true}
-                validator={passwordValidator}
-                setCredentials={setCurrentPassword}
-                />
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
                 label='Change Email'
                 variant='primary'
-                onPress={() => changePassword(httpAuthType, props.navigation, 'Home', currentPassword, newPassword)}
+                onPress={() => updateUserAccount({'email': email}, dispatch, httpAuthType, props.navigation)}
                 />
             </View>
         </View>

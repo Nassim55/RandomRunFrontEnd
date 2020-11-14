@@ -14,6 +14,7 @@ const ResetPasswordConfirmFormsInApp = props => {
 
     const httpAuthType = useSelector(state => state.httpAuthType)
 
+
     return (
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
@@ -42,7 +43,7 @@ const ResetPasswordConfirmFormsInApp = props => {
                 <Button 
                 label='Change Password'
                 variant='primary'
-                onPress={() => changePassword(httpAuthType, props.navigation, 'Home', currentPassword, newPassword)}
+                onPress={() => changePassword(httpAuthType, props.navigation, 'Profile', currentPassword, newPassword)}
                 />
             </View>
         </View>
