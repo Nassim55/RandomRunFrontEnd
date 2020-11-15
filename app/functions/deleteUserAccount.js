@@ -1,6 +1,7 @@
 import RNSInfo from 'react-native-sensitive-info';
+import { setStateToInitialState } from '../../store/actions';
 
-const deleteUserAccount = async (httpAuthType) => {
+const deleteUserAccount = async (httpAuthType, dispatch) => {
     try {
         // Checking to see if token exists in sensitive info storage:
         const token = await RNSInfo.getItem('token', {});
@@ -13,7 +14,8 @@ const deleteUserAccount = async (httpAuthType) => {
     
         // Converting response to JSON data:
         const data = await response.json();
-        console.log(data);
+        
+        dispatch(setStateToInitialState())
 
     } catch (err) {
         if (console) console.error(err)

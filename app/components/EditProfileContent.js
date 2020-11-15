@@ -58,7 +58,7 @@ const EditProfileContent = props => {
                                         { text: 'No Keep', style: 'cancel'},
                                         { text: 'Yes Delete', style: 'destructive', onPress: async () => {
                                             // Deletes account:
-                                            const deleteAccount = await deleteUserAccount(httpAuthType);
+                                            const deleteAccount = await deleteUserAccount(httpAuthType, dispatch);
 
                                             // After deleting acocunt deletes the auth token from secure storage:
                                             deleteData(dispatch, props.navigation);
