@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Pressable } from 'react-native';
 
 // External library imports:
+import Feather from 'react-native-vector-icons/Feather';
 import { useIsFocused } from '@react-navigation/native';
 
 // Custom component imports:
 import Container from './Container';
 import TextInput from './TextInput';
 import EditProfileContent from './EditProfileContent';
+import Button from './Button';
 
 // Custom function imports:
 import emailValidator from '../functions/emailValidator';
@@ -30,8 +32,15 @@ const Profile = props => {
                 />
             }
             footer={
-                <View>
-
+                <View style={styles.footerContent}>
+                    <Pressable 
+                    style={({ pressed }) => [styles.backButton, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#F24E4E" : "#252934" }]}
+                    onPress={() => props.navigation.openDrawer()}
+                    >
+                        <Feather style={styles.arrowIcon} name='arrow-left' size={24} color='white'>
+                            <Text style={styles.BackButtonText}>Back</Text>
+                        </Feather>
+                    </Pressable>
                 </View>
             }
             />
@@ -65,6 +74,29 @@ const styles = StyleSheet.create({
         color: '#0C0D34',
         textAlign: 'center',
         padding: 24,
+    },
+    footerContent: {
+        display: 'flex',
+        flexDirection: 'row',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    backButton: {
+        borderRadius: 24,
+        padding: 10
+    },
+    arrowIcon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    BackButtonText: {
+        fontFamily: 'Raleway-Bold',
+        fontSize: 24,
+        color: 'white',
+        textAlign: 'center',
     },
 })
 
