@@ -60,3 +60,6 @@ buck-out/
 
 # Google credentials
 ios/RandomRunFrontEnd/GoogleService-Info.plist
+
+# Environment variables
+.env

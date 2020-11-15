@@ -37,7 +37,12 @@ const EditProfileContent = props => {
                 onPress={() => props.navigation.navigate('ForgotPassword')}
                 />
                 <Button 
-                label='Delete Account'
+                label='Remove Profile Picture'
+                variant='default'
+                onPress={() => props.navigation.navigate('ForgotPassword')}
+                />
+                <Button 
+                label='Delete My Account'
                 variant='primary'
                 onPress={() => {
                     Alert.alert(

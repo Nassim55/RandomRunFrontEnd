@@ -5,12 +5,15 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import { useDispatch } from 'react-redux';
 
 // Custom functions:
 import convertSocialAuthToken from '../functions/convertSocialAuthToken';
 
 
 const SocialLogin = props => {
+    const dispatch = useDispatch();
+
     return (
         <View style={styles.container}>
             <View style={styles.socialIconsContainer}>
@@ -25,8 +28,8 @@ const SocialLogin = props => {
                             dispatch,
                             props.navigation,
                             backend='google-oauth2',
-                            client_id='363738605007781',
-                            client_secret='b37063d4887bc0c457cf0f9825860092'
+                            client_id='',
+                            client_secret=''
                         );
                     } catch (error) {
                         if (error.code === statusCodes.SIGN_IN_CANCELLED) {

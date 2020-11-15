@@ -13,6 +13,8 @@ const convertSocialAuthToken = async (accessToken, dispatch, navigation, backend
         uploadData.append('backend', backend)
         uploadData.append('token', accessToken)
 
+        // MOVE CLIENT ID AND CLIENT SECRET TO THE SERVER SO THAT THEY AREN'T EXPOSED TO THE CLIENT!!
+
         // Defining the POST response and converting data to json:
         const response = await fetch('http://127.0.0.1:8000/socialauth/convert-token', {
             method: 'POST',
