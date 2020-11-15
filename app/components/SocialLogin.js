@@ -83,8 +83,8 @@ const SocialLogin = props => {
                                             dispatch,
                                             props.navigation,
                                             backend='facebook',
-                                            client_id='363738605007781',
-                                            client_secret='961c82bc33a551938d3076fbac952a61'
+                                            client_id='',
+                                            client_secret=''
                                         );
                                     }
                                 )
