@@ -30,6 +30,7 @@ const ResetPasswordConfirmFormsInApp = props => {
                 secureTextEntry={true}
                 validator={passwordValidator}
                 setCredentials={setCurrentPassword}
+                textContentType={'oneTimeCode'}
                 />
                 <TextInput 
                 icon='lock'
@@ -37,6 +38,7 @@ const ResetPasswordConfirmFormsInApp = props => {
                 secureTextEntry={true}
                 validator={passwordValidator}
                 setCredentials={setNewPassword}
+                textContentType={'oneTimeCode'}
                 />
             </View>
             <View style={styles.buttonGrouping}>

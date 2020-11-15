@@ -32,32 +32,34 @@ const updateUserAccount = async (props, dispatch, httpAuthType, navigation) => {
         // Updating the user account details in Redux state:
         dispatch(setUserAccountDetails(data[0]));
 
-        // Alerting the user to the updates made
-        if (response.status == 200) {
-            Alert.alert(
-                'Email Changed',
-                'Your email address has been updated.',
-                [
-                    { 
-                        text: 'Ok',
-                        onPress: () => navigation.navigate('Profile')
-                    },
-                ],
-                { cancelable: false }
-            );
-        } else {
-            Alert.alert(
-                'Email Not Changed',
-                'Your email has not been changed please try again.',
-                [
-                    { 
-                        text: 'Ok',
-                    },
-                ],
-                { cancelable: false }
-            );
+        // If the email was changed then fire an alert, otherwise dont:
+        if ('email' in props) {
+            // Alerting the user to the updates made
+            if (response.status == 200) {
+                Alert.alert(
+                    'Email Changed',
+                    'Your email address has been updated.',
+                    [
+                        { 
+                            text: 'Ok',
+                            onPress: () => navigation.navigate('Profile')
+                        },
+                    ],
+                    { cancelable: false }
+                );
+            } else {
+                Alert.alert(
+                    'Email Not Changed',
+                    'Your email has not been changed please try again.',
+                    [
+                        { 
+                            text: 'Ok',
+                        },
+                    ],
+                    { cancelable: false }
+                );
+            }
         }
-
 
     } catch (err) {
         if (console) console.error(err)
