@@ -23,6 +23,7 @@ const EditProfileContent = props => {
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
                 <Text style={styles.title}>Edit Profile</Text>
+                <Text style={styles.description}>Make changes to you Random Run profile</Text>
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 

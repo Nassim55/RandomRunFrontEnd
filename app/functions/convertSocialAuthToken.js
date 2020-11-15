@@ -3,7 +3,7 @@ import saveData from '../authentication/saveData';
 import pushUserToMapView from '../functions/pushUserToMapView';
 import { setUserAuthenticated, setHttpAuthType } from '../../store/actions';
 
-const convertSocialAuthToken = async (accessToken, dispatch, history, backend, client_id, client_secret) => {
+const convertSocialAuthToken = async (accessToken, dispatch, navigation, backend, client_id, client_secret) => {
     try {
         // Form data that will be posted to the conver-token endpoint:
         const uploadData = new FormData();
@@ -22,6 +22,7 @@ const convertSocialAuthToken = async (accessToken, dispatch, history, backend, c
             body: uploadData
         });
         const data = await response.json();
+        
         console.log(data)
 
         // If there is a token in the response then allow the user to see the map:
@@ -38,10 +39,7 @@ const convertSocialAuthToken = async (accessToken, dispatch, history, backend, c
             const httpAuthType = 'Bearer'
 
             // Pushing to the map view on successfull login:
-            pushUserToMapView(dispatch, history, httpAuthType);
-        } else {
-            // Keeping the user at the home page:
-            history.push('/');
+            pushUserToMapView(dispatch, navigation, httpAuthType);
         }
     } catch (err) { if (console) console.error(err) }
 };

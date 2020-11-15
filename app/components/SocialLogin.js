@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 
 // External library imports:
 import Svg, { Path } from 'react-native-svg';
-import { useHistory } from "react-router-native";
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 
@@ -12,9 +11,6 @@ import convertSocialAuthToken from '../functions/convertSocialAuthToken';
 
 
 const SocialLogin = props => {
-     // Creating history in order to allow react router re-directs:
-    const history = useHistory();
-    
     return (
         <View style={styles.container}>
             <View style={styles.socialIconsContainer}>
@@ -27,10 +23,10 @@ const SocialLogin = props => {
                         convertSocialAuthToken(
                             '',
                             dispatch,
-                            history,
+                            props.navigation,
                             backend='google-oauth2',
-                            client_id= '',
-                            client_secret=''
+                            client_id='363738605007781',
+                            client_secret='b37063d4887bc0c457cf0f9825860092'
                         );
                     } catch (error) {
                         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -82,7 +78,7 @@ const SocialLogin = props => {
                                         convertSocialAuthToken(
                                             accessToken.accessToken,
                                             dispatch,
-                                            history,
+                                            props.navigation,
                                             backend='facebook',
                                             client_id='',
                                             client_secret=''
