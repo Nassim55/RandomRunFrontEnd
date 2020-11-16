@@ -40,9 +40,6 @@ const LoginForms = props => {
         httpResponseDisplayMessage = '';
     };
 
-    console.log(httpMessage)
-    console.log(httpResponseDisplayMessage)
-
     return (
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
