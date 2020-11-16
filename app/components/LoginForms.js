@@ -20,7 +20,7 @@ const LoginForms = props => {
 
     // Accessing the redux store:
     const httpAuthType = useSelector(state => state.httpAuthType);
-    const loginButtonHttpResponse = useSelector(state => state.loginButtonHttpResponse);
+    const httpMessage = useSelector(state => state.loginButtonHttpResponse);
 
     // Storing user credentials in local state:
     const [email, setEmail] = useState('');
@@ -28,19 +28,19 @@ const LoginForms = props => {
 
     // Determining what message, if any, should be returned to the user when they log in:
     let httpResponseDisplayMessage;
-    if (loginButtonHttpResponse.password[0] === '' && loginButtonHttpResponse.non_field_errors[0] === '') {
+    if (httpMessage.password[0] === '' && httpMessage.non_field_errors[0] === '' && httpMessage.username[0] === 'This field may not be blank.') {
         httpResponseDisplayMessage = 'Enter your email';
-    } else if (loginButtonHttpResponse.username[0] === '' && loginButtonHttpResponse.non_field_errors[0] === '') {
+    } else if (httpMessage.username[0] === '' && httpMessage.non_field_errors[0] === '' && httpMessage.password[0] === 'This field may not be blank.') {
         httpResponseDisplayMessage = 'Enter your password';
-    } else if (loginButtonHttpResponse.non_field_errors[0] === '') {
+    } else if (httpMessage.non_field_errors[0] === '' && httpMessage.username[0] === 'This field may not be blank.' && httpMessage.password[0] === 'This field may not be blank.') {
         httpResponseDisplayMessage = 'Enter your email and password';
-    } else if (loginButtonHttpResponse.non_field_errors[0] === 'Unable to log in with provided credentials.') {
+    } else if (httpMessage.non_field_errors[0] === 'Unable to log in with provided credentials.') {
         httpResponseDisplayMessage = 'Unable to log in with provided credentials';
     } else {
         httpResponseDisplayMessage = '';
     };
 
-    console.log(loginButtonHttpResponse.password[0])
+    console.log(httpMessage)
     console.log(httpResponseDisplayMessage)
 
     return (
