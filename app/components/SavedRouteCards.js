@@ -94,11 +94,7 @@ const SavedRouteCards = props => {
             </View>
             <View style={styles.footerContainer}>
                 <View style={styles.buttonContainer}>
-                    <Pressable 
-                    style={({ pressed }) => [styles.buttonCircle, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
-                    >
-                        <Feather name='arrow-left' size={56} color='#40798C' />
-                    </Pressable>
+                    <Feather name='arrow-left' size={48} color='#21E092' />
                 </View>
                 <View style={styles.buttonContainerSmall}>
                     <Pressable 
@@ -107,18 +103,10 @@ const SavedRouteCards = props => {
                     >
                         <Feather name='menu' size={24} color='grey'/>
                     </Pressable>
-                    <Pressable 
-                    style={({ pressed }) => [styles.buttonCircle, styles.buttonCircleSmall, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
-                    >
-                        <Feather name='trash' size={24} color='#F24E4E'/>
-                    </Pressable>
+                    <Feather name='arrow-down' size={48} color='#F24E4E'/>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <Pressable 
-                    style={({ pressed }) => [styles.buttonCircle, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "white" }]}
-                    >
-                        <Feather name='arrow-right' size={56} color='#21E092' />
-                    </Pressable>
+                    <Feather name='arrow-right' size={48} color='#21E092' />
                 </View>
             </View>
         </View>
