@@ -2,7 +2,6 @@ import React, { useState} from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 // External library imports:
-import { useHistory } from 'react-router-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Custom component imports:
@@ -19,15 +18,30 @@ const LoginForms = props => {
     // Creating dispatch to all updates to redux store:
     const dispatch = useDispatch();
 
-    // Creating history in order to allow react router re-directs:
-    const history = useHistory();
+    // Accessing the redux store:
+    const httpAuthType = useSelector(state => state.httpAuthType);
+    const loginButtonHttpResponse = useSelector(state => state.loginButtonHttpResponse);
 
     // Storing user credentials in local state:
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // Default is token, social login is bearer:
-    const httpAuthType = useSelector(state => state.httpAuthType);
+    // Determining what message, if any, should be returned to the user when they log in:
+    let httpResponseDisplayMessage;
+    if (loginButtonHttpResponse.password[0] === '' && loginButtonHttpResponse.non_field_errors[0] === '') {
+        httpResponseDisplayMessage = 'Enter your email';
+    } else if (loginButtonHttpResponse.username[0] === '' && loginButtonHttpResponse.non_field_errors[0] === '') {
+        httpResponseDisplayMessage = 'Enter your password';
+    } else if (loginButtonHttpResponse.non_field_errors[0] === '') {
+        httpResponseDisplayMessage = 'Enter your email and password';
+    } else if (loginButtonHttpResponse.non_field_errors[0] === 'Unable to log in with provided credentials.') {
+        httpResponseDisplayMessage = 'Unable to log in with provided credentials';
+    } else {
+        httpResponseDisplayMessage = '';
+    };
+
+    console.log(loginButtonHttpResponse.password[0])
+    console.log(httpResponseDisplayMessage)
 
     return (
         <View style={styles.container}>
@@ -38,6 +52,7 @@ const LoginForms = props => {
                 </Text>
             </View>
             <View style={styles.formGrouping}>
+                <Text style={[styles.description, styles.httpResponseText]}>{httpResponseDisplayMessage}</Text>
                 <TextInput 
                 icon='mail'
                 placeholder='Enter your email'
@@ -79,10 +94,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleGrouping: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 25,
         marginBottom: 25,
     },
     formGrouping: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginBottom: 25,
     },
     buttonGrouping: {
@@ -105,7 +128,13 @@ const styles = StyleSheet.create({
         paddingRight: 44,
         color: '#0C0D34',
         textAlign: 'center',
+
     },
+    httpResponseText: {
+        fontSize: 14,
+        color: '#F24E4E'
+
+    }
 })
 
 export default LoginForms;
