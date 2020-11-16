@@ -1,3 +1,5 @@
+import { Alert } from 'react-native';
+import RNSInfo from 'react-native-sensitive-info';
 import { 
   setFinalRouteLineString,
   setCalculateRouteDistance,
@@ -5,7 +7,7 @@ import {
   setMostSouthWesternCoordinates
 } from '../../store/actions';
 import setUserLongitudeAndLatitude from './setUserLongitudeAndLatitude';
-import RNSInfo from 'react-native-sensitive-info';
+
 
 const fetchRouteCoords = async ( isLocationPermissionGranted, dispatch, originLongitude, originLatitude, routeDistanceMeters, httpAuthType) => {
   // Chencking that form input is valid:
@@ -29,10 +31,21 @@ const fetchRouteCoords = async ( isLocationPermissionGranted, dispatch, originLo
             const data = await response.json();
 
             // Updating Redux state:
-            dispatch(setFinalRouteLineString({ 'type': 'LineString', 'coordinates': data.coordinates }));
-            dispatch(setCalculateRouteDistance(data.distanceMeters));
-            dispatch(setMostNorthEasternCoordinates(data.mostNorthEastCoordinates));
-            dispatch(setMostSouthWesternCoordinates(data.mostSouthWestCoordinates));
+            if (data.coordinates) {
+              dispatch(setFinalRouteLineString({ 'type': 'LineString', 'coordinates': data.coordinates }));
+              dispatch(setCalculateRouteDistance(data.distanceMeters));
+              dispatch(setMostNorthEasternCoordinates(data.mostNorthEastCoordinates));
+              dispatch(setMostSouthWesternCoordinates(data.mostSouthWestCoordinates));
+            } else if (data.detail) {
+              const throttleTime = new Date(data.detail.replace(/\D/g, '') * 1000).toUTCString().split(' ')[4]
+              Alert.alert(
+                'Route Not Generated',
+                `You are at your limit of 25 route generations per day. Try again in ${throttleTime}.`,
+                [{ text: 'Okay' }],
+                { cancelable: false }
+              );
+            }
+
           } else {
             console.log('no token');
           }

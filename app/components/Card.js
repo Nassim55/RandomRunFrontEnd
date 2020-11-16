@@ -63,13 +63,14 @@ const Card = props => {
                 backgroundColor,
                 transform: [ { scale }, { translateX }, { translateY } ]
             }]} >
-                <Pressable onPress={props.onPress}>
-                    <View style={[styles.cardViews, styles.routeImageView]}>
-                        <Animated.Image
-                        source={{uri: `http://127.0.0.1:8000${props.image}`}}
-                        style={[styles.routeImage, { opacity: cardImageOpacity }]}
-                        />
-                    </View>
+                <Pressable 
+                style={({ pressed }) => [styles.cardViews, styles.routeImageView, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#f7f6f2" : "transparent" }]}
+                onPress={props.onPress}
+                >
+                    <Animated.Image
+                    source={{uri: `http://127.0.0.1:8000${props.image}`}}
+                    style={[styles.routeImage, { opacity: cardImageOpacity }]}
+                    />
                 </Pressable>
                 <Animated.View style={[styles.routeInfo, { opacity: cardInfoOpacity }]}>
                     <View style={styles.textContainer}>
