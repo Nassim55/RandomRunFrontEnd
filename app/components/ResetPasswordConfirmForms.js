@@ -1,22 +1,50 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { useSelector } from 'react-redux';
+import TextInput from './TextInput';
 import Button from './Button';
-
+import passwordValidator from '../functions/passwordValidator';
+import resetPassword from '../functions/resetPassword';
 
 const ResetPasswordConfirmForms = props => {
+    // Defining variables from the Redux store:
+    const httpAuthType = useSelector(state => state.httpAuthType)
+
+    // Defining the local state:
+    const [oneTimeResetKey, setOneTimeResetKey] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+
     return (
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
-                <Text style={styles.title}>Email Sent</Text>
+                <Text style={styles.title}>Reset Your Password</Text>
                 <Text style={styles.description}>
-                    If the email address you entered is associated with a registered account you will have been sent an email containing steps to reset your password.
+                    You have been sent an email containing a one-time password reset key.
+                    Enter the key and choose a new password.
                 </Text>
+            </View>
+            <View style={styles.formGrouping}>
+                <TextInput 
+                icon='key'
+                placeholder='Password reset key'
+                validator={() => true}
+                setCredentials={setOneTimeResetKey}
+                textContentType={'oneTimeCode'}
+                />
+                <TextInput 
+                icon='lock'
+                placeholder='Choose a new password'
+                secureTextEntry={true}
+                validator={passwordValidator}
+                setCredentials={setNewPassword}
+                textContentType={'oneTimeCode'}
+                />
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
-                label='Go to login page'
+                label='Reset Password'
                 variant='primary'
-                onPress={() => props.navigation.navigate('Login')}
+                onPress={() => resetPassword(httpAuthType, oneTimeResetKey, newPassword, props.navigation)}
                 />
             </View>
         </View>
@@ -34,6 +62,9 @@ const styles = StyleSheet.create({
     },
     titleGrouping: {
         marginTop: 25,
+        marginBottom: 25,
+    },
+    formGrouping: {
         marginBottom: 25,
     },
     buttonGrouping: {
