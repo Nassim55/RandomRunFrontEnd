@@ -29,11 +29,15 @@ const SignUpForms = props => {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
 
+    
     // Determining the HTTP response message to display to the user:
     const blankMessage = 'This field may not be blank.';
     let httpResponseDisplayMessage;
-
-    console.log(httpMessage)
+    if (httpMessage.password[0] === 'Passwords must match.') {
+        httpResponseDisplayMessage = 'The passwords do not match';
+    } else {
+        httpResponseDisplayMessage = 'Unable to create account with those credentials';
+    };
 
     return (
         <View style={styles.container}>
@@ -44,6 +48,7 @@ const SignUpForms = props => {
                 </Text>
             </View>
             <View style={styles.formGrouping}>
+                <Text style={[styles.description, styles.httpResponseText]}>{httpResponseDisplayMessage}</Text>
                 <TextInput 
                 icon='mail'
                 placeholder='Enter your email'
@@ -82,20 +87,29 @@ const SignUpForms = props => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
     },
     titleGrouping: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 25,
         marginBottom: 25,
     },
     formGrouping: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginBottom: 25,
     },
     buttonGrouping: {
-        marginBottom: 25,
+
     },
     title: {
         fontFamily: 'Raleway-Bold',
@@ -109,11 +123,15 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway-Regular',
         fontSize: 16,
         lineHeight: 24,
-        color: '#0C0D34',
-        textAlign: 'center',
         paddingLeft: 44,
         paddingRight: 44,
+        color: '#0C0D34',
+        textAlign: 'center',
     },
+    httpResponseText: {
+        fontSize: 14,
+        color: '#F24E4E'
+    }
 })
 
 export default SignUpForms;

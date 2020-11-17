@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
         color: '#0C0D34',
         textAlign: 'center',
         marginBottom: 10,
-
     },
     description: {
         fontFamily: 'Raleway-Regular',
@@ -126,12 +125,10 @@ const styles = StyleSheet.create({
         paddingRight: 44,
         color: '#0C0D34',
         textAlign: 'center',
-
     },
     httpResponseText: {
         fontSize: 14,
         color: '#F24E4E'
-
     }
 })
 
