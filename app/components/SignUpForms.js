@@ -20,16 +20,20 @@ const SignUpForms = props => {
     // Creating dispatch to all updates to redux store:
     const dispatch = useDispatch();
 
-    // Creating history in order to allow react router re-directs:
-    const history = useHistory();
+    // Defining variables from the Redux store:
+    const httpAuthType = useSelector(state => state.httpAuthType);
+    const httpMessage = useSelector(state => state.signUpButtonHttpResponse);
 
     // Storing user credentials in local state:
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
 
-    // Default is token, social login is bearer:
-    const httpAuthType = useSelector(state => state.httpAuthType);
+    // Determining the HTTP response message to display to the user:
+    const blankMessage = 'This field may not be blank.';
+    let httpResponseDisplayMessage;
+
+    console.log(httpMessage)
 
     return (
         <View style={styles.container}>
@@ -53,6 +57,7 @@ const SignUpForms = props => {
                 secureTextEntry={true}
                 validator={passwordValidator}
                 setCredentials={setPassword}
+                textContentType={'oneTimeCode'}
                 />
                 <TextInput 
                 icon='lock'
@@ -60,6 +65,7 @@ const SignUpForms = props => {
                 secureTextEntry={true}
                 validator={passwordValidator}
                 setCredentials={setPassword2}
+                textContentType={'oneTimeCode'}
                 />
             </View>
             <View style={styles.buttonGrouping}>

@@ -1,4 +1,4 @@
-import { setUserAuthenticated, setUserAccountDetails } from '../../store/actions';
+import { setUserAuthenticated, setUserAccountDetails, setSignUpButtonHttpResponse } from '../../store/actions';
 import saveData from '../authentication/saveData';
 import pushUserToMapView from '../functions/pushUserToMapView';
 
@@ -29,7 +29,12 @@ const registerAccount = async (email, password, password2, dispatch, navigation,
 
             // Pushing to the map view on successfull login:
             pushUserToMapView(dispatch, navigation, httpAuthType);
-        };
+        } else {
+            if (data.password && !data.email && !data.password2) {
+                dispatch(setSignUpButtonHttpResponse({'email': [''], 'password': [data.password], 'password2': ['']}))
+            } 
+            
+        }
     } catch (err) { if (console) console.error(err) }
 };
 

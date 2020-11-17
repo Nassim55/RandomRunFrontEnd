@@ -9,11 +9,12 @@ import changePassword from '../functions/changePassword';
 
 
 const ResetPasswordConfirmFormsInApp = props => {
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-
+    // Defining variables from the Redux store:
     const httpAuthType = useSelector(state => state.httpAuthType)
 
+    // Defining the local state:
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
 
     return (
         <View style={styles.container}>

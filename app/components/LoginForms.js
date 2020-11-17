@@ -63,6 +63,7 @@ const LoginForms = props => {
                 secureTextEntry={true}
                 validator={passwordValidator}
                 setCredentials={setPassword}
+                textContentType={'oneTimeCode'}
                 />
             </View>
             <View style={styles.buttonGrouping}>

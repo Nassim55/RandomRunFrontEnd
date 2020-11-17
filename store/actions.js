@@ -12,6 +12,7 @@ import {
     SET_MAP_IMAGE_URI,
     SET_USER_ACCOUNT_DETAILS,
     SET_LOGIN_BUTTON_HTTP_RESPONSE,
+    SET_SIGNUP_BUTTON_HTTP_RESPONSE,
     SET_HTTP_AUTH_TYPE,
     SET_STATE_TO_INITIAL_STATE,
 } from './actionTypes';
@@ -86,6 +87,11 @@ export const setUserAccountDetails = userAccountDetails => ({
 export const setLoginButtonHttpResponse = loginButtonHttpResponse => ({
     type: SET_LOGIN_BUTTON_HTTP_RESPONSE,
     loginButtonHttpResponse: loginButtonHttpResponse
+})
+
+export const setSignUpButtonHttpResponse = signUpButtonHttpResponse => ({
+    type: SET_SIGNUP_BUTTON_HTTP_RESPONSE,
+    signUpButtonHttpResponse: signUpButtonHttpResponse
 })
 
 export const setHttpAuthType = httpAuthType => ({

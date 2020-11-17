@@ -13,6 +13,7 @@ import {
     SET_MAP_IMAGE_URI,
     SET_USER_ACCOUNT_DETAILS,
     SET_LOGIN_BUTTON_HTTP_RESPONSE,
+    SET_SIGNUP_BUTTON_HTTP_RESPONSE,
     SET_HTTP_AUTH_TYPE,
     SET_STATE_TO_INITIAL_STATE,
 } from './actionTypes';
@@ -34,6 +35,7 @@ const initialState = {
     userAccountDetails: {},
     httpAuthType: 'Token',
     loginButtonHttpResponse: {'password': [''], 'username': [''], 'non_field_errors': ['']},
+    signUpButtonHttpResponse: {'email': [''], 'password': [''], 'password2': ['']},
 };
 
 // We now describe how our state will be modified when either addition or subtraction is called:
@@ -105,6 +107,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loginButtonHttpResponse: action.loginButtonHttpResponse
+            }
+        case SET_SIGNUP_BUTTON_HTTP_RESPONSE:
+            return {
+                ...state,
+                signUpButtonHttpResponse: action.signUpButtonHttpResponse
             }
         case SET_HTTP_AUTH_TYPE:
             return {

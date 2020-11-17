@@ -21,7 +21,6 @@ MapboxGL.setAccessToken(MAPBOX_PUBLIC_TOKEN);
 if (Platform.OS === 'android') MapboxGL.setConnected(true);
 
 const MapboxMap = (props) => {
-    console.log('map rendering')
     // Creating dispatch to allow for updating redux store state:
     const dispatch = useDispatch();
 
