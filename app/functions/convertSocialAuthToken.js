@@ -1,27 +1,22 @@
-import RNSInfo from 'react-native-sensitive-info';
+import { Platform } from 'react-native';
 import saveData from '../authentication/saveData';
 import pushUserToMapView from '../functions/pushUserToMapView';
 import { setUserAuthenticated, setHttpAuthType } from '../../store/actions';
 
-const convertSocialAuthToken = async (accessToken, dispatch, navigation, backend, client_id, client_secret) => {
+const convertSocialAuthToken = async (accessToken, dispatch, navigation, backend) => {
+    console.log(Platform.OS)
     try {
-        // Form data that will be posted to the conver-token endpoint:
-        const uploadData = new FormData();
-        uploadData.append('grant_type', 'convert_token');
-        uploadData.append('client_id', client_id)
-        uploadData.append('client_secret', client_secret)
-        uploadData.append('backend', backend)
-        uploadData.append('token', accessToken)
-
-        // MOVE CLIENT ID AND CLIENT SECRET TO THE SERVER SO THAT THEY AREN'T EXPOSED TO THE CLIENT!!
-
         // Defining the POST response and converting data to json:
-        const response = await fetch('http://127.0.0.1:8000/socialauth/convert-token', {
+        const response = await fetch('http://127.0.0.1:8000/account/convert-social-auth', {
             method: 'POST',
             headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
             },
-            body: uploadData
+            body: JSON.stringify({
+                'operating_system': Platform.OS,
+                'backend': backend,
+                'token': accessToken
+            })
         });
         const data = await response.json();
         

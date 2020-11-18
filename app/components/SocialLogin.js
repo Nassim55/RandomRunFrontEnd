@@ -28,8 +28,6 @@ const SocialLogin = props => {
                             dispatch,
                             props.navigation,
                             backend='google-oauth2',
-                            client_id='',
-                            client_secret=''
                         );
                     } catch (error) {
                         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -83,8 +81,6 @@ const SocialLogin = props => {
                                             dispatch,
                                             props.navigation,
                                             backend='facebook',
-                                            client_id='',
-                                            client_secret=''
                                         );
                                     }
                                 )
