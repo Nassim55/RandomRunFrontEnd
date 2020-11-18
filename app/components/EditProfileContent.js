@@ -21,10 +21,7 @@ const EditProfileContent = props => {
 
     // Variables from redux state:
     const httpAuthType = useSelector(state => state.httpAuthType)
-    const email = useSelector(state => state.userAccountDetails.email)
     const userAccountDetails = useSelector(state => state.userAccountDetails);
-
-    console.log(userAccountDetails)
 
     // Options for the image picker:
     const options = {

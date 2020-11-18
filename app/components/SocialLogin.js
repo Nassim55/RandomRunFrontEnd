@@ -10,6 +10,11 @@ import { useDispatch } from 'react-redux';
 // Custom functions:
 import convertSocialAuthToken from '../functions/convertSocialAuthToken';
 
+GoogleSignin.configure({
+    webClientId: '420584478657-kgkpfumkveiv5ph7ie13ggsbrlh886la.apps.googleusercontent.com',
+    offlineAccess: true,
+});
+
 
 const SocialLogin = props => {
     const dispatch = useDispatch();
@@ -22,9 +27,9 @@ const SocialLogin = props => {
                 onPress={async () => {
                     try {
                         await GoogleSignin.hasPlayServices();
-                        const userInfo = await GoogleSignin.signIn();
+                        const userInfo = await GoogleSignin.getTokens();
                         convertSocialAuthToken(
-                            '',
+                            userInfo.accessToken,
                             dispatch,
                             props.navigation,
                             backend='google-oauth2',
