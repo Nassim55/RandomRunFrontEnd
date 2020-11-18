@@ -17,22 +17,22 @@ import updateUserAccount from '../functions/updateUserAccount';
 const DrawerContent = props => {
     const dispatch = useDispatch();
 
+    // Variables from redux state:
     const userAccountDetails = useSelector(state => state.userAccountDetails);
     const httpAuthType = useSelector(state => state.httpAuthType)
 
+    // Options for the image picker:
     const options = {
         title: 'Select a Profile Picture',
         storageOptions: { skipBackup: true, path: 'images' },
     };
-
-
 
 	return (
         <View style={styles.container}>
             <DrawerContentScrollView {...props}>
                 <View style={styles.drawerContent}>
                     <View style={styles.userInfoSection}>
-                    <Pressable 
+                        <Pressable 
                         style={styles.profileImageView}
                         onPress={() => {
                             ImagePicker.showImagePicker(options, (response) => {                              
@@ -135,6 +135,10 @@ const styles = StyleSheet.create({
         borderTopColor: '#F4F4F4',
         borderTopWidth: 1,
     },
+    mediumText: {
+        fontFamily: 'Raleway-Regular',
+        textAlign: 'center',
+    }
 })
 
 

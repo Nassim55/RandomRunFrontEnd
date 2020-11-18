@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text, Alert , Image, Pressable} from 'react-native';
 
 // External library imports:
 import { useDispatch, useSelector } from 'react-redux';
+import Feather from 'react-native-vector-icons/Feather';
+import ImagePicker from 'react-native-image-picker';
 
 // Custom component imports:
 import TextInput from './TextInput';
@@ -11,19 +13,57 @@ import Button from './Button';
 // Custom function imports:
 import deleteUserAccount from '../functions/deleteUserAccount';
 import deleteData from '../authentication/deleteData';
-import forgotPasswordRequest from '../functions/forgotPasswordReset';
+
 
 
 const EditProfileContent = props => {
     const dispatch = useDispatch();
+
+    // Variables from redux state:
     const httpAuthType = useSelector(state => state.httpAuthType)
     const email = useSelector(state => state.userAccountDetails.email)
+    const userAccountDetails = useSelector(state => state.userAccountDetails);
+
+    console.log(userAccountDetails)
+
+    // Options for the image picker:
+    const options = {
+        title: 'Select a Profile Picture',
+        storageOptions: { skipBackup: true, path: 'images' },
+    };
 
     return (
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
-                <Text style={styles.title}>Edit Profile</Text>
-                <Text style={styles.description}>Make changes to you Random Run profile</Text>
+                <Pressable 
+                style={styles.profileImageView}
+                onPress={() => {
+                    ImagePicker.showImagePicker(options, (response) => {                              
+                        if (response.didCancel) {
+                            console.log('User cancelled image picker');
+                        } else if (response.error) {
+                            console.log('ImagePicker Error: ', response.error);
+                        } else {
+                            updateUserAccount({image: { uri: response.uri, name: 'ProfilePicture.jpeg', type: 'image/jpg' }}, dispatch, httpAuthType);
+                        }
+                    });
+                }}
+                >
+                    { userAccountDetails.image ?
+                        <Image
+                        source={{uri: `http://127.0.0.1:8000${userAccountDetails.image}`}}
+                        style={styles.profileImage}
+                        />
+                        :
+                        <View style={styles.profileImage}>
+                            <Feather name='image' size={24} />
+                            <Text style={styles.mediumText}>Add profile image</Text>
+                        </View>
+                    }
+                </Pressable>
+                <Text style={styles.emailText}> 
+                    {userAccountDetails.email}
+                </Text>
             </View>
             <View style={styles.buttonGrouping}>
                 <Button 
@@ -76,27 +116,24 @@ const styles = StyleSheet.create({
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
     },
     titleGrouping: {
-        marginTop: 25,
-        marginBottom: 25,
+        paddingTop: 50,
+        paddingBottom: 50,
+
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
     },
     buttonGrouping: {
         marginBottom: 25,
     },
-    title: {
+    emailText: {
+        marginTop: 20,
         fontFamily: 'Raleway-Bold',
-        fontSize: 24,
-        lineHeight: 30,
-        color: '#0C0D34',
-        textAlign: 'center',
-        marginBottom: 10,
-
-    },
-    description: {
-        fontFamily: 'Raleway-Regular',
         fontSize: 16,
         lineHeight: 24,
         paddingLeft: 44,
@@ -104,6 +141,29 @@ const styles = StyleSheet.create({
         color: '#0C0D34',
         textAlign: 'center',
     },
+    profileImageView: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    profileImage: {
+        height: 150,
+        width: 150,
+        borderRadius: 75,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 110,
+        borderWidth: 2.5,
+        borderStyle: 'dashed',
+        borderColor: '#ccc',
+    },
+    mediumText: {
+        fontFamily: 'Raleway-Regular',
+        textAlign: 'center',
+    }
 })
 
 export default EditProfileContent;
