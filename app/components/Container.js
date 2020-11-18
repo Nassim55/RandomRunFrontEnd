@@ -1,13 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, Platform } from 'react-native';
 
 // External library imports:
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const width = Dimensions.get('window').width;
-const aspectRatio = 750 / 1125;
-const height = width * aspectRatio;
+const height = Dimensions.get('window').height
 
+const headerHeight = (Platform.OS === 'android' && height < 800) ? 100: 150;
+const footerheight = 150;
 
 const Container = props => {
     return (
@@ -18,13 +19,13 @@ const Container = props => {
             <View style={{
                 borderBottomLeftRadius: 75,
                 overflow: 'hidden',
-                height: height * 0.61,
+                height: headerHeight,
                 backgroundColor: '#252934'
 
             }}
             >
                 <View style={{
-                    height: height,
+                    height: headerHeight,
                     width: width,
                     backgroundColor: props.topColour,
                     borderBottomLeftRadius: 75,
@@ -39,19 +40,20 @@ const Container = props => {
             >
                 <View style={{
                     ...StyleSheet.absoluteFillObject,
-                    height: height,
+                    height: height - 300,
                     width: width,
                     backgroundColor: '#252934',
                 }}
                 />
                 <View style={{
                     ...StyleSheet.absoluteFillObject,
-                    height: height,
+                    height: 200,
                     width: width,
                     backgroundColor: props.topColour,
                 }}
                 />
                     <View style={{
+
                         flex: 1,
                         backgroundColor: 'white',
                         borderTopRightRadius: 75,
@@ -67,7 +69,7 @@ const Container = props => {
             </View>
         
             <View style={{
-                height: 150,
+                height: footerheight,
                 backgroundColor: '#252934',
             }}>
                 {props.footer}

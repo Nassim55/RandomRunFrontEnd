@@ -13,6 +13,8 @@ import convertSocialAuthToken from '../functions/convertSocialAuthToken';
 GoogleSignin.configure({
     webClientId: '420584478657-kgkpfumkveiv5ph7ie13ggsbrlh886la.apps.googleusercontent.com',
     offlineAccess: true,
+    forceCodeForRefreshToken: true,
+    accountName: ''
 });
 
 
