@@ -30,6 +30,9 @@ const updateUserAccount = async (props, dispatch, httpAuthType, navigation) => {
         });
         const data = await response.json();
 
+        // Removing query parameters from the image file url:
+        data[0].image = await data[0].image.split("?")[0]
+
         // Updating the user account details in Redux state:
         dispatch(setUserAccountDetails(data[0]));
 

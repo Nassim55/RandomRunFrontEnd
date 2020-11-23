@@ -19,7 +19,7 @@ const fetchSavedRoutes = async (dispatch, httpAuthType) => {
 
       // Removing query parameters from the image file url:
       for (let i = 0; i < data.response.length; i++) {
-        data.response[i].image = data.response[i].image.split("?")[0]
+        data.response[i].image = await data.response[i].image.split("?")[0]
       }
 
       // Update the redux state:

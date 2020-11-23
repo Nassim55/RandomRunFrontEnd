@@ -36,8 +36,6 @@ const SavedRouteCards = props => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const aIndex = useTransition(currentIndex);
 
-    console.log(savedRoutesResponse)
-
     return (
         <View style={styles.container}>
             <View style={styles.cardsContainer}>

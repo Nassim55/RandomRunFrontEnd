@@ -7,8 +7,6 @@ const pushUserToMapView = async (dispatch, navigation, httpAuthType) => {
         // Retreiving the auth token from storage:
         const token = await RNSInfo.getItem('token', {});
 
-        console.log(`the http type is ... ${httpAuthType}`)
-
         // Defining response from the server:
         const response = await fetch(`${HOST_URL}/account/accountdetails`,  {
             method: 'GET',
@@ -16,7 +14,8 @@ const pushUserToMapView = async (dispatch, navigation, httpAuthType) => {
         });
         const data = await response.json();
 
-        console.log(data)
+        // Removing query parameters from the image file url:
+        data[0].image = data[0].image.split("?")[0]
 
         // Updating the use account details in Redux state:
         dispatch(setUserAccountDetails(data[0]));

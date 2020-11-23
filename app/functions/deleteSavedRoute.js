@@ -15,7 +15,6 @@ const deleteSavedRoute = async (savedRouteDatabaseID, httpAuthType) => {
   
         // Converting response to JSON data:
         const data = await response.json();
-        console.log(data);
 
     } catch (err) {
         if (console) console.error(err)

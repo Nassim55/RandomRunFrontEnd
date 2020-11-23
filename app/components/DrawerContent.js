@@ -48,7 +48,7 @@ const DrawerContent = props => {
                         >
                             { userAccountDetails.image ?
                                 <Image
-                                source={{uri: `http://127.0.0.1:8000${userAccountDetails.image}`}}
+                                source={{uri: userAccountDetails.image}}
                                 style={styles.profileImage}
                                 />
                                 :
