@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import { setSavedRoutesResponse } from '../../store/actions';
 import RNSInfo from 'react-native-sensitive-info';
 
@@ -8,13 +9,18 @@ const fetchSavedRoutes = async (dispatch, httpAuthType) => {
     
     // If a token exists then get saved routes from the database:
     if (token) {
-      const response = await fetch(`http://127.0.0.1:8000/route/routes/`, {
+      const response = await fetch(`${HOST_URL}/route/routes/`, {
         method: 'GET',
         headers: {
           'Authorization': `${httpAuthType} ${token}`
         }
       });
       const data = await response.json();
+
+      // Removing query parameters from the image file url:
+      for (let i = 0; i < data.response.length; i++) {
+        data.response[i].image = data.response[i].image.split("?")[0]
+      }
 
       // Update the redux state:
       dispatch(setSavedRoutesResponse(data.response));

@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import RNSInfo from 'react-native-sensitive-info';
 import { Alert } from 'react-native';
 
@@ -9,7 +10,7 @@ const changePassword = async (httpAuthType, navigation, navigationLocation, curr
         // If a token exists then get saved routes from the database:
         if (token) {
             // Request to update the password:
-            const response = await fetch('http://127.0.0.1:8000/account/change-password', {
+            const response = await fetch(`${HOST_URL}/account/change-password`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

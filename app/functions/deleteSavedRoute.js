@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import RNSInfo from 'react-native-sensitive-info';
 
 const deleteSavedRoute = async (savedRouteDatabaseID, httpAuthType) => {
@@ -7,7 +8,7 @@ const deleteSavedRoute = async (savedRouteDatabaseID, httpAuthType) => {
         const token = await RNSInfo.getItem('token', {});
 
         // Deleting saved route from the database and defining the response: 
-        const response = await fetch(`http://127.0.0.1:8000/route/routes/${savedRouteDatabaseID}/`, {
+        const response = await fetch(`${HOST_URL}/route/routes/${savedRouteDatabaseID}/`, {
             method: 'DELETE',
             headers: { 'Authorization': `${httpAuthType} ${token}` }
         });

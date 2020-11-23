@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import RNSInfo from 'react-native-sensitive-info';
 import { setUserAccountDetails } from '../../store/actions';
 
@@ -9,7 +10,7 @@ const pushUserToMapView = async (dispatch, navigation, httpAuthType) => {
         console.log(`the http type is ... ${httpAuthType}`)
 
         // Defining response from the server:
-        const response = await fetch(`http://127.0.0.1:8000/account/accountdetails`,  {
+        const response = await fetch(`${HOST_URL}/account/accountdetails`,  {
             method: 'GET',
             headers: { 'Authorization': `${httpAuthType} ${token}` }
         });

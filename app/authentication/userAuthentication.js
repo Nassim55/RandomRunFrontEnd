@@ -1,12 +1,12 @@
+import { HOST_URL } from "@env";
 import saveData from '../authentication/saveData';
 import { setUserAuthenticated, setLoginButtonHttpResponse } from '../../store/actions';
-
 import pushUserToMapView from '../functions/pushUserToMapView';
 
 const userAuthentication = async (username, password, dispatch, navigation, httpAuthType) => {
     // Checking that the user is authorised on the database and defining the server response:
     try {
-        const response = await fetch('http://127.0.0.1:8000/auth/', {
+        const response = await fetch(`${HOST_URL}/auth/`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username, password}), 

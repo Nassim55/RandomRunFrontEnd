@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import { Alert } from 'react-native';
 import RNSInfo from 'react-native-sensitive-info';
 import { 
@@ -22,7 +23,7 @@ const fetchRouteCoords = async ( isLocationPermissionGranted, dispatch, originLo
 
           // Checking token exists before fetching data from API:
           if (token) {
-            const response = await fetch(`http://127.0.0.1:8000/route/getroute?longitude=${originLongitude}&latitude=${originLatitude}&routeDistance=${routeDistanceMeters}`, {
+            const response = await fetch(`${HOST_URL}/route/getroute?longitude=${originLongitude}&latitude=${originLatitude}&routeDistance=${routeDistanceMeters}`, {
               method: 'GET',
               headers: {
                 'Authorization': `${httpAuthType} ${token}`

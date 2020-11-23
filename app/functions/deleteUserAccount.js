@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import RNSInfo from 'react-native-sensitive-info';
 import { setStateToInitialState } from '../../store/actions';
 
@@ -7,7 +8,7 @@ const deleteUserAccount = async (httpAuthType, dispatch) => {
         const token = await RNSInfo.getItem('token', {});
 
         // Deleting the account from the database and defining the response: 
-        const response = await fetch(`http://127.0.0.1:8000/account/deleteaccount`, {
+        const response = await fetch(`${HOST_URL}/account/deleteaccount`, {
             method: 'DELETE',
             headers: { 'Authorization': `${httpAuthType} ${token}` }
         });

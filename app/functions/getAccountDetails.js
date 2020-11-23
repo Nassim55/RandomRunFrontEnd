@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import RNSInfo from 'react-native-sensitive-info';
 import { setUserAccountDetails } from '../../store/actions';
 
@@ -7,7 +8,7 @@ const getAccountDetails = async (dispatch, httpAuthType) => {
         const token = await RNSInfo.getItem('token', {});
 
         // Defining response from the server:
-        const response = await fetch(`http://127.0.0.1:8000/account/accountdetails`,  {
+        const response = await fetch(`${HOST_URL}/account/accountdetails`,  {
             method: 'GET',
             headers: { 'Authorization': `${httpAuthType} ${token}` }
         });

@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import { Platform } from 'react-native';
 import saveData from '../authentication/saveData';
 import pushUserToMapView from '../functions/pushUserToMapView';
@@ -7,7 +8,7 @@ const convertSocialAuthToken = async (accessToken, dispatch, navigation, backend
     console.log(Platform.OS)
     try {
         // Defining the POST response and converting data to json:
-        const response = await fetch('http://127.0.0.1:8000/account/convert-social-auth', {
+        const response = await fetch(`${HOST_URL}/account/convert-social-auth`, {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',

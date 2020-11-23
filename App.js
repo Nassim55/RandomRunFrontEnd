@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+
+
 // Custom component imports:
 import Onboarding from './app/components/Onboarding';
 import Welcome from './app/components/Welcome';
@@ -19,7 +21,7 @@ import ResetPasswordConfirm from './app/components/ResetPasswordConfirm';
 // Custom function imports:
 import getData from './app/authentication/getData';
 
-
+import { HOST_URL } from "@env";
 
 
 const Stack = createStackNavigator();
@@ -35,11 +37,11 @@ const App = () => {
 	// Pulling variables from state:
 	const isUserAuthenticated = useSelector(state => state.isUserAuthenticated);
 
-
 	//useEffect(() => {
 	//	getData(dispatch, history);
-	//}, [])
+	//}, [])	
 	
+	console.log(HOST_URL)
 	
 	return (
 		<NavigationContainer style={styles.page}>

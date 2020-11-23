@@ -13,7 +13,7 @@ import Button from './Button';
 // Custom function imports:
 import deleteUserAccount from '../functions/deleteUserAccount';
 import deleteData from '../authentication/deleteData';
-
+import updateUserAccount from '../functions/updateUserAccount';
 
 
 const EditProfileContent = props => {

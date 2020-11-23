@@ -68,7 +68,7 @@ const Card = props => {
                 onPress={props.onPress}
                 >
                     <Animated.Image
-                    source={{uri: `http://127.0.0.1:8000${props.image}`}}
+                    source={{uri: `${props.image}`}}
                     style={[styles.routeImage, { opacity: cardImageOpacity }]}
                     />
                 </Pressable>

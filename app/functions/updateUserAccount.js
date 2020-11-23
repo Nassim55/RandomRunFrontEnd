@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import RNSInfo from 'react-native-sensitive-info';
 import { setUserAccountDetails } from '../../store/actions';
 import { Alert } from 'react-native';
@@ -19,7 +20,7 @@ const updateUserAccount = async (props, dispatch, httpAuthType, navigation) => {
         }
 
         // Updating the user account at the update account endpoint:
-        const response = await fetch(`http://127.0.0.1:8000/account/updateaccount`, {
+        const response = await fetch(`${HOST_URL}/account/updateaccount`, {
             method: 'PATCH',
             headers: {
             'Content-Type': 'multipart/form-data',

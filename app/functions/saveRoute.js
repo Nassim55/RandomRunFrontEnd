@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import RNSInfo from 'react-native-sensitive-info';
 import { Alert } from 'react-native';
 
@@ -23,7 +24,7 @@ const saveRoute = async (routeDistance, routeCoordinates, mapImageURI, userID, t
     uploadData.append('mostSouthWesternCoordinates', mostSouthWesternCoordinates);
 
     // Posting the form data to database and defining the response: 
-    const response = await fetch(`http://127.0.0.1:8000/route/routes/`, {
+    const response = await fetch(`${HOST_URL}/route/routes/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data',

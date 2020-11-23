@@ -1,3 +1,4 @@
+import { HOST_URL } from "@env";
 import { setUserAuthenticated, setUserAccountDetails, setSignUpButtonHttpResponse } from '../../store/actions';
 import saveData from '../authentication/saveData';
 import pushUserToMapView from '../functions/pushUserToMapView';
@@ -5,7 +6,7 @@ import pushUserToMapView from '../functions/pushUserToMapView';
 const registerAccount = async (email, password, password2, dispatch, navigation, httpAuthType) => {
     try {
         // Registering a new user and defining the server response:
-        const response = await fetch('http://127.0.0.1:8000/account/register', {
+        const response = await fetch(`${HOST_URL}/account/register`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

@@ -1,7 +1,9 @@
+import { HOST_URL } from "@env";
+
 const forgotPasswordRequest = async (email, navigation, navigationLocation) => {
     try {
         // Posting to the endpoint:
-        const response = await fetch('http://127.0.0.1:8000/account/password_reset/', {
+        const response = await fetch(`${HOST_URL}/account/password_reset/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
