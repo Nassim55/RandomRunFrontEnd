@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 // External library imports:
 import Svg, { Path } from 'react-native-svg';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
-import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import { GoogleSignin } from '@react-native-community/google-signin';
 import { useDispatch } from 'react-redux';
 
 // Custom functions:
@@ -44,7 +44,7 @@ const SocialLogin = props => {
                             props.navigation,
                             backend='google-oauth2',
                         );
-                        
+
                     } catch (err) { if (console) console.error(err) }
                 }}
                 >

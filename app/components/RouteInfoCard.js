@@ -4,9 +4,6 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 // Redux state store imports: 
 import { useSelector } from 'react-redux';
 
-// Custom components:
-import Button from './Button';
-
 // Custom functions:
 import saveRoute from '../functions/saveRoute';
 

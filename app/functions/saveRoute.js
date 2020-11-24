@@ -9,9 +9,9 @@ const saveRoute = async (routeDistance, routeCoordinates, mapImageURI, userID, t
     const token = await RNSInfo.getItem('token', {});
 
     // Converting list form data into a format that the postgresql database array field will accept:
-    routeCoordinates = (JSON.stringify(routeCoordinates)).replaceAll('[', '{').replaceAll(']', '}');
-    mostNorthEasternCoordinates = (JSON.stringify(mostNorthEasternCoordinates)).replaceAll('[', '{').replaceAll(']', '}');
-    mostSouthWesternCoordinates = (JSON.stringify(mostSouthWesternCoordinates)).replaceAll('[', '{').replaceAll(']', '}');
+    routeCoordinates = JSON.stringify(routeCoordinates).replace(/\[/g, '{').replace(/\]/g, '}')
+    mostNorthEasternCoordinates = JSON.stringify(mostNorthEasternCoordinates).replace(/\[/g, '{').replace(/\]/g, '}')
+    mostSouthWesternCoordinates = JSON.stringify(mostSouthWesternCoordinates).replace(/\[/g, '{').replace(/\]/g, '}')
 
     // Form data about the route that will be posted to the database: 
     const uploadData = new FormData();
@@ -34,7 +34,6 @@ const saveRoute = async (routeDistance, routeCoordinates, mapImageURI, userID, t
     });
 
     const data = await response.json();
-    console.log(data)
 
     if (data.response === 'Route not saved. You have exceeded your limit of five routes') {
       Alert.alert(
