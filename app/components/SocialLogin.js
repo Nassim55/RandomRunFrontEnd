@@ -28,25 +28,24 @@ const SocialLogin = props => {
                 style={({ pressed }) => [styles.socialIconButton, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "grey" : "white" }]}
                 onPress={async () => {
                     try {
+                        // Checks if device has Google Play Services installed. Always resolves to true on iOS.
                         await GoogleSignin.hasPlayServices();
-                        const userInfo = await GoogleSignin.getTokens();
+
+                        // Prompts a modal to let the user sign in into your application. Resolved promise returns an userInfo object. Rejects with error otherwise:
+                        await GoogleSignin.signIn();
+
+                        // Resolves with an object containing { idToken: string, accessToken: string, } or rejects with an error:
+                        const googleAccessToken = await GoogleSignin.getTokens();
+                        
+                        // Converts the access token:
                         convertSocialAuthToken(
-                            userInfo.accessToken,
+                            googleAccessToken.accessToken,
                             dispatch,
                             props.navigation,
                             backend='google-oauth2',
                         );
-                    } catch (error) {
-                        if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-                            // user cancelled the login flow
-                        } else if (error.code === statusCodes.IN_PROGRESS) {
-                            // operation (e.g. sign in) is in progress already
-                        } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-                            // play services not available or outdated
-                        } else {
-                            // some other error happened
-                        }
-                    }
+                        
+                    } catch (err) { if (console) console.error(err) }
                 }}
                 >
                     <Svg

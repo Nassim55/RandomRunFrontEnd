@@ -15,7 +15,10 @@ const pushUserToMapView = async (dispatch, navigation, httpAuthType) => {
         const data = await response.json();
 
         // Removing query parameters from the image file url:
-        data[0].image = data[0].image.split("?")[0]
+        if (data[0].image) {
+            data[0].image = data[0].image.split("?")[0]
+        };
+        
 
         // Updating the use account details in Redux state:
         dispatch(setUserAccountDetails(data[0]));

@@ -21,6 +21,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B947D868727AE9EDD738649A /* libPods-RandomRunFrontEnd-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA93674D8302C35CA27B60E /* libPods-RandomRunFrontEnd-tvOSTests.a */; };
 		D4283293253885570061BD95 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4283292253885570061BD95 /* File.swift */; };
+		D43C4CAC256CC3D400C9D92F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D43C4CAB256CC3D400C9D92F /* GoogleService-Info.plist */; };
 		D4BFF85E2538249300EC1C37 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4BFF8592538249300EC1C37 /* Raleway-Light.ttf */; };
 		D4BFF85F2538249300EC1C37 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4BFF85A2538249300EC1C37 /* Raleway-Thin.ttf */; };
 		D4BFF8602538249300EC1C37 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4BFF85B2538249300EC1C37 /* Raleway-Regular.ttf */; };
@@ -70,6 +71,7 @@
 		B61D988C6E00EF30572CBD80 /* Pods-RandomRunFrontEnd-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomRunFrontEnd-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-RandomRunFrontEnd-tvOSTests/Pods-RandomRunFrontEnd-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		D4283291253885570061BD95 /* RandomRunFrontEnd-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RandomRunFrontEnd-Bridging-Header.h"; sourceTree = "<group>"; };
 		D4283292253885570061BD95 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		D43C4CAB256CC3D400C9D92F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "RandomRunFrontEnd/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4BFF8592538249300EC1C37 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 		D4BFF85A2538249300EC1C37 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		D4BFF85B2538249300EC1C37 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				D43C4CAB256CC3D400C9D92F /* GoogleService-Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -370,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4BFF8622538249300EC1C37 /* Raleway-Bold.ttf in Resources */,
+				D43C4CAC256CC3D400C9D92F /* GoogleService-Info.plist in Resources */,
 				D4BFF85E2538249300EC1C37 /* Raleway-Light.ttf in Resources */,
 				D4BFF8612538249300EC1C37 /* Raleway-Medium.ttf in Resources */,
 				D4BFF8602538249300EC1C37 /* Raleway-Regular.ttf in Resources */,
