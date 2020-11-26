@@ -4,11 +4,14 @@ import { StyleSheet, View, Dimensions, Platform } from 'react-native';
 // External library imports:
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
+// Custom component imports:
+import SignUpSVG from '../svgs/SignUpSVG';
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height
 
-const headerHeight = (Platform.OS === 'android' && height < 800) ? 100: 150;
-const footerheight = 150;
+const headerHeight = (Platform.OS === 'android' && height < 800) ? 150: 250;
+const footerheight = (Platform.OS === 'android' && height < 800) ? 150: 150;
 
 const Container = props => {
     return (
@@ -20,17 +23,14 @@ const Container = props => {
                 borderBottomLeftRadius: 75,
                 overflow: 'hidden',
                 height: headerHeight,
-                backgroundColor: '#252934'
-
+                backgroundColor: '#252934',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                alignItems: 'center',
             }}
             >
-                <View style={{
-                    height: headerHeight,
-                    width: width,
-                    backgroundColor: props.topColour,
-                    borderBottomLeftRadius: 75,
-                }}
-                />
+                <SignUpSVG />
+
             </View>
             <View
             style={{
@@ -45,15 +45,8 @@ const Container = props => {
                     backgroundColor: '#252934',
                 }}
                 />
-                <View style={{
-                    ...StyleSheet.absoluteFillObject,
-                    height: 200,
-                    width: width,
-                    backgroundColor: props.topColour,
-                }}
-                />
-                    <View style={{
 
+                    <View style={{
                         flex: 1,
                         backgroundColor: 'white',
                         borderTopRightRadius: 75,
