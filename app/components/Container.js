@@ -4,8 +4,6 @@ import { StyleSheet, View, Dimensions, Platform } from 'react-native';
 // External library imports:
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-// Custom component imports:
-import SignUpSVG from '../svgs/SignUpSVG';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height
@@ -29,7 +27,7 @@ const Container = props => {
                 alignItems: 'center',
             }}
             >
-                <SignUpSVG />
+                {props.svg}
 
             </View>
             <View

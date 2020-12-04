@@ -31,7 +31,7 @@ const EditProfileContent = props => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.titleGrouping}>
+            <View style={styles.mainGrouping}>
                 <Pressable 
                 style={styles.profileImageView}
                 onPress={() => {
@@ -61,8 +61,6 @@ const EditProfileContent = props => {
                 <Text style={styles.emailText}> 
                     {userAccountDetails.email}
                 </Text>
-            </View>
-            <View style={styles.buttonGrouping}>
                 <Button 
                 label='Change Email'
                 variant='default'
@@ -103,6 +101,16 @@ const EditProfileContent = props => {
                 }}
                 />
             </View>
+            <View style={styles.footerGrouping}>
+                    <Pressable 
+                    style={({ pressed }) => [styles.backButton, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#F24E4E" : "white" }]}
+                    onPress={() => props.navigation.openDrawer()}
+                    >
+                        <Feather style={styles.arrowIcon} name='arrow-left' size={24} color='black'>
+                            <Text style={styles.BackButtonText}>Back</Text>
+                        </Feather>
+                    </Pressable>
+                </View>
         </View>
     );
 };
@@ -116,20 +124,27 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
     },
-    titleGrouping: {
-        paddingTop: 50,
-        paddingBottom: 50,
+
+    mainGrouping: {
+        flex: 1,
 
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         alignItems: 'center',
     },
-    buttonGrouping: {
-        marginBottom: 25,
+    footerGrouping: {
+        height: 100,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
+
+
     emailText: {
         marginTop: 20,
+        marginBottom: 20,
         fontFamily: 'Raleway-Bold',
         fontSize: 16,
         lineHeight: 24,
@@ -160,7 +175,25 @@ const styles = StyleSheet.create({
     mediumText: {
         fontFamily: 'Raleway-Regular',
         textAlign: 'center',
-    }
+    },
+
+ 
+    backButton: {
+        borderRadius: 24,
+        padding: 10
+    },
+    arrowIcon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    BackButtonText: {
+        fontFamily: 'Raleway-Bold',
+        fontSize: 24,
+        color: 'black',
+        textAlign: 'center',
+    },
 })
 
 export default EditProfileContent;

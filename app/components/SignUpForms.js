@@ -35,9 +35,10 @@ const SignUpForms = props => {
     let httpResponseDisplayMessage;
     if (httpMessage.password[0] === 'Passwords must match.') {
         httpResponseDisplayMessage = 'The passwords do not match';
-    } else {
-        httpResponseDisplayMessage = 'Unable to create account';
-    };
+    } 
+    // else {
+    //     httpResponseDisplayMessage = 'Unable to create account';
+    // };
 
     return (
         <View style={styles.container}>
