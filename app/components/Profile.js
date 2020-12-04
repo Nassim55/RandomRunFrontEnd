@@ -10,7 +10,7 @@ import ContainerWithoutFooter from './ContainerWithoutFooter';
 import TextInput from './TextInput';
 import EditProfileContent from './EditProfileContent';
 import Button from './Button';
-import EditProfileSVG from '../svgs/EditProfileSVG';
+import EditProfile3SVG from '../svgs/EditProfile3SVG';
 
 // Custom function imports:
 import emailValidator from '../functions/emailValidator';
@@ -27,7 +27,7 @@ const Profile = props => {
     return (
             <ContainerWithoutFooter
             topColour='#FFE4D9'
-            svg={<EditProfileSVG />}
+            svg={<EditProfile3SVG />}
             children={
                 <EditProfileContent
                 navigation={props.navigation}

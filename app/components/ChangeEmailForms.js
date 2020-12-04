@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Pressable} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import Feather from 'react-native-vector-icons/Feather';
 import TextInput from './TextInput';
 import Button from './Button';
 import emailValidator from '../functions/emailValidator';
@@ -37,6 +38,16 @@ const ChangeEmailForms = props => {
                 variant='primary'
                 onPress={() => updateUserAccount({'email': email}, dispatch, httpAuthType, props.navigation)}
                 />
+            </View>
+            <View style={styles.footerGrouping}>
+                <Pressable 
+                style={({ pressed }) => [styles.backButton, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#F24E4E" : "white" }]}
+                onPress={() => props.navigation.navigate('Profile')}
+                >
+                    <Feather style={styles.arrowIcon} name='arrow-left' size={24} color='black'>
+                        <Text style={styles.BackButtonText}>Back</Text>
+                    </Feather>
+                </Pressable>
             </View>
         </View>
     );
@@ -79,6 +90,31 @@ const styles = StyleSheet.create({
         color: '#0C0D34',
         textAlign: 'center',
     },
+    footerGrouping: {
+        height: 100,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    backButton: {
+        borderRadius: 24,
+        padding: 10
+    },
+    arrowIcon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    BackButtonText: {
+        fontFamily: 'Raleway-Bold',
+        fontSize: 24,
+        color: 'black',
+        textAlign: 'center',
+    },
 })
 
 export default ChangeEmailForms;
+
+

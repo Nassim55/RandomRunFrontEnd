@@ -110,7 +110,7 @@ const EditProfileContent = props => {
                             <Text style={styles.BackButtonText}>Back</Text>
                         </Feather>
                     </Pressable>
-                </View>
+            </View>
         </View>
     );
 };
