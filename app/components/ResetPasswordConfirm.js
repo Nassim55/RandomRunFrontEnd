@@ -1,31 +1,21 @@
 import React from 'react';
 import { StyleSheet, View, Pressable, Text } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import Container from './Container';
+import ContainerWithoutFooter from './ContainerWithoutFooter';
 import ResetPasswordConfirmForms from './ResetPasswordConfirmForms';
+import AuthenticationSVG from '../svgs/AuthenticationSVG';
 
 
 
 const ResetPasswordConfirm = props => {
     return (
-        <Container
+        <ContainerWithoutFooter
         topColour='#FFE4D9'
+        svg={<AuthenticationSVG />}
         children={
             <ResetPasswordConfirmForms 
             navigation={props.navigation}
             />
-        }
-        footer={
-            <View style={styles.footerContent}>
-                <Pressable 
-                style={({ pressed }) => [styles.backButton, { opacity: pressed ? 0.5 : 1, backgroundColor: pressed ? "#F24E4E" : "#252934" }]}
-                onPress={() => props.navigation.navigate('Welcome')}
-                >
-                    <Feather style={styles.arrowIcon} name='arrow-left' size={24} color='white'>
-                        <Text style={styles.BackButtonText}>Back</Text>
-                    </Feather>
-                </Pressable>
-            </View>
         }
         />
     );

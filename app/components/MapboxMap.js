@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Platform, View } from 'react-native';
-
-// Library imports:
+import { StyleSheet, Platform, View, Dimensions } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 import { useDispatch, useSelector } from 'react-redux';
-
-// Custom function imports:
 import setUserLongitudeAndLatitude from '../functions/setUserLongitudeAndLatitude';
 
-// API key:
+// Window dimensions:
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
+
+// Public token:
 const MAPBOX_PUBLIC_TOKEN = 'pk.eyJ1IjoibmFzc2ltY2hlbm91ZiIsImEiOiJja2R1NjE2amMzYnl4MzByb3c5YmxlMGY5In0.cBj3YeAh0UMxinxOfhDLIw';
 
 // Style URL:
@@ -19,6 +19,7 @@ MapboxGL.setAccessToken(MAPBOX_PUBLIC_TOKEN);
 
 // Only necessary to do set connected on Android operating systems:
 if (Platform.OS === 'android') MapboxGL.setConnected(true);
+
 
 const MapboxMap = (props) => {
     // Creating dispatch to allow for updating redux store state:
@@ -32,8 +33,8 @@ const MapboxMap = (props) => {
         sw: mostSouthWesternCoordinates,
         paddingRight: 50,
         paddingLeft: 50,
-        paddingBottom: 400,
-        paddingTop: 50
+        paddingBottom: (height * 0.05) + 160,
+        paddingTop: (height * 0.05) + 160
     };
 
     // Route coordinates that will be rendered on screen:
@@ -46,7 +47,14 @@ const MapboxMap = (props) => {
     }, []);
 
     return (
-        <MapboxGL.MapView style = {styles.map} styleURL={mapboxStyleURL}>
+        <MapboxGL.MapView 
+        style={styles.map}
+        styleURL={mapboxStyleURL}
+        zoomEnabled={false}
+        pitchEnabled={false}
+        rotateEnabled={false}
+        scrollEnabled={false}
+        >
             <MapboxGL.Camera
             animationDuration={2000}
             animationMode={'flyTo'}
