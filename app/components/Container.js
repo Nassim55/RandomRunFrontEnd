@@ -15,6 +15,8 @@ const Container = props => {
     return (
         <KeyboardAwareScrollView 
         contentContainerStyle={styles.container}
+        enableOnAndroid={true}
+        enableAutomaticScroll={(Platform.OS === 'ios')}
         extraHeight={250}
         >
             <View style={{
