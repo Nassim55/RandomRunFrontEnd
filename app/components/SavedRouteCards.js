@@ -39,58 +39,67 @@ const SavedRouteCards = props => {
     return (
         <View style={styles.container}>
             <View style={styles.cardsContainer}>
-                {cards.map(
-                    ({ index, distance, image, id, coordinates, duration, mostNorthEasternCoordinates, mostSouthWesternCoordinates }) =>
-                        currentIndex < index * step + step && (
-                            <Card 
-                            key={index}
-                            position={sub(index * step, aIndex)}
-                            distanceMeters={distance}
-                            image={image}
-                            duration={duration}
-                            step={step}
-                            onSwipe={() => setCurrentIndex(prev => prev + step)}
-                            onPress={() => {
-                                setCurrentIndex(prev => prev + step);
-                                
-                                // Converting from string cooodinates to floats:
-                                const coordinatesDecimal = coordinates.map((coordsSet, index) => (
-                                    coordsSet.map(coord => (parseFloat(coord)))
-                                ))
-                                const mostNorthEasternCoordinatesDecimal = mostNorthEasternCoordinates.map(element => (parseFloat(element)));
-                                const mostSouthWesternCoordinatesDecimal = mostSouthWesternCoordinates.map(element => (parseFloat(element)));
+                {
+                    cards.length > 0 ?
+                        cards.map(
+                            ({ index, distance, image, id, coordinates, duration, mostNorthEasternCoordinates, mostSouthWesternCoordinates }) =>
+                                currentIndex < index * step + step && (
+                                    <Card 
+                                    key={index}
+                                    position={sub(index * step, aIndex)}
+                                    distanceMeters={distance}
+                                    image={image}
+                                    duration={duration}
+                                    step={step}
+                                    onSwipe={() => setCurrentIndex(prev => prev + step)}
+                                    onPress={() => {
+                                        setCurrentIndex(prev => prev + step);
+                                        
+                                        // Converting from string cooodinates to floats:
+                                        const coordinatesDecimal = coordinates.map((coordsSet, index) => (
+                                            coordsSet.map(coord => (parseFloat(coord)))
+                                        ))
+                                        const mostNorthEasternCoordinatesDecimal = mostNorthEasternCoordinates.map(element => (parseFloat(element)));
+                                        const mostSouthWesternCoordinatesDecimal = mostSouthWesternCoordinates.map(element => (parseFloat(element)));
 
-                                // Updating state:
-                                dispatch(setFinalRouteLineString({ 'type': 'LineString', 'coordinates': coordinatesDecimal }))
-                                dispatch(setMostNorthEasternCoordinates(mostNorthEasternCoordinatesDecimal));
-                                dispatch(setMostSouthWesternCoordinates(mostSouthWesternCoordinatesDecimal));
-                                dispatch(setCalculateRouteDistance(parseFloat(distance)))
-                                props.navigation.navigate('Home')
+                                        // Updating state:
+                                        dispatch(setFinalRouteLineString({ 'type': 'LineString', 'coordinates': coordinatesDecimal }))
+                                        dispatch(setMostNorthEasternCoordinates(mostNorthEasternCoordinatesDecimal));
+                                        dispatch(setMostSouthWesternCoordinates(mostSouthWesternCoordinatesDecimal));
+                                        dispatch(setCalculateRouteDistance(parseFloat(distance)))
+                                        props.navigation.navigate('Home')
 
-                            }}
-                            onSwipeDown={() => {
-                                setCurrentIndex(prev => prev + step);
-                                Alert.alert(
-                                    'Delete this route?',
-                                    'Are you sure you want to permanently delete this route?',
-                                    [
-                                        { 
-                                            text: 'Keep',
-                                            style: 'cancel',
-                                            onPress: () => setCurrentIndex(prev => prev - step),
-                                        },
-                                        { 
-                                            text: 'Delete',
-                                            style: 'destructive',
-                                            onPress: () => deleteSavedRoute(id, httpAuthType),
-                                        }
-                                    ],
-                                    { cancelable: false }
-                                );
-                            }}
-                            />
+                                    }}
+                                    onSwipeDown={() => {
+                                        setCurrentIndex(prev => prev + step);
+                                        Alert.alert(
+                                            'Delete this route?',
+                                            'Are you sure you want to permanently delete this route?',
+                                            [
+                                                { 
+                                                    text: 'Keep',
+                                                    style: 'cancel',
+                                                    onPress: () => setCurrentIndex(prev => prev - step),
+                                                },
+                                                { 
+                                                    text: 'Delete',
+                                                    style: 'destructive',
+                                                    onPress: () => deleteSavedRoute(id, httpAuthType),
+                                                }
+                                            ],
+                                            { cancelable: false }
+                                        );
+                                    }}
+                                    />
+                                )
                         )
-                )}
+                    :
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text}>
+                        You don't currently have any saved routes. You're saved route cards will appear here. 
+                        </Text>
+                    </View>
+                }
             </View>
             <View style={styles.footerContainer}>
                 <View style={styles.buttonContainer}>
@@ -180,6 +189,22 @@ const styles = StyleSheet.create({
         paddingRight: 44,
         color: '#0C0D34',
         textAlign: 'center',
+    },
+    text: {
+        fontFamily: 'Raleway-Regular',
+        fontSize: 24,
+        lineHeight: 30,
+        color: '#0C0D34',
+        textAlign: 'center',
+        marginBottom: 10,
+
+    },
+    textContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: 50,
+        paddingRight: 50,
     },
 })
 
