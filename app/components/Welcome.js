@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
     textContainer: {
         marginTop: 20,
         marginBottom: 20,
-
     },
     title: {
         fontFamily: 'Raleway-Bold',

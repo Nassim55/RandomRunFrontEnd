@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 25,
+        marginBottom: 20,
     },
     buttonGrouping: {
 
