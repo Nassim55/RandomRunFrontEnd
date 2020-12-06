@@ -44,9 +44,7 @@ const LoginForms = props => {
         <View style={styles.container}>
             <View style={styles.titleGrouping}>
                 <Text style={styles.title}>Welcome back</Text>
-                <Text style={styles.description}>
-                    Enter your credentials, alternatively log in with Google or Facebook.
-                </Text>
+                <Text style={styles.description}>Enter your credentials, alternatively log in using Google or Facebook.</Text>
             </View>
             <View style={styles.formGrouping}>
                 <Text style={[styles.description, styles.httpResponseText]}>{httpResponseDisplayMessage}</Text>
@@ -96,8 +94,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 25,
-        marginBottom: 25,
+        marginTop: 20,
     },
     formGrouping: {
         display: 'flex',
@@ -111,11 +108,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'Raleway-Bold',
+        fontWeight: '700',
         fontSize: 24,
         lineHeight: 30,
         color: '#0C0D34',
         textAlign: 'center',
-        marginBottom: 10,
     },
     description: {
         fontFamily: 'Raleway-Regular',

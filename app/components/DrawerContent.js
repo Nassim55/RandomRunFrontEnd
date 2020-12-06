@@ -52,7 +52,7 @@ const DrawerContent = props => {
                                 style={styles.profileImage}
                                 />
                                 :
-                                <View style={styles.profileImage}>
+                                <View style={styles.profileWithoutImage}>
                                     <Feather name='image' size={24} />
                                     <Text style={styles.mediumText}>Add profile image</Text>
                                 </View>
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    profileImage: {
+    profileWithoutImage: {
         height: 150,
         width: 150,
         borderRadius: 75,
@@ -125,6 +125,15 @@ const styles = StyleSheet.create({
         borderWidth: 2.5,
         borderStyle: 'dashed',
         borderColor: '#ccc',
+    },
+    profileImage: {
+        height: 150,
+        width: 150,
+        borderRadius: 75,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     drawerSection: {
         borderTopWidth: 1,

@@ -45,9 +45,7 @@ const App = () => {
 	
 	return (
 		<NavigationContainer style={styles.page}>
-			<Stack.Navigator
-			headerMode='none'
-			>
+			<Stack.Navigator headerMode='none'>
 				<Stack.Screen name="Onboarding" component={Onboarding} />
 				<Stack.Screen name="Welcome" component={Welcome} />
 				<Stack.Screen name="Login" component={Login} />

@@ -7,8 +7,10 @@ import Button from './Button';
 const Subslide = props => {
     return (
         <View style={styles.container}>
-            <Text style={styles.subtitle}>{props.subtitle}</Text>
-            <Text style={styles.description}>{props.description}</Text>
+            <View style={styles.textContainer}> 
+                <Text style={styles.title}>{props.subtitle}</Text>
+                <Text style={styles.description}>{props.description}</Text>
+            </View>
             <Button 
             label={props.last ? "Let's get started" : 'Next'}
             variant={props.last ? 'primary' : 'default'}
@@ -26,13 +28,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 32,
     },
-    subtitle: {
+    textContainer: {
+        marginTop: 20,
+        marginBottom: 20,
+    },
+    title: {
         fontFamily: 'Raleway-Bold',
+        fontWeight: '700',
         fontSize: 24,
         lineHeight: 30,
         color: '#0C0D34',
         textAlign: 'center',
-        marginTop: 16,
     },
     description: {
         fontFamily: 'Raleway-Regular',
@@ -40,7 +46,6 @@ const styles = StyleSheet.create({
         lineHeight: 24,
         color: '#0C0D34',
         textAlign: 'center',
-        padding: 24,
     },
 });
 

@@ -96,7 +96,7 @@ const SavedRouteCards = props => {
                     :
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
-                        You don't currently have any saved routes. You're saved route cards will appear here. 
+                            You don't currently have any saved routes. You're saved route cards will appear here. 
                         </Text>
                     </View>
                 }

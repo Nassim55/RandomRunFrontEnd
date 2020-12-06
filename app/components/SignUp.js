@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
-
+import { StyleSheet, Dimensions } from 'react-native';
+import SignUpSVG from '../svgs/SignUpSVG';
 import Container from './Container';
 import SocialLogin from './SocialLogin';
 import SignUpForms from './SignUpForms';
@@ -13,6 +13,7 @@ const SignUp = props => {
     return (
         <Container
         topColour='#FFE4D9'
+        svg={<SignUpSVG />}
         children={
             <SignUpForms
             navigation={props.navigation}

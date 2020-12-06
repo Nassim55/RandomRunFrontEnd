@@ -37,14 +37,14 @@ const slides = [
     { 
         title: '',
         subtitle: 'Randomise Your Routes',
-        description: 'Generate up to fifty unique random routes per day.',
+        description: 'Generate up to twenty five unique randomised routes per day.',
         color: '#FFE4D9',
         picture: require('/Users/nassim/Documents/RandomRunFrontEnd/images/running3.jpg'),
      },
     { 
         title: '',
         subtitle: 'Save Your Routes',
-        description: 'Save and share the routes that you enjoy most.',
+        description: 'Save your top five routes to run again again at your convenience.',
         color: '#40798C',
         picture: require('/Users/nassim/Documents/RandomRunFrontEnd/images/running4.jpg'),
     },

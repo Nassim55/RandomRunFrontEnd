@@ -21,7 +21,7 @@ const ResetPasswordConfirmForms = props => {
                 <Text style={styles.title}>Reset Your Password</Text>
                 <Text style={styles.description}>
                     You have been sent an email containing a one-time password reset key.
-                    Enter the key and choose a new password.
+                    Enter the reset key below and choose a new password.
                 </Text>
             </View>
             <View style={styles.formGrouping}>
@@ -72,23 +72,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleGrouping: {
-        marginTop: 25,
-        marginBottom: 25,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        marginBottom: 20,
     },
     formGrouping: {
-        marginBottom: 25,
+        marginBottom: 20,
     },
     buttonGrouping: {
 
     },
     title: {
         fontFamily: 'Raleway-Bold',
+        fontWeight: '700',
         fontSize: 24,
         lineHeight: 30,
         color: '#0C0D34',
         textAlign: 'center',
-        marginBottom: 10,
-
     },
     description: {
         fontFamily: 'Raleway-Regular',

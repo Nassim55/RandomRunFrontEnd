@@ -19,7 +19,7 @@ const ForgotPasswordForms = props => {
             <View style={styles.titleGrouping}>
                 <Text style={styles.title}>Forgot Password</Text>
                 <Text style={styles.description}>
-                    Enter your email address below. If your email is associated with an account we will send you a password reset email.
+                    Enter your email address to recieve a password reset email.
                 </Text>
             </View>
             <View style={styles.formGrouping}>
@@ -62,23 +62,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleGrouping: {
-        marginTop: 25,
-        marginBottom: 25,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        marginBottom: 20,
     },
     formGrouping: {
-        marginBottom: 25,
+        marginBottom: 20,
     },
     buttonGrouping: {
 
     },
     title: {
         fontFamily: 'Raleway-Bold',
+        fontWeight: '700',
         fontSize: 24,
         lineHeight: 30,
         color: '#0C0D34',
         textAlign: 'center',
-        marginBottom: 10,
-
     },
     description: {
         fontFamily: 'Raleway-Regular',

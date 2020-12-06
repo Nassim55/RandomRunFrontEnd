@@ -45,7 +45,7 @@ const SignUpForms = props => {
             <View style={styles.titleGrouping}>
                 <Text style={styles.title}>Create account</Text>
                 <Text style={styles.description}>
-                    Create an account, alternatively sign up with either Facebook or Google.
+                    Create an account, alternatively log in using Google or Facebook.
                 </Text>
             </View>
             <View style={styles.formGrouping}>
@@ -99,8 +99,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 25,
-        marginBottom: 25,
+        marginTop: 20,
     },
     formGrouping: {
         display: 'flex',
@@ -114,11 +113,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'Raleway-Bold',
+        fontWeight: '700',
         fontSize: 24,
         lineHeight: 30,
         color: '#0C0D34',
         textAlign: 'center',
-        marginBottom: 10,
     },
     description: {
         fontFamily: 'Raleway-Regular',

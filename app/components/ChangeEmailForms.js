@@ -63,23 +63,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleGrouping: {
-        marginTop: 25,
-        marginBottom: 25,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        marginBottom: 20,
     },
     formGrouping: {
-        marginBottom: 25,
+        marginBottom: 20,
     },
     buttonGrouping: {
 
     },
     title: {
         fontFamily: 'Raleway-Bold',
+        fontWeight: '700',
         fontSize: 24,
         lineHeight: 30,
         color: '#0C0D34',
         textAlign: 'center',
-        marginBottom: 10,
-
     },
     description: {
         fontFamily: 'Raleway-Regular',
