@@ -1,14 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Pressable, Text } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
+import { StyleSheet } from 'react-native';
 import ContainerWithoutFooter from './ContainerWithoutFooter';
 import ChangeEmailForms from './ChangeEmailForms';
+import EmailSVG from '../svgs/EmailSVG';
 
 
 const ChangeEmail = props => {
     return (
         <ContainerWithoutFooter
         topColour='#FFE4D9'
+        svg={<EmailSVG />}
         children={
             <ChangeEmailForms 
             navigation={props.navigation}
