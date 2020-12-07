@@ -107,7 +107,7 @@ const EditProfileContent = props => {
                     onPress={() => props.navigation.openDrawer()}
                     >
                         <Feather style={styles.arrowIcon} name='arrow-left' size={24} color='black'>
-                            <Text style={styles.BackButtonText}>Back</Text>
+                            <Text style={styles.BackButtonText}>Menu</Text>
                         </Feather>
                     </Pressable>
             </View>
