@@ -30,6 +30,7 @@ const ChangeEmailForms = props => {
                 secureTextEntry={false}
                 validator={emailValidator}
                 setCredentials={setEmail}
+                isValidation={true}
                 />
             </View>
             <View style={styles.buttonGrouping}>

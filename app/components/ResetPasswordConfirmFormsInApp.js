@@ -41,6 +41,7 @@ const ResetPasswordConfirmFormsInApp = props => {
                 validator={passwordValidator}
                 setCredentials={setNewPassword}
                 textContentType={'oneTimeCode'}
+                isValidation={true}
                 />
             </View>
             <View style={styles.buttonGrouping}>

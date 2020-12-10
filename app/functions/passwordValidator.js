@@ -1,6 +1,6 @@
 const passwordValidator = password => {
     //at least one number, one lowercase and one uppercase letter, at least six characters:
-    const re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     return re.test(password);
 };
 

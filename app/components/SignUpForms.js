@@ -56,6 +56,7 @@ const SignUpForms = props => {
                 secureTextEntry={false}
                 validator={emailValidator}
                 setCredentials={setEmail}
+                isValidation={true}
                 />
                 <TextInput 
                 icon='lock'
@@ -64,6 +65,7 @@ const SignUpForms = props => {
                 validator={passwordValidator}
                 setCredentials={setPassword}
                 textContentType={'oneTimeCode'}
+                isValidation={true}
                 />
                 <TextInput 
                 icon='lock'
@@ -72,6 +74,7 @@ const SignUpForms = props => {
                 validator={passwordValidator}
                 setCredentials={setPassword2}
                 textContentType={'oneTimeCode'}
+                isValidation={true}
                 />
             </View>
             <View style={styles.buttonGrouping}>

@@ -27,8 +27,10 @@ const TextInput = props => {
 
     const validate = () => {
         // If the validator function returns true, set the state to valid:
-        const valid = props.validator(input);
-        setState(valid);
+        if (props.isValidation) {
+            const valid = props.validator(input);
+            setState(valid);
+        }
     };
 
     return (

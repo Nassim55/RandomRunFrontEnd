@@ -1,4 +1,5 @@
 import { HOST_URL } from "@env";
+import { Alert } from 'react-native';
 import { setUserAuthenticated, setUserAccountDetails, setSignUpButtonHttpResponse } from '../../store/actions';
 import saveData from '../authentication/saveData';
 import pushUserToMapView from '../functions/pushUserToMapView';
@@ -30,12 +31,20 @@ const registerAccount = async (email, password, password2, dispatch, navigation,
 
             // Pushing to the map view on successfull login:
             pushUserToMapView(dispatch, navigation, httpAuthType);
+        } else if (data.email[0] === 'account with this email already exists.') {
+            Alert.alert(
+                'Account Not Created',
+                'An account with this email address already exists.',
+                [{ text: 'Ok'}], { cancelable: false }
+            );
         } else {
             if (data.password && !data.email && !data.password2) {
                 dispatch(setSignUpButtonHttpResponse({'email': [''], 'password': [data.password], 'password2': ['']}))
             } 
             
         }
+
+
     } catch (err) { if (console) console.error(err) }
 };
 
