@@ -39,7 +39,7 @@ const changePassword = async (httpAuthType, navigation, navigationLocation, curr
             } else {
                 Alert.alert(
                     'Password Not Changed',
-                    'Your password has not been changed please try again.',
+                    'Your password has not been changed please try again. Make sure that you use a non-common password that is at least 8 characters and includes both numbers and letters.',
                     [
                         { 
                             text: 'Ok',

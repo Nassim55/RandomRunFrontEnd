@@ -19,8 +19,6 @@ const updateUserAccount = async (props, dispatch, httpAuthType, navigation) => {
             uploadData.append('image', props.image);
         }
 
-        console.log('updating user account')
-
         // Updating the user account at the update account endpoint:
         const response = await fetch(`${HOST_URL}/account/updateaccount`, {
             method: 'PATCH',
