@@ -10,7 +10,6 @@ const convertSocialAuthToken = async (
   navigation,
   backend,
 ) => {
-  console.log(Platform.OS);
   try {
     // Defining the POST response and converting data to json:
     const response = await fetch(`${HOST_URL}/account/convert-social-auth`, {

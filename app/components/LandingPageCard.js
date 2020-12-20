@@ -1,10 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import {View} from 'react-native';
 
-const LandingPageCard = (props) => {
-    return (
-        <View></View>
-    );
+const LandingPageCard = () => {
+  return <View />;
 };
 
 export default LandingPageCard;

@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
 import Animated, {Extrapolate, interpolate} from 'react-native-reanimated';
 
 const Dot = (props) => {
@@ -29,7 +28,5 @@ const Dot = (props) => {
     />
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default Dot;
