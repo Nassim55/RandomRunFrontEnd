@@ -41,9 +41,8 @@ const TextInput = (props) => {
       <View style={styles.inputIconContainer}>
         <Feather name={props.icon} size={24} color={color} />
       </View>
-      <View style={{flex: 1}}>
+      <View style={styles.textInputView}>
         <RNTextInput
-          style={styles.reactNativeTextInput}
           underlineColorAndroid="transparent"
           autoCompleteType="off"
           autoCorrect={false}
@@ -61,7 +60,7 @@ const TextInput = (props) => {
           {...props}
         />
       </View>
-      {(state === Valid || state == Invalid) && (
+      {(state === Valid || state === Invalid) && (
         <View style={styles.validityIconContainer}>
           <Feather
             name={state === Valid ? 'check' : 'x'}
@@ -92,7 +91,9 @@ const styles = StyleSheet.create({
   inputIconContainer: {
     paddingRight: 10,
   },
-  reactNativeTextInput: {},
+  textInputView: {
+    flex: 1,
+  },
   validityIconContainer: {
     display: 'flex',
     justifyContent: 'center',

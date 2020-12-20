@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
 import {StyleSheet, Platform, View, Dimensions} from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
@@ -6,7 +7,6 @@ import setUserLongitudeAndLatitude from '../functions/setUserLongitudeAndLatitud
 
 // Window dimensions:
 const height = Dimensions.get('window').height;
-const width = Dimensions.get('window').width;
 
 // Public token:
 const MAPBOX_PUBLIC_TOKEN =
